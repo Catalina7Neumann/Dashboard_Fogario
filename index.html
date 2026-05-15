@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fogarío · Dashboard Ejecutivo</title>
+<title>Informe de Gestión Fogarío</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-html,body{margin:0;padding:0;background:#D8D7CD;font-family:'Onest',system-ui,-apple-system,sans-serif;color:#1A1A1A}
+html,body{margin:0;padding:0;background:#D8D7CD;font-family:'Onest','Segoe UI','Helvetica Neue',Arial,sans-serif;color:#1A1A1A}
 body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 .topbar{display:flex;justify-content:space-between;align-items:flex-end;max-width:1400px;width:100%;margin:0 auto 12px;gap:18px;flex-wrap:wrap}
 .brand{line-height:1}
@@ -69,6 +69,14 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 .tip{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:8px 12px;border-radius:8px;font-size:11px;white-space:nowrap;z-index:50;font-weight:500;line-height:1.5;margin-bottom:6px;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1A1A1A}
 .legend{display:flex;gap:16px;margin-top:10px;font-size:11.5px;color:#1A1A1A;font-weight:500}
+.hbars{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.hbar-row{display:grid;grid-template-columns:54px 1fr 100px;align-items:center;gap:10px;font-size:11.5px}
+.hbar-row .nm{font-weight:600;color:#1A1A1A}
+.hbar-row .tot{text-align:right;font-weight:700;color:#1A1A1A;white-space:nowrap}
+.hbar-track-wrap{position:relative;height:14px;width:100%}
+.hbar-track{position:relative;height:100%;background:#f4f1e8;border-radius:4px;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hbar-fact{position:absolute;left:0;top:0;height:100%;background:#1F9A2C;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hbar-pend{position:absolute;top:0;height:100%;background:#B6E3A2;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .modal-wrap{display:none;position:fixed;inset:0;background:rgba(26,26,26,.6);z-index:9999;justify-content:center;align-items:center;padding:30px}
 .modal-wrap.open{display:flex}
 .modal{background:#E6E5DC;border-radius:18px;padding:22px 26px;max-width:720px;width:100%;max-height:80vh;overflow:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4)}
@@ -84,6 +92,60 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 .dn-tbl{width:100%;font-size:12px;border-collapse:collapse;margin-top:10px}
 .dn-tbl td{padding:5px 0}
 .dn-tbl tr+tr td{border-top:1px solid #f0eee5}
+.pie-card{display:grid;grid-template-columns:1fr 240px;gap:14px;flex:1;min-height:0}
+.pie-box{display:flex;align-items:center;justify-content:center;min-height:0}
+.pie-svg{width:100%;height:100%;max-height:240px}
+.pie-svg path.slice{cursor:pointer;transition:filter .15s}
+.pie-svg path.slice:hover,.pie-svg path.slice.hl{filter:brightness(1.18) drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+.pie-tbl-wrap{overflow-y:auto;min-height:0;max-height:240px}
+.pie-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.pie-tbl th{font-size:10.5px;font-weight:600;color:#4A4A48;text-align:left;padding:4px 6px 6px;border-bottom:1px solid #d8d7cd;position:sticky;top:0;background:#fff}
+.pie-tbl th.r{text-align:right}
+.pie-tbl td{padding:5px 6px;border-bottom:1px solid #f0eee5;cursor:pointer;transition:.12s}
+.pie-tbl td.r{text-align:right;font-weight:700}
+.pie-tbl td .sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.pie-tbl tr:hover td,.pie-tbl tr.hl td{background:#1A1A1A;color:#fff}
+.pie-tbl tr:hover td .pct,.pie-tbl tr.hl td .pct{color:#4ECC50}
+.pie-tbl .pct{color:#1F9A2C;font-weight:700}
+.pie-tbl tfoot td{font-weight:700;background:#f5f3ec;border-top:2px solid #d8d7cd}
+.map-grid{display:grid;grid-template-columns:1fr 290px;gap:12px;flex:1;min-height:0}
+.map-card-w{background:#fff;border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;position:relative}
+.map-wrap{position:relative;width:100%;aspect-ratio:1024/576;max-height:100%;background:url('Mapa Rio Negro.png') center/contain no-repeat;border-radius:10px;box-shadow:inset 0 0 60px rgba(0,0,0,.04)}
+.prov{position:absolute;font-size:10.5px;font-weight:600;color:#A8A79F;letter-spacing:.06em;pointer-events:none;text-transform:uppercase;z-index:1}
+.prov.v{writing-mode:vertical-rl;letter-spacing:.12em}
+.pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;z-index:2;line-height:0}
+.pin svg.mark{width:24px;height:32px;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));transition:transform .15s}
+.pin:hover svg.mark{transform:scale(1.18)}
+.pin:hover{z-index:60}
+.pin .lbl{position:absolute;left:28px;top:8px;background:rgba(255,255,255,.82);padding:3px 8px;border-radius:8px;font-size:10.5px;font-weight:700;white-space:nowrap;line-height:1.25;color:#1A1A1A;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:.15s}
+.pin .lbl b{color:#1F9A2C;font-weight:700}
+.pin .lbl .o{color:#3D6FB8;font-weight:700;margin-left:4px}
+.pin:hover .lbl{background:#1A1A1A;color:#fff}
+.pin:hover .lbl b{color:#4ECC50}.pin:hover .lbl .o{color:#7AA8E0}
+.pop{display:none;position:absolute;left:12px;bottom:calc(100% + 4px);background:#1A1A1A;color:#fff;border-radius:12px;padding:11px 14px;min-width:240px;box-shadow:0 10px 28px rgba(0,0,0,.45);z-index:80;text-align:left;font-size:11.5px;line-height:1.45}
+.pop::after{content:'';position:absolute;top:100%;left:18px;border:6px solid transparent;border-top-color:#1A1A1A}
+.pin.up .pop{bottom:auto;top:calc(100% + 4px)}
+.pin.up .pop::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#1A1A1A}
+.pin.right .pop{left:auto;right:12px}
+.pin.right .pop::after{left:auto;right:18px}
+.pin:hover .pop{display:block}
+.pop h5{margin:0 0 6px;font-size:13px;font-weight:700;color:#fff}
+.pop .inc{font-size:10.5px;color:#B6E3A2;margin:0 0 8px;font-weight:600}
+.pop table{width:100%;border-collapse:collapse}
+.pop td{padding:3px 0;color:#E6E5DC}
+.pop td.r{text-align:right;font-weight:700}
+.pop .v{color:#4ECC50}.pop .b{color:#7AA8E0}
+.map-side{display:flex;flex-direction:column;gap:10px;min-height:0}
+.rk{background:#fff;border-radius:14px;padding:12px 14px;flex:1;min-height:0;display:flex;flex-direction:column}
+.rk h4{margin:0 0 8px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.rk h4 .d{width:8px;height:8px;border-radius:50%}
+.rk .scroll{overflow-y:auto;flex:1;min-height:0;max-height:220px;padding-right:4px}
+.rk ul{margin:0;padding:0;list-style:none;font-size:11.5px}
+.rk li{display:flex;justify-content:space-between;padding:4px 0;border-top:1px solid #f0eee5}
+.rk li:first-child{border-top:none}.rk li b{font-weight:700}
+.rk .more{margin-top:6px;font-size:11.5px;color:#1F9A2C;font-weight:600;cursor:pointer;background:none;border:none;padding:4px 0;text-decoration:underline;flex-shrink:0;text-align:left;font-family:inherit}
+.rk .more:hover{color:#185f1c}
+.rk .extra{display:none}.rk.open .extra{display:block}
 @media print{
   @page{size:A4 landscape;margin:5mm}
   html,body{height:auto;background:#fff}
@@ -91,7 +153,7 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
   .topbar,.nav,.linkish,.btn{display:none !important}
   .modal-wrap{display:none !important}
   .pages{max-width:none}
-  .page{display:flex !important;page-break-after:always;background:#E6E5DC !important;margin:0;border-radius:0;padding:10mm 12mm 8mm;min-height:auto;height:195mm;break-inside:avoid;break-after:page}
+  .page{display:flex !important;page-break-after:always;background:#E6E5DC !important;margin:0;border-radius:0;padding:8mm 10mm 6mm;min-height:195mm;height:auto;overflow:visible;break-after:page}
   .page:last-child{page-break-after:auto;break-after:auto}
   .page::before,.page::after{display:block !important}
   .pill,.card,.tag,.chip{box-shadow:none}
@@ -99,6 +161,16 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
   .pill .am{font-size:22px;min-width:auto}
   .title{font-size:22px}
   .bar-row .b,.bar-stack > div{background-color:inherit !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pie-svg,.pie-svg path,.map-wrap,.pin svg{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pie-tbl-wrap,.rk .scroll{overflow:visible !important;max-height:none !important;height:auto !important}
+  .pie-tbl,.pie-tbl tbody,.pie-tbl tr{page-break-inside:avoid}
+  .rk{height:auto !important}
+  .rk .extra{display:block !important}
+  .rk .more{display:none !important}
+  .pin .pop{display:none !important}
+  .pie-svg{max-height:180px !important}
+  .pie-tbl th,.pie-tbl td{font-size:10px;padding:3px 5px}
+  .rk li{font-size:10.5px;padding:2px 0}
 }
 </style>
 </head>
@@ -114,13 +186,13 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 <div class="nav">
   <button class="active" onclick="showPage(1, this)">Página 1 · Indicadores</button>
   <button onclick="showPage(2, this)">Página 2 · Riesgo</button>
-  <button onclick="showPage(3, this)">Página 3 · Garantías</button>
-  <button onclick="showPage(4, this)">Página 4 · Sostenibilidad</button>
+  <button onclick="showPage(3, this)">Página 3 · Abordaje territorial</button>
+  <button onclick="showPage(4, this)">Página 4 · Garantías</button>
+  <button onclick="showPage(5, this)">Página 5 · Sostenibilidad</button>
 </div>
 
 <div class="pages">
 
-<!-- PÁGINA 1 -->
 <section class="page active" id="p1">
   <div class="head">
     <span class="tag" id="tag-fecha">Dashboard Ejecutivo · 30/04/2026</span>
@@ -147,23 +219,25 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
   </div>
 </section>
 
-<!-- PÁGINA 2 -->
 <section class="page" id="p2">
   <div class="head">
     <span class="tag">Página 2 · Riesgo</span>
     <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
   </div>
-  <div class="title">Calificación y distribución <span class="ac">territorial</span></div>
-  <div class="grid" style="grid-template-columns:1.3fr 1fr 0.95fr;gap:10px;align-items:stretch">
-    <div class="card" style="padding:11px 14px 8px">
-      <div class="lbl" style="margin-bottom:8px">Calificación por localidad — Top 10 (M$)</div>
-      <div id="loc-bars" style="display:flex;flex-direction:column;gap:6px"></div>
-      <button class="linkish" onclick="abrirModal('mod-loc')" id="loc-more">+ X localidades más (clic para expandir)</button>
-    </div>
-    <div class="card" style="padding:11px 14px 8px">
-      <div class="lbl" style="margin-bottom:8px">Operaciones por localidad — Top 10</div>
-      <table class="tbl" id="loc-ops" style="flex:1"></table>
-      <button class="linkish" onclick="abrirModal('mod-ops')" id="ops-more">+ X localidades más (clic para expandir)</button>
+  <div class="title">Riesgo <span class="ac">y calificación</span></div>
+  <div class="grid" style="grid-template-columns:1fr 240px;gap:10px;flex:1;min-height:0">
+    <div class="card" style="padding:12px 14px 10px">
+      <div class="lbl" style="margin-bottom:8px">Calificación por localidad (M$)</div>
+      <div class="pie-card">
+        <div class="pie-box"><svg class="pie-svg" id="pie-c" viewBox="0 0 380 220" preserveAspectRatio="xMidYMid meet"></svg></div>
+        <div class="pie-tbl-wrap">
+          <table class="pie-tbl">
+            <thead><tr><th>Localidad</th><th class="r">M$</th><th class="r">%</th></tr></thead>
+            <tbody id="pie-tb"></tbody>
+            <tfoot><tr><td><b>Total</b></td><td class="r" id="pie-tot"></td><td class="r"><b>100%</b></td></tr></tfoot>
+          </table>
+        </div>
+      </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="card" style="flex:1;justify-content:center"><div class="lbl">Mora</div><div class="num" id="k-mora" style="color:#1F9A2C;margin-top:6px">—</div><div class="sub">Porcentaje de mora</div></div>
@@ -177,10 +251,41 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
   </div>
 </section>
 
-<!-- PÁGINA 3 -->
 <section class="page" id="p3">
   <div class="head">
-    <span class="tag">Página 3 · Garantías otorgadas</span>
+    <span class="tag">Página 3 · Abordaje territorial</span>
+    <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
+  </div>
+  <div class="title">Abordaje <span class="ac">territorial</span></div>
+  <div class="map-grid">
+    <div class="map-card-w">
+      <div class="map-wrap" id="map">
+        <span class="prov" style="left:30%;top:0.5%;font-size:9.5px">Mendoza</span>
+        <span class="prov" style="left:50%;top:1%">La Pampa</span>
+        <span class="prov" style="right:3%;top:2%">Buenos Aires</span>
+        <span class="prov v" style="left:1.5%;top:36%">Neuquén</span>
+        <span class="prov" style="left:42%;top:96%">Chubut</span>
+        <span class="prov v" style="right:1.5%;top:46%">Mar Argentino</span>
+      </div>
+    </div>
+    <div class="map-side">
+      <div class="rk" id="rk-monto">
+        <h4><span class="d" style="background:#4ECC50"></span>Top calificación (M$)</h4>
+        <div class="scroll"><ul class="base"></ul><ul class="extra"></ul></div>
+        <button class="more" onclick="toggleRk('rk-monto',this)">Ver todas ▾</button>
+      </div>
+      <div class="rk" id="rk-ops">
+        <h4><span class="d" style="background:#3D6FB8"></span>Top operaciones</h4>
+        <div class="scroll"><ul class="base"></ul><ul class="extra"></ul></div>
+        <button class="more" onclick="toggleRk('rk-ops',this)">Ver todas ▾</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="p4">
+  <div class="head">
+    <span class="tag">Página 4 · Garantías otorgadas</span>
     <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
   </div>
   <div class="title">Garantías <span class="ac">otorgadas</span></div>
@@ -201,20 +306,18 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
       <table class="dn-tbl" id="tb-tam" style="width:100%"></table>
     </div>
   </div>
-  <div class="dn-tip" id="dn-tip"></div>
 </section>
 
-<!-- PÁGINA 4 -->
-<section class="page" id="p4">
+<section class="page" id="p5">
   <div class="head">
-    <span class="tag">Página 4 · Sostenibilidad</span>
+    <span class="tag">Página 5 · Sostenibilidad</span>
     <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
   </div>
   <div class="title">Comisiones, costos <span class="ac">y rendimiento</span></div>
   <div class="grid" style="grid-template-columns:2.4fr 1fr;margin-bottom:10px">
     <div class="card">
-      <div class="lbl" style="margin-bottom:10px">Comisiones por mes (millones $)</div>
-      <div class="bars-mes" id="bars-com"></div>
+      <div class="lbl" style="margin-bottom:6px">Comisiones por mes</div>
+      <div class="hbars" id="hbars-com"></div>
       <div class="legend">
         <span><span class="dot-leg" style="background:#1F9A2C"></span>Facturada</span>
         <span><span class="dot-leg" style="background:#B6E3A2"></span>Pendiente facturar</span>
@@ -243,16 +346,15 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 
 </div>
 
-<div class="modal-wrap" id="mod-loc"><div class="modal"><button class="modal-close" onclick="cerrarModal('mod-loc')">×</button><h3>Calificación por localidad — todas</h3><div id="modal-loc-content"></div></div></div>
-<div class="modal-wrap" id="mod-ops"><div class="modal"><button class="modal-close" onclick="cerrarModal('mod-ops')">×</button><h3>Operaciones por localidad — todas</h3><table class="tbl" id="modal-ops-content"></table></div></div>
 <div class="modal-wrap" id="mod-top"><div class="modal"><button class="modal-close" onclick="cerrarModal('mod-top')">×</button><h3>Top clientes por calificación instrumentada</h3><table class="tbl" id="modal-top-content"></table></div></div>
 <div class="modal-wrap" id="mod-cos"><div class="modal"><button class="modal-close" onclick="cerrarModal('mod-cos')">×</button><h3>Costos operativos · Abril 2026</h3><table class="tbl" id="modal-cos-content"></table></div></div>
+<div class="dn-tip" id="dn-tip"></div>
 
 <script>
-const DATA = {"fecha_corte": "30/04/2026", "kpis": {"mipymes": 71, "monto_total": 2668000000, "otorgadas": 50, "en_gestion": 21, "banca_trad": 52, "cfi": 19, "mercado": 0, "localidades": 15, "rendimiento": 649149695.8634988, "comisiones": 145739933.85000002, "costos_acumulados": 228252035.46999997, "costos_abril": 20023233.82}, "localidades": [{"nombre": "Cipolletti", "monto": 388000000.0, "ops_lim": 13, "ops_gar": 13}, {"nombre": "General Roca", "monto": 373000000.0, "ops_lim": 8, "ops_gar": 7}, {"nombre": "Viedma", "monto": 350000000.0, "ops_lim": 9, "ops_gar": 8}, {"nombre": "Cinco Saltos", "monto": 339044070.366, "ops_lim": 6, "ops_gar": 7}, {"nombre": "Bariloche", "monto": 285000000.0, "ops_lim": 10, "ops_gar": 11}, {"nombre": "Catriel", "monto": 275000000.0, "ops_lim": 9, "ops_gar": 10}, {"nombre": "Allen", "monto": 150000000.0, "ops_lim": 4, "ops_gar": 4}, {"nombre": "Villa Regina", "monto": 100000000.0, "ops_lim": 1, "ops_gar": 1}, {"nombre": "General Fernandez Oro", "monto": 100000000.0, "ops_lim": 1, "ops_gar": 1}, {"nombre": "Ingeniero Jacobacci", "monto": 100000000.0, "ops_lim": 1, "ops_gar": 1}, {"nombre": "San Carlos de Bariloche", "monto": 93000000.0, "ops_lim": 3, "ops_gar": 3}, {"nombre": "San Antonio Oeste", "monto": 50000000.0, "ops_lim": 1, "ops_gar": 1}, {"nombre": "Rio Colorado", "monto": 25000000.0, "ops_lim": 1, "ops_gar": 1}, {"nombre": "General Conesa", "monto": 10000000.0, "ops_lim": 1, "ops_gar": 1}, {"nombre": "San Javier", "monto": 10000000.0, "ops_lim": 1, "ops_gar": 0}, {"nombre": "Sierra Colorada", "monto": 8000000.0, "ops_lim": 1, "ops_gar": 1}], "top_clientes": [{"nombre": "AMJ Servicios SAS", "monto": 119044070.366}, {"nombre": "AUSTRADE SRL", "monto": 100000000.0}, {"nombre": "ECOMIN SRL", "monto": 100000000.0}, {"nombre": "El Cerro SA", "monto": 100000000.0}, {"nombre": "FRUCH PATAGONIA SAS", "monto": 100000000.0}, {"nombre": "Patagonia Beverage SRL", "monto": 100000000.0}, {"nombre": "Servicios Ambientales de La Patagonia SRL.", "monto": 100000000.0}, {"nombre": "WFS S.R.L.", "monto": 100000000.0}, {"nombre": "Gen S.R.L.", "monto": 76000000.0}, {"nombre": "JUACO S.R.L.", "monto": 70000000.0}, {"nombre": "Agustin Marcelo Schander", "monto": 50000000.0}, {"nombre": "CHAMPI SAS", "monto": 50000000.0}, {"nombre": "EMELKA S.A.", "monto": 50000000.0}, {"nombre": "Emysa SRL", "monto": 50000000.0}, {"nombre": "FUKUOKA SRL", "monto": 50000000.0}, {"nombre": "GRUPO GLASS SAS", "monto": 50000000.0}, {"nombre": "JULIO CESAR SANGIULIANO", "monto": 50000000.0}, {"nombre": "KJ LOGISTICA SRL", "monto": 50000000.0}, {"nombre": "La Rinconada SAS", "monto": 50000000.0}, {"nombre": "LABORATORIO PRAXIS S.A.S.", "monto": 50000000.0}, {"nombre": "Patagonia Emprendimientos SA", "monto": 50000000.0}, {"nombre": "PEREZ DIEGO MARTIN", "monto": 50000000.0}, {"nombre": "Quimica del Valle S.R.L.", "monto": 50000000.0}, {"nombre": "Asociación Civil Deportivo y Cultural Viedma", "monto": 40000000.0}, {"nombre": "CREA LOGISTICA SAS", "monto": 40000000.0}, {"nombre": "Da Da S.A.S.", "monto": 40000000.0}, {"nombre": "GABRIELA ALEJANDRA MALDONADO", "monto": 40000000.0}, {"nombre": "HELGUERO MARTIN LEANDRO", "monto": 40000000.0}, {"nombre": "La Morena SRL", "monto": 40000000.0}, {"nombre": "MEDRANO DIEGO SEBASTIAN", "monto": 40000000.0}, {"nombre": "MONTOTO SPORT SH", "monto": 40000000.0}, {"nombre": "FRUTAS SAN EDUARDO", "monto": 35000000.0}, {"nombre": "Gabriel Humberto Guzman", "monto": 35000000.0}, {"nombre": "BURCAM SRL", "monto": 30000000.0}, {"nombre": "FADEL SRL", "monto": 30000000.0}, {"nombre": "Jose Dardo Rivas", "monto": 30000000.0}, {"nombre": "Natalia Alejandra Lopez", "monto": 30000000.0}, {"nombre": "RODRIGUEZ FEDERICO", "monto": 30000000.0}, {"nombre": "Transportes y Servicios JJRR S.R.L.", "monto": 30000000.0}, {"nombre": "CRIBYCA SAS", "monto": 28000000.0}, {"nombre": "Alicia Petronila Silva", "monto": 25000000.0}, {"nombre": "BOGLIOLI ROSANA LOURDES", "monto": 25000000.0}, {"nombre": "Cooperativa de Trabajo Manos Argentinas Limitada", "monto": 25000000.0}, {"nombre": "R.E.C. SERVICIOS SAS", "monto": 25000000.0}, {"nombre": "Romero Alejandro Jose", "monto": 25000000.0}, {"nombre": "Tools Rental S.A.S.", "monto": 25000000.0}, {"nombre": "Huayra SAS", "monto": 24000000.0}, {"nombre": "Enjoy Moments SRL", "monto": 20000000.0}, {"nombre": "HE DI SAS", "monto": 20000000.0}, {"nombre": "Las Delicias Heladas S.A.S.", "monto": 20000000.0}, {"nombre": "Natural Express S.A.S.", "monto": 20000000.0}, {"nombre": "Sastre Julieta Lilen", "monto": 20000000.0}, {"nombre": "ALMENDRA JUAN CARLOS", "monto": 18000000.0}, {"nombre": "BECHAMEL SOCIEDAD SIMPLE", "monto": 16000000.0}, {"nombre": "Fernando Fernandez", "monto": 16000000.0}, {"nombre": "Carlos Bogado", "monto": 15000000.0}, {"nombre": "EVIANS SRL", "monto": 15000000.0}, {"nombre": "Mozo Maria Alejandra", "monto": 15000000.0}, {"nombre": "Naturaleza Patagonica", "monto": 15000000.0}, {"nombre": "Barcos Goñi Zahira Denise", "monto": 10000000.0}, {"nombre": "Castillo Martina Candelaria", "monto": 10000000.0}, {"nombre": "Delgado Tarifa Amin", "monto": 10000000.0}, {"nombre": "DIAZ GONZALEZ FLORENCIA AGOSTINA", "monto": 10000000.0}, {"nombre": "Norma Elizabeth Ramirez", "monto": 10000000.0}, {"nombre": "Ñancu Servicios SAS", "monto": 10000000.0}, {"nombre": "Pallis Jonathan", "monto": 10000000.0}, {"nombre": "RAMOS MELINA ANA ELIZABETH", "monto": 10000000.0}, {"nombre": "Zeman Rosemary", "monto": 10000000.0}, {"nombre": "BOZZINI NICOLAS SEBASTIAN", "monto": 8000000.0}, {"nombre": "Urrutia Rosa Eliana ", "monto": 8000000.0}, {"nombre": "Maria Soledad Telesca", "monto": 3000000.0}], "mora": 0.13, "riesgo_vivo": 1828086760.35, "frt": 2646646155.97, "fdr": 2380881407.32, "donas": {"comercial": [["Cristobal Cervera", 15], ["ESTEBAN ARIEL HIROKI", 14], ["Nancy Huinchaqueo", 10], ["Mayte Galaburri", 7], ["S/O", 4]], "sector": [["COMERCIO", 24], ["SERVICIOS", 17], ["INDUSTRIA", 14], ["MINERIA", 6], ["AGROPECUARIO", 4], ["Sin clasificar", 3], ["CONSTRUCCIÓN", 2], ["AGRICULTURA", 1]], "tamano": [["MICRO", 51], ["PEQUEÑA EMPRESA", 11], ["S/O", 8], ["MEDIANA TRAMO 1", 1]]}, "comisiones_meses": [["2025-09", 2212734.43, 0.0], ["2025-10", 1940373.6099999999, 0.0], ["2025-11", 33103755.32, 2506849.32], ["2025-12", 15994964.270000001, 20176438.34], ["2026-01", 10402428.72, 13022465.75], ["2026-02", 10953026.290000001, 0.0], ["2026-03", 2821391.61, 0.0]], "comisiones_facturada": 108269652.10000004, "comisiones_pendiente": 37470281.75, "costos_abril_detalle": [{"cuenta": "Alquiler de Oficinas", "codigo": "5.1.1.1.024", "monto": 3872000.0}, {"cuenta": "Viaticos", "codigo": "5.1.1.1.011", "monto": 3750000.0}, {"cuenta": "Cargas Sociales", "codigo": "5.1.1.1.002", "monto": 3572967.64}, {"cuenta": "Sistema de Administración - One Click S.A.", "codigo": "5.1.1.1.012", "monto": 2926790.21}, {"cuenta": "Sueldos y jornales", "codigo": "5.1.1.1.001", "monto": 2289305.27}, {"cuenta": "Honorarios de Auditoría", "codigo": "5.1.1.1.015", "monto": 1568160.0}, {"cuenta": "Honorarios Profesionales", "codigo": "5.1.1.1.006", "monto": 800000.0}, {"cuenta": "Mantenimiento de Sistemas y Correo", "codigo": "5.1.1.1.019", "monto": 542999.43}, {"cuenta": "Certificaciones", "codigo": "5.1.1.1.007", "monto": 387991.23}, {"cuenta": "Hospedaje", "codigo": "5.1.1.1.010", "monto": 243000.0}, {"cuenta": "Combustible", "codigo": "5.1.1.1.018", "monto": 70020.04}]};
+const DATA = {"fecha_corte":"15/05/2026","kpis":{"mipymes":77,"monto_total":2780000000,"otorgadas":65,"en_gestion":10,"banca_trad":57,"cfi":20,"mercado":0,"localidades":15,"rendimiento":649149695.8634988,"comisiones":149934529.94000003,"costos_acumulados":245973855.76999998,"costos_abril":37367684.349999994},"localidades":[{"nombre":"Bariloche","monto":408000000.0,"ops_lim":14,"ops_gar":15},{"nombre":"Cipolletti","monto":388000000.0,"ops_lim":13,"ops_gar":13},{"nombre":"General Roca","monto":373000000.0,"ops_lim":8,"ops_gar":7},{"nombre":"Viedma","monto":350000000.0,"ops_lim":9,"ops_gar":8},{"nombre":"Cinco Saltos","monto":349816318.59749997,"ops_lim":6,"ops_gar":7},{"nombre":"Catriel","monto":275000000.0,"ops_lim":9,"ops_gar":10},{"nombre":"Allen","monto":150000000.0,"ops_lim":4,"ops_gar":4},{"nombre":"Ingeniero Jacobacci","monto":100000000.0,"ops_lim":1,"ops_gar":1},{"nombre":"General Fernandez Oro","monto":100000000.0,"ops_lim":1,"ops_gar":1},{"nombre":"Villa Regina","monto":100000000.0,"ops_lim":1,"ops_gar":1},{"nombre":"San Antonio Oeste","monto":50000000.0,"ops_lim":1,"ops_gar":1},{"nombre":"Rio Colorado","monto":47000000.0,"ops_lim":2,"ops_gar":2},{"nombre":"General Conesa","monto":30000000.0,"ops_lim":2,"ops_gar":2},{"nombre":"El Bolson","monto":20000000.0,"ops_lim":1,"ops_gar":1},{"nombre":"San Javier","monto":10000000.0,"ops_lim":1,"ops_gar":0},{"nombre":"Sierra Colorada","monto":8000000.0,"ops_lim":1,"ops_gar":1}],"top_clientes":[{"nombre":"AMJ Servicios SAS","monto":129816318.5975},{"nombre":"AUSTRADE SRL","monto":100000000.0},{"nombre":"ECOMIN SRL","monto":100000000.0},{"nombre":"El Cerro SA","monto":100000000.0},{"nombre":"FRUCH PATAGONIA SAS","monto":100000000.0},{"nombre":"Patagonia Beverage SRL","monto":100000000.0},{"nombre":"Servicios Ambientales de La Patagonia SRL.","monto":100000000.0},{"nombre":"WFS S.R.L.","monto":100000000.0},{"nombre":"Gen S.R.L.","monto":76000000.0},{"nombre":"JUACO S.R.L.","monto":70000000.0},{"nombre":"Agustin Marcelo Schander","monto":50000000.0},{"nombre":"CHAMPI SAS","monto":50000000.0},{"nombre":"EMELKA S.A.","monto":50000000.0},{"nombre":"Emysa SRL","monto":50000000.0},{"nombre":"FUKUOKA SRL","monto":50000000.0},{"nombre":"GRUPO GLASS SAS","monto":50000000.0},{"nombre":"JULIO CESAR SANGIULIANO","monto":50000000.0},{"nombre":"KJ LOGISTICA SRL","monto":50000000.0},{"nombre":"La Rinconada SAS","monto":50000000.0},{"nombre":"LABORATORIO PRAXIS S.A.S.","monto":50000000.0},{"nombre":"Patagonia Emprendimientos SA","monto":50000000.0},{"nombre":"PEREZ DIEGO MARTIN","monto":50000000.0},{"nombre":"Quimica del Valle S.R.L.","monto":50000000.0},{"nombre":"Asociación Civil Deportivo y Cultural Viedma","monto":40000000.0},{"nombre":"CREA LOGISTICA SAS","monto":40000000.0},{"nombre":"Da Da S.A.S.","monto":40000000.0},{"nombre":"GABRIELA ALEJANDRA MALDONADO","monto":40000000.0},{"nombre":"HELGUERO MARTIN LEANDRO","monto":40000000.0},{"nombre":"La Morena SRL","monto":40000000.0},{"nombre":"MEDRANO DIEGO SEBASTIAN","monto":40000000.0},{"nombre":"MONTOTO SPORT SH","monto":40000000.0},{"nombre":"FRUTAS SAN EDUARDO","monto":35000000.0},{"nombre":"Gabriel Humberto Guzman","monto":35000000.0},{"nombre":"BURCAM SRL","monto":30000000.0},{"nombre":"ELACOM SRL","monto":30000000.0},{"nombre":"FADEL SRL","monto":30000000.0},{"nombre":"Jose Dardo Rivas","monto":30000000.0},{"nombre":"Natalia Alejandra Lopez","monto":30000000.0},{"nombre":"RODRIGUEZ FEDERICO","monto":30000000.0},{"nombre":"Transportes y Servicios JJRR S.R.L.","monto":30000000.0},{"nombre":"CRIBYCA SAS","monto":28000000.0},{"nombre":"Alicia Petronila Silva","monto":25000000.0},{"nombre":"BOGLIOLI ROSANA LOURDES","monto":25000000.0},{"nombre":"Cooperativa de Trabajo Manos Argentinas Limitada","monto":25000000.0},{"nombre":"R.E.C. SERVICIOS SAS","monto":25000000.0},{"nombre":"Romero Alejandro Jose","monto":25000000.0},{"nombre":"Tools Rental S.A.S.","monto":25000000.0},{"nombre":"Huayra SAS","monto":24000000.0},{"nombre":"Matías Gastón Lafitte","monto":22000000.0},{"nombre":"Enjoy Moments SRL","monto":20000000.0},{"nombre":"HE DI SAS","monto":20000000.0},{"nombre":"Las Delicias Heladas S.A.S.","monto":20000000.0},{"nombre":"MARTINEZ, SILVIO Y MARTINEZ, CLAUDIA S.H","monto":20000000.0},{"nombre":"MOLINA S.A.S","monto":20000000.0},{"nombre":"Natural Express S.A.S.","monto":20000000.0},{"nombre":"Sastre Julieta Lilen","monto":20000000.0},{"nombre":"ALMENDRA JUAN CARLOS","monto":18000000.0},{"nombre":"BECHAMEL SOCIEDAD SIMPLE","monto":16000000.0},{"nombre":"Fernando Fernandez","monto":16000000.0},{"nombre":"Carlos Bogado","monto":15000000.0},{"nombre":"EVIANS SRL","monto":15000000.0},{"nombre":"Mozo Maria Alejandra","monto":15000000.0},{"nombre":"Naturaleza Patagonica","monto":15000000.0},{"nombre":"Barcos Goñi Zahira Denise","monto":10000000.0},{"nombre":"Castillo Martina Candelaria","monto":10000000.0},{"nombre":"Delgado Tarifa Amin","monto":10000000.0},{"nombre":"DIAZ GONZALEZ FLORENCIA AGOSTINA","monto":10000000.0},{"nombre":"Norma Elizabeth Ramirez","monto":10000000.0},{"nombre":"Ñancu Servicios SAS","monto":10000000.0},{"nombre":"Pallis Jonathan","monto":10000000.0},{"nombre":"PEÑALVA JUAN BERNARDO","monto":10000000.0},{"nombre":"RAMOS MELINA ANA ELIZABETH","monto":10000000.0},{"nombre":"RODRIGUEZ ROSANA BEATRIZ","monto":10000000.0},{"nombre":"Zeman Rosemary","monto":10000000.0},{"nombre":"BOZZINI NICOLAS SEBASTIAN","monto":8000000.0},{"nombre":"Urrutia Rosa Eliana ","monto":8000000.0},{"nombre":"Maria Soledad Telesca","monto":3000000.0}],"mora":0.13,"riesgo_vivo":2396086760.35,"frt":2646646155.97,"fdr":2380881407.32,"donas":{"comercial":[["Cristobal Cervera",21],["ESTEBAN ARIEL HIROKI",19],["Nancy Huinchaqueo",13],["Mayte Galaburri",7],["S/O",5]],"sector":[["COMERCIO",26],["SERVICIOS",17],["INDUSTRIA",15],["AGROPECUARIO",7],["MINERIA",6],["Sin clasificar",3],["CONSTRUCCIÓN",2],["AGRICULTURA",1]],"tamano":[["S/O",60],["MICRO",12],["PEQUEÑA EMPRESA",4],["MEDIANA TRAMO 1",1]]},"comisiones_meses":[["2025-09",2212734.43,0.0],["2025-10",1940373.6099999999,0.0],["2025-11",33103755.32,2506849.32],["2025-12",15994964.270000001,20176438.34],["2026-01",10402428.72,13022465.75],["2026-02",10953026.290000001,0.0],["2026-03",2821391.61,0.0],["2026-04",0.0,39920.380000000005]],"comisiones_facturada":112424327.81000003,"comisiones_pendiente":37510202.13,"costos_abril_detalle":[{"codigo":"5.1.1.1.001","cuenta":"Sueldos y jornales","monto":10790840.05},{"codigo":"5.1.1.1.002","cuenta":"Cargas Sociales","monto":6470093.06},{"codigo":"5.1.1.1.003","cuenta":"Prorrateo Río Negro Fiduciaria S.A.","monto":4322980.58},{"codigo":"5.1.1.1.024","cuenta":"Alquiler de Oficinas","monto":3872000.0},{"codigo":"5.1.1.1.012","cuenta":"Sistema de Administración - One Click S.A.","monto":2926790.21},{"codigo":"5.1.1.1.008","cuenta":"Pasajes y Movilidad","monto":2308584.34},{"codigo":"5.1.1.1.006","cuenta":"Honorarios Profesionales","monto":1790000.0},{"codigo":"5.1.1.1.015","cuenta":"Honorarios de Auditoría","monto":1568160.0},{"codigo":"5.1.1.1.011","cuenta":"Viaticos","monto":1470000.0},{"codigo":"5.1.1.1.010","cuenta":"Hospedaje","monto":801177.5},{"codigo":"5.1.1.1.019","cuenta":"Mantenimiento de Sistemas y Correo","monto":542999.43},{"codigo":"5.1.1.1.007","cuenta":"Certificaciones","monto":387991.23},{"codigo":"5.1.1.1.018","cuenta":"Combustible","monto":70020.04},{"codigo":"5.1.1.1.004","cuenta":"Comisiones bancarias","monto":46047.91}]};
 const fmtM = n => '$ ' + (n/1e6).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' M';
 const fmtFull = n => '$ ' + Math.round(n).toLocaleString('es-AR');
-const fmtNum = n => n.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtNum = n => (n==null?0:n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
 
 function pctsRound(items, total){
   const raw = items.map(it => it[1]/total*100);
@@ -278,24 +380,6 @@ document.getElementById('k-rend').textContent = fmtFull(k.rendimiento);
 document.getElementById('k-com').textContent = fmtFull(k.comisiones);
 document.getElementById('k-cos').textContent = fmtFull(k.costos_acumulados);
 
-const top10 = DATA.localidades.slice(0,10).filter(l => l.monto > 0);
-const maxLoc = top10[0].monto;
-document.getElementById('loc-bars').innerHTML = top10.map(l =>
-  '<div class="bar-row"><span class="nm">'+l.nombre+'</span><div class="b" style="width:'+(l.monto/maxLoc*100)+'%"></div><span class="v">'+fmtNum(l.monto/1e6)+'</span></div>'
-).join('');
-const restLoc = DATA.localidades.filter(l => l.monto > 0).length - 10;
-document.getElementById('loc-more').textContent = restLoc > 0 ? '+ '+restLoc+' localidades más (clic para expandir)' : '';
-if(restLoc <= 0) document.getElementById('loc-more').style.display = 'none';
-
-const ops10 = DATA.localidades.filter(l => l.ops_gar > 0).sort((a,b) => b.ops_gar - a.ops_gar).slice(0,10);
-document.getElementById('loc-ops').innerHTML = ops10.map(l =>
-  '<tr><td>'+l.nombre+'</td><td style="text-align:right;font-weight:700">'+l.ops_gar+'</td></tr>'
-).join('');
-const totalOps = DATA.localidades.filter(l => l.ops_gar > 0).length;
-const restOps = totalOps - 10;
-document.getElementById('ops-more').textContent = restOps > 0 ? '+ '+restOps+' localidades más (clic para expandir)' : '';
-if(restOps <= 0) document.getElementById('ops-more').style.display = 'none';
-
 document.getElementById('k-mora').textContent = fmtNum(DATA.mora) + '%';
 document.getElementById('k-rv').textContent = fmtFull(DATA.riesgo_vivo);
 
@@ -305,13 +389,176 @@ document.getElementById('top5').innerHTML = top5.map((c,i) =>
 ).join('');
 document.getElementById('top-more').textContent = '+ ' + (DATA.top_clientes.length - 5) + ' clientes más (ver todos)';
 
+const PAL_C = ['#1F9A2C','#4ECC50','#0F6E56','#1D9E75','#5DCAA5','#639922','#97C459','#3B6D11','#27500A','#173404','#085041','#9FE1CB','#C0DD97','#B6E3A2','#7AC25E','#56A862','#42964A','#2E8B57','#3CB371','#66BB6A'];
+function dk(h){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return 'rgb('+(r*.68|0)+','+(g*.68|0)+','+(b*.68|0)+')'}
+const localidadesConMonto = DATA.localidades.filter(l => l.monto > 0);
+const totalCalif = localidadesConMonto.reduce((s,l)=>s+l.monto,0);
+const itemsC = localidadesConMonto.map((l,i)=>({i:i, n:l.nombre, v:l.monto, p:(l.monto/totalCalif*100), c:PAL_C[i%PAL_C.length]}));
+
+(function(){
+  const cx=160, cy=95, rx=140, ry=55, depth=22;
+  let a=-Math.PI/2, sides='', tops='';
+  itemsC.forEach(function(it){
+    const a1=a, a2=a+(it.v/totalCalif)*Math.PI*2; a=a2;
+    const x1=cx+rx*Math.cos(a1), y1=cy+ry*Math.sin(a1);
+    const x2=cx+rx*Math.cos(a2), y2=cy+ry*Math.sin(a2);
+    const lg=(a2-a1)>Math.PI?1:0;
+    const fa1=Math.max(a1,0), fa2=Math.min(a2,Math.PI);
+    if(fa1<fa2){
+      const fx1=cx+rx*Math.cos(fa1), fy1=cy+ry*Math.sin(fa1);
+      const fx2=cx+rx*Math.cos(fa2), fy2=cy+ry*Math.sin(fa2);
+      const fl=(fa2-fa1)>Math.PI?1:0;
+      sides+='<path d="M'+fx1.toFixed(1)+','+fy1.toFixed(1)+'A'+rx+','+ry+' 0 '+fl+' 1 '+fx2.toFixed(1)+','+fy2.toFixed(1)+'L'+fx2.toFixed(1)+','+(fy2+depth).toFixed(1)+'A'+rx+','+ry+' 0 '+fl+' 0 '+fx1.toFixed(1)+','+(fy1+depth).toFixed(1)+'Z" fill="'+dk(it.c)+'"/>';
+    }
+    tops+='<path class="slice" data-i="'+it.i+'" d="M'+cx+','+cy+'L'+x1.toFixed(1)+','+y1.toFixed(1)+'A'+rx+','+ry+' 0 '+lg+' 1 '+x2.toFixed(1)+','+y2.toFixed(1)+'Z" fill="'+it.c+'"/>';
+  });
+  document.getElementById('pie-c').innerHTML = sides + tops;
+})();
+
+document.getElementById('pie-tb').innerHTML = itemsC.map(function(it){
+  return '<tr data-i="'+it.i+'"><td><span class="sw" style="background:'+it.c+'"></span>'+it.n+'</td><td class="r">'+fmtNum(it.v/1e6)+'</td><td class="r"><span class="pct">'+it.p.toFixed(1)+'%</span></td></tr>';
+}).join('');
+document.getElementById('pie-tot').textContent = fmtNum(totalCalif/1e6);
+
+(function(){
+  const tip=document.getElementById('dn-tip');
+  const slices=document.querySelectorAll('#pie-c .slice');
+  const rows=document.querySelectorAll('#pie-tb tr');
+  function hl(i,on){
+    slices.forEach(function(s){s.classList.toggle('hl', on && +s.dataset.i===i)});
+    rows.forEach(function(r){r.classList.toggle('hl', on && +r.dataset.i===i)});
+  }
+  function showTip(e,i){
+    const it=itemsC[i];
+    tip.innerHTML='<strong>'+it.n+'</strong><br>'+fmtNum(it.v/1e6)+' M$ · '+it.p.toFixed(1)+'%';
+    tip.style.display='block';
+    tip.style.left=(e.clientX+14)+'px'; tip.style.top=(e.clientY+14)+'px';
+  }
+  slices.forEach(function(s){
+    s.addEventListener('mousemove',function(e){showTip(e,+s.dataset.i)});
+    s.addEventListener('mouseenter',function(){hl(+s.dataset.i,true)});
+    s.addEventListener('mouseleave',function(){hl(+s.dataset.i,false);tip.style.display='none'});
+  });
+  rows.forEach(function(r){
+    r.addEventListener('mousemove',function(e){showTip(e,+r.dataset.i)});
+    r.addEventListener('mouseenter',function(){hl(+r.dataset.i,true)});
+    r.addEventListener('mouseleave',function(){hl(+r.dataset.i,false);tip.style.display='none'});
+  });
+})();
+
+const COORDS = {
+  "Catriel":{lat:-37.88,lon:-67.80},
+  "Cinco Saltos":{lat:-38.83,lon:-68.06},
+  "Cipolletti":{lat:-38.93,lon:-67.99},
+  "General Fernandez Oro":{lat:-38.97,lon:-67.92},
+  "Gral. Fdez. Oro":{lat:-38.97,lon:-67.92},
+  "Allen":{lat:-38.97,lon:-67.82},
+  "General Roca":{lat:-39.03,lon:-67.58},
+  "Villa Regina":{lat:-39.10,lon:-67.07},
+  "Rio Colorado":{lat:-39.02,lon:-64.10},
+  "Río Colorado":{lat:-39.02,lon:-64.10},
+  "General Conesa":{lat:-40.10,lon:-64.45},
+  "San Antonio Oeste":{lat:-40.73,lon:-64.94},
+  "Sierra Grande":{lat:-41.60,lon:-65.35},
+  "Viedma":{lat:-40.81,lon:-62.99},
+  "San Javier":{lat:-40.83,lon:-63.05},
+  "Bariloche":{lat:-41.13,lon:-71.31},
+  "San Carlos de Bariloche":{lat:-41.13,lon:-71.31},
+  "Ingeniero Jacobacci":{lat:-41.32,lon:-69.55},
+  "Ing. Jacobacci":{lat:-41.32,lon:-69.55},
+  "Sierra Colorada":{lat:-40.59,lon:-67.74}
+};
+const BX0=11.4, BX1=88.5, BY0=4.2, BY1=90.8;
+const LON_W=-71.7, LON_E=-62.4, LAT_N=-37.5, LAT_S=-42.0;
+function projectLatLon(lat,lon){
+  const fx=(lon-LON_W)/(LON_E-LON_W), fy=(LAT_N-lat)/(LAT_N-LAT_S);
+  return {x:BX0+fx*(BX1-BX0), y:BY0+fy*(BY1-BY0)};
+}
+const PIN_SVG = '<svg class="mark" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" fill="#1A1A1A" d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg>';
+
+(function(){
+  const mapEl = document.getElementById('map');
+  if(!mapEl) return;
+  const ALTO_VALLE_KEYS = {"Cipolletti":1,"General Roca":1,"Cinco Saltos":1,"Allen":1,"General Fernandez Oro":1,"Gral. Fdez. Oro":1,"Villa Regina":1};
+  const valleEntries = DATA.localidades.filter(function(l){return ALTO_VALLE_KEYS[l.nombre] && l.monto>0});
+  const viedmaEntries = DATA.localidades.filter(function(l){return (l.nombre==="Viedma" || l.nombre==="San Javier") && (l.monto>0||l.ops_gar>0||l.ops_lim>0)});
+  const restantes = DATA.localidades.filter(function(l){return !ALTO_VALLE_KEYS[l.nombre] && l.nombre!=="Viedma" && l.nombre!=="San Javier" && l.monto>0 && COORDS[l.nombre]});
+
+  function sumGroup(arr){return {monto:arr.reduce(function(s,l){return s+l.monto},0), ops_lim:arr.reduce(function(s,l){return s+l.ops_lim},0), ops_gar:arr.reduce(function(s,l){return s+l.ops_gar},0)}}
+
+  const pins = [];
+  restantes.forEach(function(l){
+    const c = COORDS[l.nombre];
+    const p = projectLatLon(c.lat, c.lon);
+    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.monto, og:l.ops_gar, ol:l.ops_lim, inc:null});
+  });
+  if(valleEntries.length){
+    const s = sumGroup(valleEntries);
+    const p = projectLatLon(-38.97, -67.70);
+    pins.push({n:"Alto Valle ("+valleEntries.length+")", x:p.x, y:p.y, m:s.monto, og:s.ops_gar, ol:s.ops_lim, inc:valleEntries.map(function(l){return l.nombre})});
+  }
+  if(viedmaEntries.length>=2){
+    const s = sumGroup(viedmaEntries);
+    const p = projectLatLon(-40.81, -62.99);
+    pins.push({n:"Viedma + S. Javier", x:p.x, y:p.y, m:s.monto, og:s.ops_gar, ol:s.ops_lim, inc:viedmaEntries.map(function(l){return l.nombre})});
+  } else if(viedmaEntries.length===1){
+    const l = viedmaEntries[0];
+    const c = COORDS[l.nombre];
+    const p = projectLatLon(c.lat, c.lon);
+    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.monto, og:l.ops_gar, ol:l.ops_lim, inc:null});
+  }
+
+  pins.forEach(function(p){
+    const inc = p.inc ? '<p class="inc">Incluye: '+p.inc.join(', ')+'</p>' : '';
+    const div = document.createElement('div');
+    let cls = 'pin';
+    if(p.y < 35) cls += ' up';
+    if(p.x > 70) cls += ' right';
+    div.className = cls;
+    div.style.left = p.x+'%';
+    div.style.top = p.y+'%';
+    div.innerHTML = PIN_SVG +
+      '<div class="lbl"><b>'+fmtNum(p.m/1e6)+' M$</b><span class="o">'+p.og+' ops</span></div>'+
+      '<div class="pop"><h5>'+p.n+'</h5>'+inc+
+      '<table>'+
+      '<tr><td>Calificación</td><td class="r v">'+fmtNum(p.m/1e6)+' M$</td></tr>'+
+      '<tr><td>Ops. garantías</td><td class="r b">'+p.og+'</td></tr>'+
+      '<tr><td>Ops. límites</td><td class="r">'+p.ol+'</td></tr>'+
+      '</table></div>';
+    mapEl.appendChild(div);
+  });
+})();
+
+(function(){
+  function fillRk(id, key, suf){
+    const sorted = DATA.localidades.filter(function(l){return l[key]>0}).sort(function(a,b){return b[key]-a[key]});
+    const el = document.getElementById(id);
+    if(!el) return;
+    const base = el.querySelector('ul.base'), extra = el.querySelector('ul.extra');
+    function liHtml(l){
+      const val = key==='monto' ? fmtNum(l.monto/1e6) : l[key];
+      return '<li><span>'+l.nombre+'</span><b>'+val+suf+'</b></li>';
+    }
+    base.innerHTML = sorted.slice(0,10).map(liHtml).join('');
+    extra.innerHTML = sorted.slice(10).map(liHtml).join('');
+    if(sorted.length<=10) el.querySelector('.more').style.display='none';
+  }
+  fillRk('rk-monto', 'monto', ' M$');
+  fillRk('rk-ops', 'ops_gar', '');
+})();
+function toggleRk(id, btn){
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+  btn.textContent = el.classList.contains('open') ? 'Ver menos ▴' : 'Ver todas ▾';
+}
+
 const PALETTE = ['#1F9A2C','#4ECC50','#3D6FB8','#7AA8E0','#888780','#B6E3A2','#9FE1CB','#F0997B','#D85A30'];
 function buildDona(items, container){
-  const total = items.reduce((s,i) => s + i[1], 0);
+  const total = items.reduce(function(s,i){return s + i[1]}, 0);
   const pcts = pctsRound(items, total);
   let off = 0;
   let segs = '';
-  items.forEach((it,i) => {
+  items.forEach(function(it,i){
     const realPct = it[1]/total*100;
     const color = PALETTE[i] || '#888780';
     segs += '<circle class="slice" cx="21" cy="21" r="15.915" fill="transparent" stroke="'+color+'" stroke-width="7" stroke-dasharray="'+realPct.toFixed(3)+' '+(100-realPct).toFixed(3)+'" stroke-dashoffset="'+(-off).toFixed(3)+'" transform="rotate(-90 21 21)" data-name="'+it[0]+'" data-val="'+it[1]+'" data-pct="'+pcts[i]+'"></circle>';
@@ -321,7 +568,7 @@ function buildDona(items, container){
   return pcts;
 }
 function buildTabla(items, pcts, tbl){
-  tbl.innerHTML = items.map((it,i) => {
+  tbl.innerHTML = items.map(function(it,i){
     const color = PALETTE[i] || '#888780';
     return '<tr><td><span class="dot-leg" style="background:'+color+'"></span>'+it[0]+'</td><td style="text-align:right;font-weight:700">'+it[1]+'</td><td style="text-align:right;color:#4A4A48;width:46px">'+pcts[i]+'%</td></tr>';
   }).join('');
@@ -334,30 +581,41 @@ const pTam = buildDona(DATA.donas.tamano, document.getElementById('dn-tam'));
 buildTabla(DATA.donas.tamano, pTam, document.getElementById('tb-tam'));
 
 const dnTip = document.getElementById('dn-tip');
-document.querySelectorAll('.dn-svg circle.slice').forEach(c => {
-  c.addEventListener('mouseenter', () => {
+document.querySelectorAll('.dn-svg circle.slice').forEach(function(c){
+  c.addEventListener('mouseenter', function(){
     dnTip.innerHTML = '<strong>'+c.dataset.name+'</strong><br>'+c.dataset.val+' garantías · '+c.dataset.pct+'%';
     dnTip.style.display = 'block';
   });
-  c.addEventListener('mousemove', e => {
+  c.addEventListener('mousemove', function(e){
     dnTip.style.left = (e.clientX + 14) + 'px';
     dnTip.style.top = (e.clientY + 14) + 'px';
   });
-  c.addEventListener('mouseleave', () => dnTip.style.display = 'none');
+  c.addEventListener('mouseleave', function(){dnTip.style.display = 'none'});
 });
 
 const meses = DATA.comisiones_meses;
-const maxMes = Math.max(...meses.map(m => m[1] + m[2]));
+const maxMes = Math.max.apply(null, meses.map(function(m){return m[1] + m[2]}));
 const MES_NM = {'01':'Ene','02':'Feb','03':'Mar','04':'Abr','05':'May','06':'Jun','07':'Jul','08':'Ago','09':'Sep','10':'Oct','11':'Nov','12':'Dic'};
-document.getElementById('bars-com').innerHTML = meses.map(([m,fact,pend]) => {
+function fmtComTot(n){
+  if(n >= 1e6) return fmtNum(n/1e6)+' M$';
+  if(n >= 1000) return Math.round(n/1000).toLocaleString('es-AR')+' mil $';
+  return Math.round(n).toLocaleString('es-AR')+' $';
+}
+document.getElementById('hbars-com').innerHTML = meses.map(function(arr){
+  const m=arr[0], fact=arr[1], pend=arr[2];
   const tot = fact + pend;
-  const factH = (fact / maxMes) * 135;
-  const pendH = (pend / maxMes) * 135;
+  const pctTot = maxMes>0 ? (tot/maxMes)*100 : 0;
+  const pctFact = tot>0 ? (fact/tot)*100 : 0;
+  const pctPend = tot>0 ? (pend/tot)*100 : 0;
   const mesNm = MES_NM[m.split('-')[1]] + ' ' + m.split('-')[0].slice(2);
-  return '<div class="bar-col">' +
-    '<div class="tip"><strong>'+mesNm+'</strong><br>Facturada: $ '+fmtNum(fact/1e6)+' M<br>Pendiente: $ '+fmtNum(pend/1e6)+' M<br>Total: $ '+fmtNum(tot/1e6)+' M</div>' +
-    '<div class="bar-stack"><div style="background:#1F9A2C;height:'+factH+'px"></div><div style="background:#B6E3A2;height:'+pendH+'px"></div></div>' +
-    '<span style="font-size:11px;color:#1A1A1A;font-weight:600">'+mesNm+'</span><span style="font-size:11px;font-weight:700">'+fmtNum(tot/1e6)+'</span></div>';
+  return '<div class="hbar-row">'+
+    '<span class="nm">'+mesNm+'</span>'+
+    '<div class="hbar-track-wrap"><div class="hbar-track" style="width:'+Math.max(pctTot,0.5)+'%">'+
+      (fact>0?'<div class="hbar-fact" style="width:'+pctFact.toFixed(2)+'%"></div>':'')+
+      (pend>0?'<div class="hbar-pend" style="left:'+pctFact.toFixed(2)+'%;width:'+pctPend.toFixed(2)+'%"></div>':'')+
+    '</div></div>'+
+    '<span class="tot">'+fmtComTot(tot)+'</span>'+
+  '</div>';
 }).join('');
 
 document.getElementById('k-cosabr').textContent = fmtFull(k.costos_abril);
@@ -365,48 +623,37 @@ document.getElementById('k-rend2').textContent = fmtFull(k.rendimiento);
 document.getElementById('k-frt').textContent = fmtFull(DATA.frt);
 document.getElementById('k-fdr').textContent = fmtFull(DATA.fdr);
 
-document.getElementById('modal-loc-content').innerHTML =
-  '<div style="display:flex;flex-direction:column;gap:8px">' +
-  DATA.localidades.filter(l => l.monto > 0).map(l => {
-    const pct = (l.monto / DATA.localidades[0].monto * 100);
-    return '<div class="bar-row"><span class="nm" style="width:170px">'+l.nombre+'</span><div class="b" style="width:'+pct+'%"></div><span class="v">'+fmtNum(l.monto/1e6)+'</span></div>';
-  }).join('') + '</div>';
-
-document.getElementById('modal-ops-content').innerHTML = DATA.localidades.filter(l => l.ops_gar > 0).sort((a,b) => b.ops_gar - a.ops_gar).map(l =>
-  '<tr><td>'+l.nombre+'</td><td style="text-align:right;font-weight:700">'+l.ops_gar+'</td></tr>'
-).join('');
-
-document.getElementById('modal-top-content').innerHTML = DATA.top_clientes.map((c,i) =>
-  '<tr><td style="width:30px;color:#4A4A48">'+(i+1)+'</td><td>'+c.nombre+'</td><td style="text-align:right;font-weight:700">'+fmtNum(c.monto/1e6)+'</td></tr>'
-).join('');
+document.getElementById('modal-top-content').innerHTML = DATA.top_clientes.map(function(c,i){
+  return '<tr><td style="width:30px;color:#4A4A48">'+(i+1)+'</td><td>'+c.nombre+'</td><td style="text-align:right;font-weight:700">'+fmtNum(c.monto/1e6)+'</td></tr>';
+}).join('');
 
 document.getElementById('modal-cos-content').innerHTML =
   '<thead><tr><th style="text-align:left">Código</th><th style="text-align:left">Cuenta</th><th style="text-align:right">Monto</th></tr></thead><tbody>' +
-  DATA.costos_abril_detalle.map(d =>
-    '<tr><td style="color:#4A4A48;font-size:11px">'+d.codigo+'</td><td>'+d.cuenta+'</td><td style="text-align:right;font-weight:700">'+fmtFull(d.monto)+'</td></tr>'
-  ).join('') +
+  DATA.costos_abril_detalle.map(function(d){
+    return '<tr><td style="color:#4A4A48;font-size:11px">'+d.codigo+'</td><td>'+d.cuenta+'</td><td style="text-align:right;font-weight:700">'+fmtFull(d.monto)+'</td></tr>';
+  }).join('') +
   '<tr style="border-top:2px solid #4ECC50"><td></td><td style="font-weight:700">Total Abril</td><td style="text-align:right;font-weight:700;color:#3D6FB8">'+fmtFull(k.costos_abril)+'</td></tr>' +
   '</tbody>';
 
 function abrirModal(id){document.getElementById(id).classList.add('open')}
 function cerrarModal(id){document.getElementById(id).classList.remove('open')}
-document.querySelectorAll('.modal-wrap').forEach(m => m.addEventListener('click', e => {if(e.target===m) m.classList.remove('open')}));
+document.querySelectorAll('.modal-wrap').forEach(function(m){m.addEventListener('click', function(e){if(e.target===m) m.classList.remove('open')})});
 
 function showPage(n, btn){
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
   document.getElementById('p'+n).classList.add('active');
-  document.querySelectorAll('.nav button').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(function(a){a.classList.remove('active')});
   btn.classList.add('active');
-  // Para imprimir todas las páginas, las hacemos visibles temporalmente
 }
 
-window.addEventListener('beforeprint', () => {
-  document.querySelectorAll('.page').forEach(p => p.style.display = 'flex');
+window.addEventListener('beforeprint', function(){
+  document.querySelectorAll('.page').forEach(function(p){p.style.display = 'flex'});
 });
-window.addEventListener('afterprint', () => {
-  document.querySelectorAll('.page').forEach(p => p.style.display = '');
+window.addEventListener('afterprint', function(){
+  document.querySelectorAll('.page').forEach(function(p){p.style.display = ''});
 });
 </script>
 
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                
