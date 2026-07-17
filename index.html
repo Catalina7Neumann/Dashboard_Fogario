@@ -141,6 +141,14 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 .rk .more{margin-top:6px;font-size:11.5px;color:#1F9A2C;font-weight:600;cursor:pointer;background:none;border:none;padding:4px 0;text-decoration:underline;flex-shrink:0;text-align:left;font-family:inherit}
 .rk .more:hover{color:#185f1c}
 .rk .extra{display:none}.rk.open .extra{display:block}
+.uni-tbl{width:100%;border-collapse:collapse;font-size:11px}
+.uni-tbl th{font-size:10px;font-weight:600;color:#4A4A48;text-align:left;padding:3px 4px;border-bottom:1px solid #d8d7cd;position:sticky;top:0;background:#fff}
+.uni-tbl th.r,.uni-tbl td.r{text-align:right}
+.uni-tbl td{padding:3px 4px;border-bottom:1px solid #f0eee5}
+.uni-tbl tr:last-child td{border-bottom:none}
+.uni-tbl .na{color:#B4B2A9;font-style:italic;font-size:9.5px}
+#rk-uni .scroll{max-height:none;flex:1}
+#rk-uni{overflow:hidden}
 @media print{
   @page{size:A4 landscape;margin:5mm}
   html,body{height:auto;background:#fff}
@@ -163,7 +171,13 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
   .rk .extra{display:block !important}
   .rk .more{display:none !important}
   .pin .pop{display:none !important}
-  .pie-svg{max-height:180px !important}
+  .pie-svg{max-height:250px !important}
+  .pie-card,.map-grid{flex:none !important}
+  .map-card-w{justify-content:flex-start !important}
+  .map-wrap{max-height:none !important;width:100% !important}
+  .map-side{min-height:0}
+  .uni-tbl th,.uni-tbl td{font-size:9.5px;padding:2px 3px}
+  .map-ref{font-size:10px !important}
   .pie-tbl th,.pie-tbl td{font-size:10px;padding:3px 5px}
   .rk li{font-size:10.5px;padding:2px 0}
 }
@@ -204,13 +218,20 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
   <div class="grid g4" style="margin-bottom:11px">
     <div class="card"><div class="lbl">Operaciones<br>banca tradicional</div><div class="num" id="k-banca">—</div><div class="sub">Banco Patagonia · BPN</div></div>
     <div class="card"><div class="lbl">Operaciones<br>con CFI</div><div class="num" id="k-cfi">—</div><div class="sub">Consejo Federal Inversiones</div></div>
-    <div class="card"><div class="lbl">Resoluciones<br>aprobadas</div><div class="num">124</div><div class="sub">Monto total: $ 4.566,00 M</div></div>
-    <div class="card"><div class="lbl">Localidades<br>alcanzadas</div><div class="num" id="k-loc">—</div><div class="sub">Provincia de Río Negro</div></div>
+    <div class="card"><div class="lbl">Resoluciones<br>aprobadas</div><div class="num">124</div><div class="sub">Monto total: $ 4.644,00 M</div></div>
+    <div class="card"><div class="lbl">Localidades<br>alcanzadas</div><div class="num" id="k-loc">—</div><div class="sub">PyMEs calificadas + con garantía otorgada</div></div>
   </div>
-  <div style="display:flex;flex-direction:column;gap:8px">
-    <div class="pill"><span class="am" id="k-rend">—</span><span class="ds">Rendimiento de<br>inversiones del Fondo.</span></div>
-    <div class="pill"><span class="am" id="k-com">—</span><span class="ds">Ingresos por<br>comisiones.</span></div>
+  <div style="display:flex;gap:9px;align-items:stretch">
+    <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:0">
+    <div class="pill"><span class="am" id="k-rend">—</span><span class="ds">Rendimiento acumulado de<br>inversiones del Fondo.</span></div>
+    <div class="pill"><span class="am" id="k-com">—</span><span class="ds">Ingresos acumulados<br>por comisiones.</span></div>
     <div class="pill blue"><span class="am" id="k-cos">—</span><span class="ds">Costos operativos<br>acumulados.</span></div>
+    </div>
+    <div class="card" style="width:290px;flex-shrink:0;justify-content:center;align-items:center;text-align:center;padding:14px 18px">
+      <div class="lbl" style="font-size:13px">Resultado acumulado de gestión</div>
+      <div class="num" id="k-resultado" style="font-size:25px;color:#1F9A2C;margin-top:8px">—</div>
+      <div class="sub" style="margin-top:4px">Rendimiento + comisiones − costos</div>
+    </div>
   </div>
 </section>
 
@@ -262,18 +283,12 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
         <span class="prov" style="left:42%;top:96%">Chubut</span>
         <span class="prov v" style="right:1.5%;top:46%">Mar Argentino</span>
       </div>
-      <div class="map-ref" style="width:100%;margin-top:6px;font-size:11.5px;line-height:1.45;color:#1A1A1A;flex-shrink:0"><span style="font-weight:700">Referencias:</span><span style="margin-left:8px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#1A1A1A;vertical-align:middle;margin-right:5px"></span>Con garantía monetizada — monto otorgado y operaciones</span><span style="margin-left:14px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#4A4A48;vertical-align:middle;margin-right:5px"></span>En gestión (con línea o cliente, sin garantía aún)</span><div style="color:#4A4A48;margin-top:2px">CABA y Buenos Aires: PyMEs que operan en la provincia con domicilio legal fuera de Río Negro · 3 operaciones con localidad a confirmar</div></div>
+      <div class="map-ref" style="width:100%;margin-top:6px;font-size:11.5px;line-height:1.45;color:#1A1A1A;flex-shrink:0"><span style="font-weight:700">Referencias:</span><span style="margin-left:8px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#1A1A1A;vertical-align:middle;margin-right:5px"></span>Calificación (M$) y operaciones por localidad</span><span style="margin-left:14px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#4A4A48;vertical-align:middle;margin-right:5px"></span>En gestión (PyMEs aún sin calificación)</span><div style="color:#4A4A48;margin-top:2px">CABA y Buenos Aires: PyMEs que operan en la provincia con domicilio legal fuera de Río Negro · "Sin localidad": PyMEs sin ciudad cargada</div></div>
     </div>
     <div class="map-side">
-      <div class="rk" id="rk-monto">
-        <h4><span class="d" style="background:#4ECC50"></span>Top calificación (M$)</h4>
-        <div class="scroll"><ul class="base"></ul><ul class="extra"></ul></div>
-        <button class="more" onclick="toggleRk('rk-monto',this)">Ver todas ▾</button>
-      </div>
-      <div class="rk" id="rk-ops">
-        <h4><span class="d" style="background:#3D6FB8"></span>Top operaciones</h4>
-        <div class="scroll"><ul class="base"></ul><ul class="extra"></ul></div>
-        <button class="more" onclick="toggleRk('rk-ops',this)">Ver todas ▾</button>
+      <div class="rk" id="rk-uni" style="flex:1">
+        <h4><span class="d" style="background:#4ECC50"></span>Calificación (M$) y operaciones</h4>
+        <div class="scroll"><table class="uni-tbl" id="uni-tbl"></table></div>
       </div>
     </div>
   </div>
@@ -347,7 +362,7 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 <div class="dn-tip" id="dn-tip"></div>
 
 <script>
-const DATA = {"fecha_corte":"30/06/2026","kpis":{"mipymes":97,"monto_total":3414600000,"otorgadas":91,"en_gestion":7,"banca_trad":67,"cfi":24,"mercado":0,"localidades":24,"rendimiento":769691099.38,"comisiones":144066976.34,"costos_acumulados":322313828.33,"costos_abril":33030030.7},"localidades":[{"nombre":"Bariloche","monto":558000000,"ops_lim":17,"ops_gar":17},{"nombre":"Cipolletti","monto":523000000,"ops_lim":15,"ops_gar":15},{"nombre":"Viedma","monto":380000000,"ops_lim":10,"ops_gar":10},{"nombre":"General Roca","monto":377000000,"ops_lim":8,"ops_gar":8},{"nombre":"Cinco Saltos","monto":370000000,"ops_lim":8,"ops_gar":8},{"nombre":"Catriel","monto":289000000,"ops_lim":11,"ops_gar":11},{"nombre":"Villa Regina","monto":170000000,"ops_lim":2,"ops_gar":2},{"nombre":"San Antonio Oeste","monto":150000000,"ops_lim":2,"ops_gar":2},{"nombre":"Allen","monto":137600000,"ops_lim":4,"ops_gar":4},{"nombre":"General Fernandez Oro","monto":125000000,"ops_lim":3,"ops_gar":3},{"nombre":"Sin localidad","monto":105000000,"ops_lim":3,"ops_gar":3},{"nombre":"Ingeniero Jacobacci","monto":100000000,"ops_lim":1,"ops_gar":1},{"nombre":"Rio Colorado","monto":47000000,"ops_lim":2,"ops_gar":2},{"nombre":"General Conesa","monto":30000000,"ops_lim":2,"ops_gar":2},{"nombre":"El Bolsón","monto":20000000,"ops_lim":1,"ops_gar":1},{"nombre":"Las Grutas","monto":9000000,"ops_lim":1,"ops_gar":1},{"nombre":"Sierra Colorada","monto":8000000,"ops_lim":1,"ops_gar":1}],"top_clientes":[{"nombre":"Patagonia Beverage SRL","monto":100000000},{"nombre":"ECOMIN SRL","monto":100000000},{"nombre":"AUSTRADE SRL","monto":100000000},{"nombre":"Servicios Ambientales de La Patagonia SRL.","monto":100000000},{"nombre":"FRUCH PATAGONIA SAS","monto":100000000},{"nombre":"El Cerro SA","monto":100000000},{"nombre":"AMJ Servicios SAS","monto":100000000},{"nombre":"LAS GRUTAS S A","monto":100000000},{"nombre":"SNACK S.R.L.","monto":100000000},{"nombre":"WFS S.R.L.","monto":100000000},{"nombre":"Madeco S.A.C.I.","monto":90000000},{"nombre":"Gen S.R.L.","monto":76000000},{"nombre":"JUACO S.R.L.","monto":70000000},{"nombre":"ENTRE BARDAS SRL","monto":70000000},{"nombre":"KJ LOGISTICA SRL","monto":50000000},{"nombre":"GRUPO GLASS SAS","monto":50000000},{"nombre":"Emysa SRL","monto":50000000},{"nombre":"EMELKA S.A.","monto":50000000},{"nombre":"LABORATORIO PRAXIS S.A.S.","monto":50000000},{"nombre":"JULIO CESAR SANGIULIANO","monto":50000000},{"nombre":"PEREZ DIEGO MARTIN","monto":50000000},{"nombre":"Patagonia Emprendimientos SA","monto":50000000},{"nombre":"CHOCOLATIER BELGE SRL","monto":50000000},{"nombre":"La Rinconada SAS","monto":50000000},{"nombre":"Quimica del Valle S.R.L.","monto":50000000},{"nombre":"FUKUOKA SRL","monto":50000000},{"nombre":"Agustin Marcelo Schander","monto":50000000},{"nombre":"K Y C S.H. DE NORA MARIA KUGLER Y ROLANDO CARLOS CITARELLA","monto":50000000},{"nombre":"CHAMPI SAS","monto":50000000},{"nombre":"MONTOTO SPORT SH","monto":40000000},{"nombre":"Da Da S.A.S.","monto":40000000},{"nombre":"Cementos del valle S.R.L.","monto":40000000},{"nombre":"GABRIELA ALEJANDRA MALDONADO","monto":40000000},{"nombre":"CREA LOGISTICA SAS","monto":40000000},{"nombre":"HELGUERO MARTIN LEANDRO","monto":40000000},{"nombre":"CURLO S.R.L.","monto":40000000},{"nombre":"La Morena SRL","monto":40000000},{"nombre":"FRUTAS SAN EDUARDO","monto":35000000},{"nombre":"MEDRANO DIEGO SEBASTIAN","monto":35000000},{"nombre":"Natalia Alejandra Lopez","monto":30000000},{"nombre":"Jose Dardo Rivas","monto":30000000},{"nombre":"BURCAM SRL","monto":30000000},{"nombre":"Transportes y Servicios JJRR S.R.L.","monto":30000000},{"nombre":"RODRIGUEZ FEDERICO","monto":30000000},{"nombre":"CANE S.A.S.","monto":30000000},{"nombre":"IMPLANT PROVIDE S.R.L.","monto":30000000},{"nombre":"FADEL SRL","monto":30000000},{"nombre":"ELACOM SRL","monto":30000000},{"nombre":"CRIBYCA SAS","monto":28000000},{"nombre":"BOGLIOLI ROSANA LOURDES","monto":25000000},{"nombre":"Alicia Petronila Silva","monto":25000000},{"nombre":"Cooperativa de Trabajo Manos Argentinas Limitada","monto":25000000},{"nombre":"Romero Alejandro Jose","monto":25000000},{"nombre":"Tools Rental S.A.S.","monto":25000000},{"nombre":"R.E.C. SERVICIOS SAS","monto":25000000},{"nombre":"Vidoni Claudia Beatriz","monto":25000000},{"nombre":"Huayra SAS","monto":24000000},{"nombre":"Gabriel Humberto Guzman","monto":23000000},{"nombre":"SIERRO MAURO ANDRES","monto":22000000},{"nombre":"Matías Gastón Lafitte","monto":22000000},{"nombre":"MARTINEZ, SILVIO Y MARTINEZ, CLAUDIA S.H","monto":20000000},{"nombre":"Enjoy Moments SRL","monto":20000000},{"nombre":"Sastre Julieta Lilen","monto":20000000},{"nombre":"Natural Express S.A.S.","monto":20000000},{"nombre":"HE DI SAS","monto":20000000},{"nombre":"MOLINA S.A.S","monto":20000000},{"nombre":"Goenaga Noelia","monto":20000000},{"nombre":"Las Delicias Heladas S.A.S.","monto":19600000},{"nombre":"BECHAMEL SOCIEDAD SIMPLE","monto":16000000},{"nombre":"Mozo Maria Alejandra","monto":15000000},{"nombre":"Carlos Bogado","monto":15000000},{"nombre":"EVIANS SRL","monto":15000000},{"nombre":"DE CILLIA CLAUDIA GRACIELA","monto":15000000},{"nombre":"Naturaleza Patagonica","monto":15000000},{"nombre":"DIAZ GONZALEZ FLORENCIA AGOSTINA","monto":10000000},{"nombre":"Pallis Jonathan","monto":10000000},{"nombre":"PEÑALVA JUAN BERNARDO","monto":10000000},{"nombre":"Fodera Analia Gabriela","monto":10000000},{"nombre":"Zeman Rosemary","monto":10000000},{"nombre":"Castillo Martina Candelaria","monto":10000000},{"nombre":"Ñancu Servicios SAS","monto":10000000},{"nombre":"RAMOS MELINA ANA ELIZABETH","monto":10000000},{"nombre":"Norma Elizabeth Ramirez","monto":10000000},{"nombre":"Barcos Goñi Zahira Denise","monto":10000000},{"nombre":"RODRIGUEZ ROSANA BEATRIZ","monto":10000000},{"nombre":"Aberastain Sandra Mariela","monto":9000000},{"nombre":"BOZZINI NICOLAS SEBASTIAN","monto":8000000},{"nombre":"Urrutia Rosa Eliana","monto":8000000},{"nombre":"Maria Soledad Telesca","monto":3000000}],"mora":0.39,"riesgo_vivo":3275163107.06,"frt":2806116773.72,"fdr":2734264612.41,"donas":{"comercial":[["ESTEBAN ARIEL HIROKI",25],["Cristobal Cervera",24],["Nancy Huinchaqueo",18],["Mayte Galaburri",9],["S/O",15]],"sector":[["COMERCIO",35],["SERVICIOS",20],["INDUSTRIA",17],["AGROPECUARIO",8],["MINERIA",6],["CONSTRUCCIÓN",3],["AGRICULTURA",1],["Sin clasificar",1]],"tamano":[["MICRO",83],["PEQUEÑA EMPRESA",7],["MEDIANA TRAMO 1",1]]},"comisiones_meses":[["2025-11",3044323.12,0.0],["2025-12",40969529.8,0.0],["2026-01",21883242.13,0.0],["2026-02",17572356.23,0.0],["2026-03",7890287.52,0.0],["2026-04",18986907.91,0.0],["2026-05",11139366.75,0.0],["2026-06",22580962.88,0.0]],"comisiones_facturada":144066976.34,"comisiones_pendiente":0.0,"comisiones_total_general":144066976.34,"costos_abril_detalle":[{"codigo":"5.1.1.1.001","cuenta":"Sueldos y jornales","monto":17398350.66},{"codigo":"5.1.1.1.002","cuenta":"Cargas Sociales","monto":5407240.22},{"codigo":"5.1.1.1.024","cuenta":"Alquiler de Oficinas","monto":4316113.56},{"codigo":"5.1.1.1.012","cuenta":"Sistema de Administración - One Click S.A.","monto":2950606.85},{"codigo":"5.1.1.1.011","cuenta":"Viaticos","monto":640000},{"codigo":"5.1.1.1.022","cuenta":"Otros gastos","monto":565489.76},{"codigo":"5.1.1.1.010","cuenta":"Hospedaje","monto":547637},{"codigo":"5.1.1.1.019","cuenta":"Mantenimiento de Sistemas y Correo","monto":542999.43},{"codigo":"5.1.1.1.006","cuenta":"Honorarios Profesionales","monto":330288.72},{"codigo":"5.1.1.1.016","cuenta":"Cuota Social FONRED","monto":170190},{"codigo":"5.1.1.1.014","cuenta":"Examenes Preocupacionales","monto":82883.24},{"codigo":"5.1.1.1.004","cuenta":"Comisiones bancarias","monto":44631.26},{"codigo":"5.1.1.1.008","cuenta":"Pasajes y Movilidad","monto":33600}],"en_gestion_mapa":[{"nombre":"Pomona","pymes":2},{"nombre":"Dina Huapi","pymes":1},{"nombre":"Luis Beltrán","pymes":1},{"nombre":"San Javier","pymes":1}]};
+const DATA = {"fecha_corte":"30/06/2026","kpis":{"mipymes":97,"monto_total":3414600000,"otorgadas":91,"en_gestion":7,"banca_trad":67,"cfi":24,"mercado":0,"localidades":24,"rendimiento":769691099.38,"comisiones":144066976.34,"costos_acumulados":322313828.33,"costos_abril":33030030.7},"localidades":[{"nombre":"Bariloche","monto":558000000,"calif":508000000,"ops_lim":17,"ops_gar":17},{"nombre":"Cipolletti","monto":523000000,"calif":578000000,"ops_lim":15,"ops_gar":15},{"nombre":"Viedma","monto":380000000,"calif":450000000,"ops_lim":10,"ops_gar":10},{"nombre":"General Roca","monto":377000000,"calif":405000000,"ops_lim":8,"ops_gar":8},{"nombre":"Cinco Saltos","monto":370000000,"calif":420000000,"ops_lim":8,"ops_gar":8},{"nombre":"Catriel","monto":289000000,"calif":305000000,"ops_lim":11,"ops_gar":11},{"nombre":"Villa Regina","monto":170000000,"calif":170000000,"ops_lim":2,"ops_gar":2},{"nombre":"San Antonio Oeste","monto":150000000,"calif":150000000,"ops_lim":2,"ops_gar":2},{"nombre":"Allen","monto":137600000,"calif":150000000,"ops_lim":4,"ops_gar":4},{"nombre":"General Fernandez Oro","monto":125000000,"calif":125000000,"ops_lim":3,"ops_gar":3},{"nombre":"Sin localidad","monto":105000000,"calif":105000000,"ops_lim":3,"ops_gar":3},{"nombre":"Ingeniero Jacobacci","monto":100000000,"calif":100000000,"ops_lim":1,"ops_gar":1},{"nombre":"Rio Colorado","monto":47000000,"calif":47000000,"ops_lim":2,"ops_gar":2},{"nombre":"General Conesa","monto":30000000,"calif":30000000,"ops_lim":2,"ops_gar":2},{"nombre":"El Bolsón","monto":20000000,"calif":20000000,"ops_lim":1,"ops_gar":1},{"nombre":"Las Grutas","monto":9000000,"calif":19000000,"ops_lim":1,"ops_gar":1},{"nombre":"Sierra Colorada","monto":8000000,"calif":8000000,"ops_lim":1,"ops_gar":1}],"calif_linea":[{"nombre":"Cipolletti","monto":578000000},{"nombre":"Viedma","monto":450000000},{"nombre":"Cinco Saltos","monto":420000000},{"nombre":"General Roca","monto":405000000},{"nombre":"Catriel","monto":305000000},{"nombre":"Bariloche","monto":285000000},{"nombre":"San Carlos de Bariloche","monto":223000000},{"nombre":"Villa Regina","monto":170000000},{"nombre":"San Antonio Oeste","monto":150000000},{"nombre":"Allen","monto":150000000},{"nombre":"General Fernandez Oro","monto":125000000},{"nombre":"Sin localidad","monto":105000000},{"nombre":"Ingeniero Jacobacci","monto":100000000},{"nombre":"CABA","monto":100000000},{"nombre":"Ciudad Autónoma de Buenos Aires","monto":55000000},{"nombre":"Rio Colorado","monto":47000000},{"nombre":"General Conesa","monto":30000000},{"nombre":"El Bolsón","monto":20000000},{"nombre":"Las Grutas","monto":19000000},{"nombre":"San Javier","monto":10000000},{"nombre":"Sierra Colorada","monto":8000000},{"nombre":"Pomona","monto":0},{"nombre":"Dina Huapi","monto":0},{"nombre":"Luis Beltrán","monto":0}],"tabla_uni":[{"nombre":"Cipolletti","calif":578000000,"ops":15},{"nombre":"Viedma","calif":450000000,"ops":10},{"nombre":"Cinco Saltos","calif":420000000,"ops":8},{"nombre":"General Roca","calif":405000000,"ops":8},{"nombre":"Catriel","calif":305000000,"ops":11},{"nombre":"Bariloche","calif":285000000,"ops":11},{"nombre":"San Carlos de Bariloche","calif":223000000,"ops":6},{"nombre":"Villa Regina","calif":170000000,"ops":2},{"nombre":"San Antonio Oeste","calif":150000000,"ops":2},{"nombre":"Allen","calif":150000000,"ops":4},{"nombre":"General Fernandez Oro","calif":125000000,"ops":3},{"nombre":"Sin localidad","calif":105000000,"ops":3},{"nombre":"Ingeniero Jacobacci","calif":100000000,"ops":1},{"nombre":"CABA","calif":100000000,"ops":0},{"nombre":"Ciudad Autónoma de Buenos Aires","calif":55000000,"ops":0},{"nombre":"Rio Colorado","calif":47000000,"ops":2},{"nombre":"General Conesa","calif":30000000,"ops":2},{"nombre":"El Bolsón","calif":20000000,"ops":1},{"nombre":"Las Grutas","calif":19000000,"ops":1},{"nombre":"San Javier","calif":10000000,"ops":0},{"nombre":"Sierra Colorada","calif":8000000,"ops":1},{"nombre":"Pomona","calif":null,"ops":0},{"nombre":"Dina Huapi","calif":null,"ops":0},{"nombre":"Luis Beltrán","calif":null,"ops":0}],"top_clientes":[{"nombre":"AMJ Servicios SAS","monto":150000000},{"nombre":"Patagonia Beverage SRL","monto":100000000},{"nombre":"SOLUCIONES AMBIENTALES PATAGONIA","monto":100000000},{"nombre":"ECOMIN SRL","monto":100000000},{"nombre":"AUSTRADE SRL","monto":100000000},{"nombre":"Servicios Ambientales de La Patagonia SRL.","monto":100000000},{"nombre":"FRUCH PATAGONIA SAS","monto":100000000},{"nombre":"El Cerro SA","monto":100000000},{"nombre":"LAS GRUTAS S A","monto":100000000},{"nombre":"SNACK S.R.L.","monto":100000000},{"nombre":"WFS S.R.L.","monto":100000000},{"nombre":"Madeco S.A.C.I.","monto":90000000},{"nombre":"Gen S.R.L.","monto":76000000},{"nombre":"JUACO S.R.L.","monto":70000000},{"nombre":"ENTRE BARDAS SRL","monto":70000000},{"nombre":"RENT A BULL S.A.","monto":55000000},{"nombre":"KJ LOGISTICA SRL","monto":50000000},{"nombre":"GRUPO GLASS SAS","monto":50000000},{"nombre":"Emysa SRL","monto":50000000},{"nombre":"EMELKA S.A.","monto":50000000},{"nombre":"LABORATORIO PRAXIS S.A.S.","monto":50000000},{"nombre":"JULIO CESAR SANGIULIANO","monto":50000000},{"nombre":"PEREZ DIEGO MARTIN","monto":50000000},{"nombre":"4 ELEMENTOS PATAGONIA SAS","monto":50000000},{"nombre":"Patagonia Emprendimientos SA","monto":50000000},{"nombre":"La Rinconada SAS","monto":50000000},{"nombre":"Quimica del Valle S.R.L.","monto":50000000},{"nombre":"FUKUOKA SRL","monto":50000000},{"nombre":"Agustin Marcelo Schander","monto":50000000},{"nombre":"K Y C S.H. DE NORA MARIA KUGLER Y ROLANDO CARLOS CITARELLA","monto":50000000},{"nombre":"CHAMPI SAS","monto":50000000},{"nombre":"MONTOTO SPORT SH","monto":40000000},{"nombre":"MEDRANO DIEGO SEBASTIAN","monto":40000000},{"nombre":"Da Da S.A.S.","monto":40000000},{"nombre":"Asociación Civil Deportivo y Cultural Viedma","monto":40000000},{"nombre":"Cementos del valle S.R.L.","monto":40000000},{"nombre":"GABRIELA ALEJANDRA MALDONADO","monto":40000000},{"nombre":"CREA LOGISTICA SAS","monto":40000000},{"nombre":"HELGUERO MARTIN LEANDRO","monto":40000000},{"nombre":"CURLO S.R.L.","monto":40000000},{"nombre":"La Morena SRL","monto":40000000},{"nombre":"FRUTAS SAN EDUARDO","monto":35000000},{"nombre":"Gabriel Humberto Guzman","monto":35000000},{"nombre":"Natalia Alejandra Lopez","monto":30000000},{"nombre":"Jose Dardo Rivas","monto":30000000},{"nombre":"GILARDI LAURA ANTONELLA","monto":30000000},{"nombre":"BURCAM SRL","monto":30000000},{"nombre":"Transportes y Servicios JJRR S.R.L.","monto":30000000},{"nombre":"RODRIGUEZ FEDERICO","monto":30000000},{"nombre":"CANE S.A.S.","monto":30000000},{"nombre":"IMPLANT PROVIDE S.R.L.","monto":30000000},{"nombre":"FADEL SRL","monto":30000000},{"nombre":"ELACOM SRL","monto":30000000},{"nombre":"CRIBYCA SAS","monto":28000000},{"nombre":"BOGLIOLI ROSANA LOURDES","monto":25000000},{"nombre":"Alicia Petronila Silva","monto":25000000},{"nombre":"Cooperativa de Trabajo Manos Argentinas Limitada","monto":25000000},{"nombre":"Romero Alejandro Jose","monto":25000000},{"nombre":"Tools Rental S.A.S.","monto":25000000},{"nombre":"R.E.C. SERVICIOS SAS","monto":25000000},{"nombre":"Vidoni Claudia Beatriz","monto":25000000},{"nombre":"Huayra SAS","monto":24000000},{"nombre":"SIERRO MAURO ANDRES","monto":22000000},{"nombre":"Matías Gastón Lafitte","monto":22000000},{"nombre":"MARTINEZ, SILVIO Y MARTINEZ, CLAUDIA S.H","monto":20000000},{"nombre":"Enjoy Moments SRL","monto":20000000},{"nombre":"Sastre Julieta Lilen","monto":20000000},{"nombre":"Natural Express S.A.S.","monto":20000000},{"nombre":"HE DI SAS","monto":20000000},{"nombre":"Las Delicias Heladas S.A.S.","monto":20000000},{"nombre":"MOLINA S.A.S","monto":20000000},{"nombre":"Goenaga Noelia","monto":20000000},{"nombre":"ALMENDRA JUAN CARLOS","monto":18000000},{"nombre":"Fernando Fernandez","monto":16000000},{"nombre":"BECHAMEL SOCIEDAD SIMPLE","monto":16000000},{"nombre":"Mozo Maria Alejandra","monto":15000000},{"nombre":"Carlos Bogado","monto":15000000},{"nombre":"EVIANS SRL","monto":15000000},{"nombre":"DE CILLIA CLAUDIA GRACIELA","monto":15000000},{"nombre":"Naturaleza Patagonica","monto":15000000},{"nombre":"DIAZ GONZALEZ FLORENCIA AGOSTINA","monto":10000000},{"nombre":"Pallis Jonathan","monto":10000000},{"nombre":"PEÑALVA JUAN BERNARDO","monto":10000000},{"nombre":"Fodera Analia Gabriela","monto":10000000},{"nombre":"Zeman Rosemary","monto":10000000},{"nombre":"SEGUINO CRISTIAN SEBASTIAN","monto":10000000},{"nombre":"Julio Agustín Muñecas","monto":10000000},{"nombre":"Castillo Martina Candelaria","monto":10000000},{"nombre":"Ñancu Servicios SAS","monto":10000000},{"nombre":"RAMOS MELINA ANA ELIZABETH","monto":10000000},{"nombre":"Norma Elizabeth Ramirez","monto":10000000},{"nombre":"Barcos Goñi Zahira Denise","monto":10000000},{"nombre":"Delgado Tarifa Amin","monto":10000000},{"nombre":"RODRIGUEZ ROSANA BEATRIZ","monto":10000000},{"nombre":"Aberastain Sandra Mariela","monto":9000000},{"nombre":"BOZZINI NICOLAS SEBASTIAN","monto":8000000},{"nombre":"Urrutia Rosa Eliana","monto":8000000},{"nombre":"Maria Soledad Telesca","monto":3000000}],"mora":0.39,"riesgo_vivo":3275163107.06,"frt":2806116773.72,"fdr":2734264612.41,"donas":{"comercial":[["ESTEBAN ARIEL HIROKI",25],["Cristobal Cervera",24],["Nancy Huinchaqueo",18],["Mayte Galaburri",9],["S/O",15]],"sector":[["COMERCIO",35],["SERVICIOS",20],["INDUSTRIA",17],["AGROPECUARIO",8],["MINERIA",6],["CONSTRUCCIÓN",3],["AGRICULTURA",1],["Sin clasificar",1]],"tamano":[["MICRO",83],["PEQUEÑA EMPRESA",7],["MEDIANA TRAMO 1",1]]},"comisiones_meses":[["2025-11",3044323.12,0.0],["2025-12",40969529.8,0.0],["2026-01",21883242.13,0.0],["2026-02",17572356.23,0.0],["2026-03",7890287.52,0.0],["2026-04",18986907.91,0.0],["2026-05",11139366.75,0.0],["2026-06",22580962.88,0.0]],"comisiones_facturada":144066976.34,"comisiones_pendiente":0.0,"comisiones_total_general":144066976.34,"costos_abril_detalle":[{"codigo":"5.1.1.1.001","cuenta":"Sueldos y jornales","monto":17398350.66},{"codigo":"5.1.1.1.002","cuenta":"Cargas Sociales","monto":5407240.22},{"codigo":"5.1.1.1.024","cuenta":"Alquiler de Oficinas","monto":4316113.56},{"codigo":"5.1.1.1.012","cuenta":"Sistema de Administración - One Click S.A.","monto":2950606.85},{"codigo":"5.1.1.1.011","cuenta":"Viaticos","monto":640000},{"codigo":"5.1.1.1.022","cuenta":"Otros gastos","monto":565489.76},{"codigo":"5.1.1.1.010","cuenta":"Hospedaje","monto":547637},{"codigo":"5.1.1.1.019","cuenta":"Mantenimiento de Sistemas y Correo","monto":542999.43},{"codigo":"5.1.1.1.006","cuenta":"Honorarios Profesionales","monto":330288.72},{"codigo":"5.1.1.1.016","cuenta":"Cuota Social FONRED","monto":170190},{"codigo":"5.1.1.1.014","cuenta":"Examenes Preocupacionales","monto":82883.24},{"codigo":"5.1.1.1.004","cuenta":"Comisiones bancarias","monto":44631.26},{"codigo":"5.1.1.1.008","cuenta":"Pasajes y Movilidad","monto":33600}],"en_gestion_mapa":[{"nombre":"Pomona","pymes":2},{"nombre":"Dina Huapi","pymes":1},{"nombre":"Luis Beltrán","pymes":1},{"nombre":"San Javier","pymes":1}]};
 const fmtM = n => '$ ' + (n/1e6).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' M';
 const fmtFull = n => '$ ' + Math.round(n).toLocaleString('es-AR');
 const fmtNum = n => (n==null?0:n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -374,6 +389,7 @@ document.getElementById('k-loc').textContent = k.localidades;
 document.getElementById('k-rend').textContent = fmtFull(k.rendimiento);
 document.getElementById('k-com').textContent = fmtFull(k.comisiones);
 document.getElementById('k-cos').textContent = fmtFull(k.costos_acumulados);
+document.getElementById('k-resultado').textContent = fmtFull(k.rendimiento + k.comisiones - k.costos_acumulados);
 
 document.getElementById('k-mora').textContent = fmtNum(DATA.mora) + '%';
 document.getElementById('k-rv').textContent = fmtFull(DATA.riesgo_vivo);
@@ -386,7 +402,7 @@ document.getElementById('top-more').textContent = '+ ' + (DATA.top_clientes.leng
 
 const PAL_C = ['#1F9A2C','#4ECC50','#0F6E56','#1D9E75','#5DCAA5','#639922','#97C459','#3B6D11','#27500A','#173404','#085041','#9FE1CB','#C0DD97','#B6E3A2','#7AC25E','#56A862','#42964A','#2E8B57','#3CB371','#66BB6A'];
 function dk(h){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return 'rgb('+(r*.68|0)+','+(g*.68|0)+','+(b*.68|0)+')'}
-const localidadesConMonto = DATA.localidades.filter(l => l.monto > 0);
+const localidadesConMonto = DATA.calif_linea.filter(l => l.monto > 0);
 const totalCalif = localidadesConMonto.reduce((s,l)=>s+l.monto,0);
 const itemsC = localidadesConMonto.map((l,i)=>({i:i, n:l.nombre, v:l.monto, p:(l.monto/totalCalif*100), c:PAL_C[i%PAL_C.length]}));
 
@@ -412,7 +428,7 @@ const itemsC = localidadesConMonto.map((l,i)=>({i:i, n:l.nombre, v:l.monto, p:(l
 
 document.getElementById('pie-tb').innerHTML = itemsC.map(function(it){
   return '<tr data-i="'+it.i+'"><td><span class="sw" style="background:'+it.c+'"></span>'+it.n+'</td><td class="r">'+fmtNum(it.v/1e6)+'</td><td class="r"><span class="pct">'+it.p.toFixed(1)+'%</span></td></tr>';
-}).join('');
+}).join('') + DATA.calif_linea.filter(function(l){return !(l.monto>0)}).map(function(l){return '<tr><td><span class="sw" style="background:#D3D1C7"></span>'+l.nombre+'</td><td class="r" colspan="2" style="color:#888780;font-weight:400;text-align:right">PyME aún sin calificación</td></tr>';}).join('');
 document.getElementById('pie-tot').textContent = fmtNum(totalCalif/1e6);
 
 (function(){
@@ -483,12 +499,12 @@ const PIN_SVG = '<svg class="mark" viewBox="0 0 24 32" xmlns="http://www.w3.org/
   const valleEntries = DATA.localidades.filter(function(l){return ALTO_VALLE_KEYS[l.nombre] && l.monto>0});
   const viedmaEntries = DATA.localidades.filter(function(l){return (l.nombre==="Viedma" || l.nombre==="San Javier") && (l.monto>0||l.ops_gar>0||l.ops_lim>0)});
   const restantes = DATA.localidades.filter(function(l){return !ALTO_VALLE_KEYS[l.nombre] && l.nombre!=="Viedma" && l.nombre!=="San Javier" && l.monto>0 && COORDS[l.nombre]});
-  function sumGroup(arr){return {monto:arr.reduce(function(s,l){return s+l.monto},0), ops_lim:arr.reduce(function(s,l){return s+l.ops_lim},0), ops_gar:arr.reduce(function(s,l){return s+l.ops_gar},0)}}
+  function sumGroup(arr){return {monto:arr.reduce(function(s,l){return s+l.calif},0), ops_lim:arr.reduce(function(s,l){return s+l.ops_lim},0), ops_gar:arr.reduce(function(s,l){return s+l.ops_gar},0)}}
   const pins = [];
   restantes.forEach(function(l){
     const c = COORDS[l.nombre];
     const p = projectLatLon(c.lat, c.lon);
-    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.monto, og:l.ops_gar, ol:l.ops_lim, inc:null});
+    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.calif, og:l.ops_gar, ol:l.ops_lim, inc:null});
   });
   if(valleEntries.length){
     const s = sumGroup(valleEntries);
@@ -503,7 +519,7 @@ const PIN_SVG = '<svg class="mark" viewBox="0 0 24 32" xmlns="http://www.w3.org/
     const l = viedmaEntries[0];
     const c = COORDS[l.nombre];
     const p = projectLatLon(c.lat, c.lon);
-    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.monto, og:l.ops_gar, ol:l.ops_lim, inc:null});
+    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.calif, og:l.ops_gar, ol:l.ops_lim, inc:null});
   }
   pins.forEach(function(p){
     const inc = p.inc ? '<p class="inc">Incluye: '+p.inc.join(', ')+'</p>' : '';
@@ -526,44 +542,27 @@ const PIN_SVG = '<svg class="mark" viewBox="0 0 24 32" xmlns="http://www.w3.org/
 })();
 
 (function(){
-  var mapEl = document.getElementById('map');
-  if(!mapEl) return;
-  var enGestion = DATA.en_gestion_mapa || [];
-  enGestion.forEach(function(g){
-    var c = COORDS[g.nombre];
-    if(!c) return;
-    var p = projectLatLon(c.lat, c.lon);
-    var cls = 'pin gestion';
-    if(p.y < 35) cls += ' up';
-    if(p.x > 70) cls += ' right';
-    var div = document.createElement('div');
-    div.className = cls;
-    div.style.left = p.x + '%';
-    div.style.top = p.y + '%';
-    var txt = g.pymes + (g.pymes === 1 ? ' PyME' : ' PyMEs');
-    div.innerHTML = '<svg class="mark" viewBox="0 0 24 32" style="width:19px" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" fill="#4A4A48" d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg>' +
-      '<div class="lbl"><b style="color:#4A4A48">' + txt + '</b></div>' +
-      '<div class="pop"><h5>' + g.nombre + '</h5><table><tr><td>En gesti\u00f3n</td><td class="r">' + txt + '</td></tr></table></div>';
+  var mapEl=document.getElementById('map');
+  if(mapEl){ (DATA.en_gestion_mapa||[]).forEach(function(g){
+    var c=COORDS[g.nombre]; if(!c) return;
+    var p=projectLatLon(c.lat,c.lon); var cls='pin gestion';
+    if(p.y<35)cls+=' up'; if(p.x>70)cls+=' right';
+    var div=document.createElement('div'); div.className=cls; div.style.left=p.x+'%'; div.style.top=p.y+'%';
+    var txt=g.pymes+(g.pymes===1?' PyME':' PyMEs');
+    div.innerHTML='<svg class="mark" viewBox="0 0 24 32" style="width:19px" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" fill="#4A4A48" d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg>'+
+      '<div class="lbl"><b style="color:#4A4A48">'+txt+'</b></div>'+
+      '<div class="pop"><h5>'+g.nombre+'</h5><table><tr><td>En gesti\u00f3n</td><td class="r">'+txt+'</td></tr></table></div>';
     mapEl.appendChild(div);
-  });
+  }); }
 })();
-
 (function(){
-  function fillRk(id, key, suf){
-    const sorted = DATA.localidades.filter(function(l){return l[key]>0 && COORDS[l.nombre]}).sort(function(a,b){return b[key]-a[key]});
-    const el = document.getElementById(id);
-    if(!el) return;
-    const base = el.querySelector('ul.base'), extra = el.querySelector('ul.extra');
-    function liHtml(l){
-      const val = key==='monto' ? fmtNum(l.monto/1e6) : l[key];
-      return '<li><span>'+l.nombre+'</span><b>'+val+suf+'</b></li>';
-    }
-    base.innerHTML = sorted.slice(0,10).map(liHtml).join('');
-    extra.innerHTML = sorted.slice(10).map(liHtml).join('');
-    if(sorted.length<=10) el.querySelector('.more').style.display='none';
-  }
-  fillRk('rk-monto', 'monto', ' M$');
-  fillRk('rk-ops', 'ops_gar', '');
+  var tb=document.getElementById('uni-tbl'); if(!tb) return;
+  tb.innerHTML='<thead><tr><th>Localidad</th><th class="r">Calif. (M$)</th><th class="r">Ops.</th></tr></thead><tbody>'+
+   DATA.tabla_uni.map(function(r){
+     var cal=(r.calif==null)?'<span class="na">sin calif. a\u00fan</span>':'<b>'+fmtNum(r.calif/1e6)+'</b>';
+     var op=(r.ops>0)?'<b style="color:#3D6FB8">'+r.ops+'</b>':'<span class="na">sin oper. a\u00fan</span>';
+     return '<tr><td>'+r.nombre+'</td><td class="r">'+cal+'</td><td class="r">'+op+'</td></tr>';
+   }).join('')+'</tbody>';
 })();
 function toggleRk(id, btn){
   const el = document.getElementById(id);
