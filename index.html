@@ -24,11 +24,12 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 .nav button:hover{background:#f5f5f0}
 .nav button.active{background:#4ECC50;color:#1A1A1A}
 .pages{max-width:1400px;width:100%;margin:0 auto;flex:1}
-.page{background:#E6E5DC;border-radius:18px;padding:18px 24px 20px;position:relative;overflow:hidden;display:none;flex-direction:column;min-height:540px}
+.page{background:#E6E5DC;border-radius:18px;padding:18px 24px 20px;position:relative;overflow:hidden;display:none;flex-direction:column;min-height:560px}
 .page.active{display:flex}
 .page::before{content:'';position:absolute;top:-90px;left:-90px;width:170px;height:170px;background:#3D6FB8;border-radius:50%;z-index:0}
 .page::after{content:'';position:absolute;bottom:-90px;right:-90px;width:170px;height:170px;background:#4ECC50;border-radius:50%;opacity:.85;z-index:0}
 .page>*{position:relative;z-index:1}
+.content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;min-height:0}
 .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .tag{display:inline-block;background:#4ECC50;color:#1A1A1A;font-weight:700;font-size:12px;padding:6px 14px;border-radius:22px}
 .head .brand{text-align:right}
@@ -36,642 +37,350 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
 .head .brand .sub{font-size:10px;margin-top:2px}
 .title{font-size:24px;font-weight:700;line-height:1.15;margin:2px 0 12px;color:#1A1A1A}
 .title .ac{color:#4ECC50}
-.filters{display:flex;gap:8px;margin-bottom:12px}
-.chip{background:#4ECC50;color:#1A1A1A;font-size:12px;font-weight:700;padding:6px 14px;border-radius:22px;border:none;font-family:inherit}
-.grid{display:grid;gap:9px}
+.grid{display:grid;gap:10px}
 .g4{grid-template-columns:repeat(4,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
-.card{background:#fff;border-radius:14px;padding:11px 14px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column;min-height:78px}
+.card{background:#fff;border-radius:14px;padding:12px 15px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column;min-height:78px}
 .lbl{font-size:12.5px;color:#1A1A1A;font-weight:600;line-height:1.25}
 .num{font-size:26px;font-weight:700;line-height:1.05;margin-top:auto;white-space:nowrap}
 .sub{font-size:11px;color:#4A4A48;margin-top:3px;line-height:1.3}
-.pill{background:#fff;border-radius:30px;padding:10px 22px 10px 26px;display:flex;align-items:center;gap:18px;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
-.pill::before{content:'';position:absolute;left:0;top:0;bottom:0;width:9px;background:#4ECC50;border-radius:30px 0 0 30px}
-.pill .am{font-size:24px;font-weight:800;color:#4ECC50;white-space:nowrap;min-width:240px}
-.pill .ds{font-size:13px;color:#1A1A1A;font-weight:500;line-height:1.3}
-.pill.blue::before{background:#3D6FB8}.pill.blue .am{color:#3D6FB8}
-.bar-row{display:flex;align-items:center;gap:8px;font-size:11.5px}
-.bar-row .nm{width:120px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar-row .b{height:11px;background:#3D6FB8;border-radius:3px;flex:1;min-width:0}
-.bar-row .v{font-weight:700;min-width:54px;text-align:right;font-size:11px}
-.tbl{width:100%;font-size:11.5px;border-collapse:collapse}
-.tbl td{padding:3px 0}
-.tbl tr+tr td{border-top:1px solid #f0eee5}
-.dot-leg{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px;vertical-align:middle}
-.linkish{font-size:11.5px;color:#1F9A2C;font-weight:600;cursor:pointer;text-decoration:underline;background:none;border:none;font-family:inherit;padding:5px 0;text-align:left}
-.linkish:hover{color:#185f1c}
-.legend{display:flex;gap:16px;margin-top:10px;font-size:11.5px;color:#1A1A1A;font-weight:500}
-.hbars{display:flex;flex-direction:column;gap:9px;margin-top:6px}
-.hbar-row{display:grid;grid-template-columns:54px 1fr 100px;align-items:center;gap:10px;font-size:11.5px}
-.hbar-row .nm{font-weight:600;color:#1A1A1A}
-.hbar-row .tot{text-align:right;font-weight:700;color:#1A1A1A;white-space:nowrap}
-.hbar-track-wrap{position:relative;height:14px;width:100%}
-.hbar-track{position:relative;height:100%;background:#f4f1e8;border-radius:4px;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.hbar-fact{position:absolute;left:0;top:0;height:100%;background:#1F9A2C;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.hbar-pend{position:absolute;top:0;height:100%;background:#B6E3A2;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.com-total{margin-top:12px;background:#f5f3ec;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-left:4px solid #1F9A2C;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.com-total .lab{font-size:12.5px;font-weight:600;color:#1A1A1A}
-.com-total .val{font-size:18px;font-weight:800;color:#1F9A2C;white-space:nowrap}
-.modal-wrap{display:none;position:fixed;inset:0;background:rgba(26,26,26,.6);z-index:9999;justify-content:center;align-items:center;padding:30px}
-.modal-wrap.open{display:flex}
-.modal{background:#E6E5DC;border-radius:18px;padding:22px 26px;max-width:720px;width:100%;max-height:80vh;overflow:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.modal h3{margin:0 0 14px;font-size:20px;font-weight:700;color:#1A1A1A}
-.modal-close{position:absolute;top:14px;right:18px;width:32px;height:32px;border-radius:50%;border:none;background:#fff;cursor:pointer;font-size:18px;font-weight:600;line-height:1}
-.modal-close:hover{background:#f5f5f0}
-.dn-wrap{display:flex;flex-direction:column;align-items:center;flex:1}
-.dn-svg{filter:drop-shadow(0 4px 8px rgba(26,26,26,.12))}
-.dn-svg circle.slice{transition:opacity .15s,stroke-width .15s;cursor:pointer}
-.dn-svg:hover circle.slice{opacity:.5}
-.dn-svg circle.slice:hover{opacity:1;stroke-width:8.5}
-.dn-tip{position:fixed;background:#1A1A1A;color:#fff;padding:8px 12px;border-radius:8px;font-size:11.5px;font-weight:500;pointer-events:none;display:none;white-space:nowrap;z-index:9998;line-height:1.4;box-shadow:0 4px 12px rgba(0,0,0,.25)}
-.dn-tbl{width:100%;font-size:12px;border-collapse:collapse;margin-top:10px}
-.dn-tbl td{padding:5px 0}
-.dn-tbl tr+tr td{border-top:1px solid #f0eee5}
-.pie-card{display:grid;grid-template-columns:1fr 240px;gap:14px;flex:1;min-height:0}
-.pie-box{display:flex;align-items:center;justify-content:center;min-height:0}
-.pie-svg{width:100%;height:100%;max-height:240px}
-.pie-svg path.slice{cursor:pointer;transition:filter .15s}
-.pie-svg path.slice:hover,.pie-svg path.slice.hl{filter:brightness(1.18) drop-shadow(0 2px 5px rgba(0,0,0,.35))}
-.pie-tbl-wrap{overflow-y:auto;min-height:0;max-height:240px}
-.pie-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
-.pie-tbl th{font-size:10.5px;font-weight:600;color:#4A4A48;text-align:left;padding:4px 6px 6px;border-bottom:1px solid #d8d7cd;position:sticky;top:0;background:#fff}
-.pie-tbl th.r{text-align:right}
-.pie-tbl td{padding:5px 6px;border-bottom:1px solid #f0eee5;cursor:pointer;transition:.12s}
-.pie-tbl td.r{text-align:right;font-weight:700}
-.pie-tbl td .sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
-.pie-tbl tr:hover td,.pie-tbl tr.hl td{background:#1A1A1A;color:#fff}
-.pie-tbl tr:hover td .pct,.pie-tbl tr.hl td .pct{color:#4ECC50}
-.pie-tbl .pct{color:#1F9A2C;font-weight:700}
-.pie-tbl tfoot td{font-weight:700;background:#f5f3ec;border-top:2px solid #d8d7cd}
-.map-grid{display:grid;grid-template-columns:1fr 290px;gap:12px;flex:1;min-height:0}
-.map-card-w{background:#fff;border-radius:14px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
-.map-wrap{position:relative;width:100%;aspect-ratio:1024/576;max-height:calc(100% - 46px);background:url('Mapa Rio Negro.png') center/contain no-repeat;border-radius:10px;box-shadow:inset 0 0 60px rgba(0,0,0,.04)}
+/* Héroes P1 */
+.chip-ac{display:inline-block;background:#dfe3d9;color:#4A4A48;font-size:11px;font-weight:600;padding:4px 13px;border-radius:14px;margin-bottom:12px}
+.hero{border-radius:15px;padding:16px 20px;display:flex;flex-direction:column}
+.hero.res{background:#e9f1fa;border:2px solid #3D6FB8;justify-content:center;gap:2px}
+.hero.res .hl{font-size:13px;font-weight:700;color:#265490}
+.hero.res .hn{font-size:44px;font-weight:800;color:#3D6FB8;line-height:1}
+.hero.res .hcap{font-size:12px;font-weight:600;color:#265490;margin-top:8px}
+.hero.res .hbig{font-size:38px;font-weight:800;color:#3D6FB8;line-height:1}
+.hero.gest{background:#eef7ea;border:2px solid #4ECC50;gap:7px}
+.hero.gest .hl{font-size:12px;font-weight:700;color:#1F7A24}
+.hero.gest .hn{font-size:31px;font-weight:800;color:#1F9A2C;line-height:1.05}
+.hero.gest .hsub{font-size:10.5px;color:#2E8B31}
+.comp{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:9px;padding:9px 13px;font-size:12px}
+.comp .v{font-weight:800}
+.canal-box{background:rgba(255,255,255,.55);border-radius:13px;padding:12px 15px}
+.canal{background:#fff;border-radius:11px;padding:11px 14px}
+.canal .n{font-size:24px;font-weight:800;line-height:1;margin-top:6px}
+.canal.ph{border:1px dashed #b7b7ae}
+.canal.ph .n{color:#9a9a90}
+/* Barras P2 */
+.bar-row{display:grid;grid-template-columns:118px 1fr 52px;align-items:center;gap:9px;font-size:12px;margin-bottom:11px}
+.bar-row .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{height:15px;border-radius:4px;min-width:2px}
+.bar-track.g{background:#4ECC50}
+.bar-track.b{background:#3D6FB8}
+.bar-row .v{text-align:right;font-weight:700}
+.tot-row{margin-top:auto;padding-top:9px;border-top:1px solid #e3e1d7;display:flex;justify-content:space-between;font-weight:800;font-size:13px}
+/* chips objetivo / zonas */
+.chip-obj{background:rgba(255,255,255,.6);border:1px solid rgba(61,111,184,.25);border-radius:12px;padding:11px 13px}
+.chip-obj .n{font-size:22px;font-weight:800;color:#3D6FB8;line-height:1}
+.chip-obj .t{font-size:10.5px;color:#1A1A1A;font-weight:600;margin-top:3px;line-height:1.2}
+.chip-obj .cm{font-size:10px;color:#4A4A48;margin-top:2px}
+.cardh{cursor:default;transition:background .12s}
+.grp .pnl{columns:2;column-gap:14px;font-size:9.5px;line-height:1.6}
+.grp .pn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;break-inside:avoid}
+/* P3 grupos */
+.grp{background:#fff;border-radius:12px;padding:11px 14px;break-inside:avoid;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.grp h4{margin:0 0 8px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;border-bottom:2px solid #4ECC50;padding-bottom:5px}
+.grp h4 .c{color:#3D6FB8}
+.grp ul{margin:0;padding:0;list-style:none;columns:2;column-gap:22px}
+.grp li{display:flex;justify-content:space-between;gap:10px;font-size:11px;padding:2.5px 0;break-inside:avoid}
+.grp li .m{font-weight:700;white-space:nowrap}
+.grp li span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* mapa */
+.map-grid{display:grid;grid-template-columns:1fr 220px;gap:12px;flex:1;min-height:0}
+.map-card-w{background:#fff;border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;position:relative}
+.map-wrap{position:relative;width:100%;aspect-ratio:1024/576;max-height:100%;background:url('Mapa Rio Negro.png') center/contain no-repeat;border-radius:10px;box-shadow:inset 0 0 60px rgba(0,0,0,.04)}
 .prov{position:absolute;font-size:10.5px;font-weight:600;color:#A8A79F;letter-spacing:.06em;pointer-events:none;text-transform:uppercase;z-index:1}
 .prov.v{writing-mode:vertical-rl;letter-spacing:.12em}
 .pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;z-index:2;line-height:0}
 .pin svg.mark{width:24px;height:32px;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));transition:transform .15s}
 .pin:hover svg.mark{transform:scale(1.18)}
 .pin:hover{z-index:60}
-.pin .lbl{position:absolute;left:28px;top:8px;background:rgba(255,255,255,.82);padding:3px 8px;border-radius:8px;font-size:10.5px;font-weight:700;white-space:nowrap;line-height:1.25;color:#1A1A1A;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:.15s}
-.pin .lbl b{color:#1F9A2C;font-weight:700}
-.pin .lbl .o{color:#3D6FB8;font-weight:700;margin-left:4px}
-.pin:hover .lbl{background:#1A1A1A;color:#fff}
-.pin:hover .lbl b{color:#4ECC50}.pin:hover .lbl .o{color:#7AA8E0}
-.pop{display:none;position:absolute;left:12px;bottom:calc(100% + 4px);background:#1A1A1A;color:#fff;border-radius:12px;padding:11px 14px;min-width:240px;box-shadow:0 10px 28px rgba(0,0,0,.45);z-index:80;text-align:left;font-size:11.5px;line-height:1.45}
+.pop{display:none;position:absolute;left:12px;bottom:calc(100% + 4px);background:#1A1A1A;color:#fff;border-radius:12px;padding:11px 14px;min-width:200px;box-shadow:0 10px 28px rgba(0,0,0,.45);z-index:80;text-align:left;font-size:11.5px;line-height:1.45}
 .pop::after{content:'';position:absolute;top:100%;left:18px;border:6px solid transparent;border-top-color:#1A1A1A}
 .pin.up .pop{bottom:auto;top:calc(100% + 4px)}
 .pin.up .pop::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#1A1A1A}
-.pin.right .pop{left:auto;right:12px}
-.pin.right .pop::after{left:auto;right:18px}
+.pin.right .pop{left:auto;right:12px}.pin.right .pop::after{left:auto;right:18px}
 .pin:hover .pop{display:block}
 .pop h5{margin:0 0 6px;font-size:13px;font-weight:700;color:#fff}
-.pop .inc{font-size:10.5px;color:#B6E3A2;margin:0 0 8px;font-weight:600}
-.pop table{width:100%;border-collapse:collapse}
-.pop td{padding:3px 0;color:#E6E5DC}
-.pop td.r{text-align:right;font-weight:700}
-.pop .v{color:#4ECC50}.pop .b{color:#7AA8E0}
-.map-side{display:flex;flex-direction:column;gap:10px;min-height:0}
-.rk{background:#fff;border-radius:14px;padding:12px 14px;flex:1;min-height:0;display:flex;flex-direction:column}
-.rk h4{margin:0 0 8px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;flex-shrink:0}
-.rk h4 .d{width:8px;height:8px;border-radius:50%}
-.rk .scroll{overflow-y:auto;flex:1;min-height:0;max-height:220px;padding-right:4px}
-.rk ul{margin:0;padding:0;list-style:none;font-size:11.5px}
-.rk li{display:flex;justify-content:space-between;padding:4px 0;border-top:1px solid #f0eee5}
-.rk li:first-child{border-top:none}.rk li b{font-weight:700}
-.rk .more{margin-top:6px;font-size:11.5px;color:#1F9A2C;font-weight:600;cursor:pointer;background:none;border:none;padding:4px 0;text-decoration:underline;flex-shrink:0;text-align:left;font-family:inherit}
-.rk .more:hover{color:#185f1c}
-.rk .extra{display:none}.rk.open .extra{display:block}
-.uni-tbl{width:100%;border-collapse:collapse;font-size:11px}
-.uni-tbl th{font-size:10px;font-weight:600;color:#4A4A48;text-align:left;padding:3px 4px;border-bottom:1px solid #d8d7cd;position:sticky;top:0;background:#fff}
-.uni-tbl th.r,.uni-tbl td.r{text-align:right}
-.uni-tbl td{padding:3px 4px;border-bottom:1px solid #f0eee5}
-.uni-tbl tr:last-child td{border-bottom:none}
-.uni-tbl .na{color:#B4B2A9;font-style:italic;font-size:9.5px}
-#rk-uni .scroll{max-height:none;flex:1}
-#rk-uni{overflow:hidden}
+.pop .r{color:#4ECC50;font-weight:700}
+.map-side{display:flex;flex-direction:column;gap:9px;min-height:0}
+.zonas{display:flex;flex-direction:column;gap:8px}
+.zchip{background:#e9f1fa;border:1px solid rgba(61,111,184,.3);border-radius:11px;padding:9px 13px;display:flex;justify-content:space-between;align-items:center}
+.zchip .zn{font-size:12px;font-weight:600;color:#265490}
+.zchip .zv{font-size:18px;font-weight:800;color:#3D6FB8}
+.zchip.tot{background:#3D6FB8}.zchip.tot .zn,.zchip.tot .zv{color:#fff}
+.ref{background:#fff;border-radius:12px;padding:9px 14px;font-size:11px;color:#4A4A48;display:flex;align-items:center;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ref .d{width:9px;height:9px;border-radius:50%;background:#A8A79F;flex-shrink:0}
+/* donas P5 */
+.dn-wrap{display:flex;flex-direction:column;align-items:center;flex:1}
+.dn-svg{filter:drop-shadow(0 4px 8px rgba(26,26,26,.12))}
+.dn-svg circle.slice{transition:opacity .15s,stroke-width .15s;cursor:pointer}
+.dn-svg:hover circle.slice{opacity:.5}
+.dn-svg circle.slice:hover{opacity:1;stroke-width:8.5}
+.dn-tip{position:fixed;background:#1A1A1A;color:#fff;padding:8px 12px;border-radius:8px;font-size:11.5px;font-weight:500;pointer-events:none;display:none;white-space:nowrap;z-index:9998;line-height:1.4;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.dn-tbl{width:100%;font-size:12px;border-collapse:collapse;margin-top:12px}
+.dn-tbl td{padding:5px 0}
+.dn-tbl tr+tr td{border-top:1px solid #f0eee5}
+.dot-leg{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px;vertical-align:middle}
+/* P6 evolutivo */
+.ev-h .bar-row{grid-template-columns:60px 1fr 52px;margin-bottom:9px}
+.vbars{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:16px;border-bottom:2px solid #e3e1d7}
+.vbar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.vbar .vv{font-size:9px;color:#4A4A48;font-weight:700;margin-bottom:2px}
+.vbar .vb{width:66%;background:#1F9A2C;border-radius:3px 3px 0 0;min-height:2px}
+.vbar .vt{font-size:9px;color:#4A4A48;margin-top:3px}
+.big-num{font-size:30px;font-weight:800;color:#1F9A2C;line-height:1}
+@media (max-width:820px){
+  .nav{flex-direction:column}.nav button{flex:none}
+  .grid.g4,.grid.g3{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr!important}
+  .map-grid{grid-template-columns:1fr!important}
+  .map-wrap{aspect-ratio:1024/620}
+  .grp ul{columns:1}
+  .hero.res .hn{font-size:42px}
+}
 @media print{
-  @page{size:A4 landscape;margin:5mm}
+  @page{size:A4 landscape;margin:6mm}
   html,body{height:auto;background:#fff}
   body{padding:0;display:block}
-  .topbar,.nav,.linkish,.btn{display:none !important}
-  .modal-wrap{display:none !important}
+  .topbar,.nav,.btn{display:none !important}
   .pages{max-width:none}
-  .page{display:flex !important;page-break-after:always;background:#E6E5DC !important;margin:0;border-radius:0;padding:8mm 10mm 6mm;min-height:195mm;height:auto;overflow:visible;break-after:page}
+  .page{display:flex !important;page-break-after:always;break-after:page;background:#E6E5DC !important;margin:0;border-radius:0;padding:8mm 10mm;min-height:190mm;height:auto;overflow:visible}
   .page:last-child{page-break-after:auto;break-after:auto}
-  .page::before,.page::after{display:block !important}
-  .pill,.card,.tag,.chip{box-shadow:none}
-  .num{font-size:22px}
-  .pill .am{font-size:22px;min-width:auto}
-  .title{font-size:22px}
-  .bar-row .b{background-color:inherit !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .pie-svg,.pie-svg path,.map-wrap,.pin svg{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .pie-tbl-wrap,.rk .scroll{overflow:visible !important;max-height:none !important;height:auto !important}
-  .pie-tbl,.pie-tbl tbody,.pie-tbl tr{page-break-inside:avoid}
-  .rk{height:auto !important}
-  .rk .extra{display:block !important}
-  .rk .more{display:none !important}
   .pin .pop{display:none !important}
-  .pie-svg{max-height:250px !important}
-  .pie-card,.map-grid{flex:none !important}
-  .map-card-w{justify-content:flex-start !important}
-  .map-wrap{max-height:none !important;width:100% !important}
-  .map-side{min-height:0}
-  .uni-tbl th,.uni-tbl td{font-size:9.5px;padding:2px 3px}
-  .map-ref{font-size:10px !important}
-  .pie-tbl th,.pie-tbl td{font-size:10px;padding:3px 5px}
-  .rk li{font-size:10.5px;padding:2px 0}
+  .grp{break-inside:avoid}
+  #p3 .content{gap:6px}
+  #p3 .chip-obj{padding:8px 11px}
+  #p3 .chip-obj .n{font-size:18px}
+  #p3 .grp{padding:8px 11px}
+  #p3 .grp h4{font-size:11px;margin-bottom:5px}
+  #p3 .grp .pnl{font-size:8px;line-height:1.4;column-gap:10px}
 }
 </style>
 </head>
 <body>
-
 <div class="topbar">
   <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
-  <div class="controls">
-    <button class="btn primary" onclick="window.print()">⤓ Exportar PDF</button>
-  </div>
+  <div class="controls"><button class="btn primary" onclick="window.print()">⤓ Exportar PDF</button></div>
 </div>
-
 <div class="nav">
-  <button class="active" onclick="showPage(1, this)">Página 1 · Indicadores</button>
-  <button onclick="showPage(2, this)">Página 2 · Riesgo</button>
-  <button onclick="showPage(3, this)">Página 3 · Abordaje territorial</button>
-  <button onclick="showPage(4, this)">Página 4 · Garantías</button>
-  <button onclick="showPage(5, this)">Página 5 · Sostenibilidad</button>
+  <button class="active" onclick="showPage(1,this)">Página 1 · Indicadores</button>
+  <button onclick="showPage(2,this)">Página 2 · Riesgo</button>
+  <button onclick="showPage(3,this)">Página 3 · Resoluciones</button>
+  <button onclick="showPage(4,this)">Página 4 · Territorial</button>
+  <button onclick="showPage(5,this)">Página 5 · Garantías</button>
+  <button onclick="showPage(6,this)">Página 6 · Sostenibilidad</button>
 </div>
-
-<div class="pages">
-
-<section class="page active" id="p1">
-  <div class="head">
-    <span class="tag" id="tag-fecha">Dashboard Ejecutivo · 30/04/2026</span>
-    <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
-  </div>
-  <div class="title">Indicadores clave <span class="ac">de gestión</span></div>
-  <div class="filters"><span class="chip">Acumulado anual</span></div>
-  <div class="grid g4" style="margin-bottom:9px">
-    <div class="card"><div class="lbl">MiPyMEs<br>beneficiadas</div><div class="num" id="k-mipymes">—</div></div>
-    <div class="card"><div class="lbl">Monto total<br>garantizado</div><div class="num" id="k-monto">—</div></div>
-    <div class="card"><div class="lbl">Garantías<br>otorgadas</div><div class="num" id="k-otorgadas">—</div></div>
-    <div class="card"><div class="lbl">Garantías<br>en gestión</div><div class="num" id="k-gestion">—</div></div>
-  </div>
-  <div class="grid g4" style="margin-bottom:11px">
-    <div class="card"><div class="lbl">Operaciones<br>banca tradicional</div><div class="num" id="k-banca">—</div><div class="sub">Banco Patagonia · BPN</div></div>
-    <div class="card"><div class="lbl">Operaciones<br>con CFI</div><div class="num" id="k-cfi">—</div><div class="sub">Consejo Federal Inversiones</div></div>
-    <div class="card"><div class="lbl">Resoluciones<br>aprobadas</div><div class="num">124</div><div class="sub">Monto total: $ 4.644,00 M</div></div>
-    <div class="card"><div class="lbl">Localidades<br>alcanzadas</div><div class="num" id="k-loc">—</div><div class="sub">PyMEs calificadas + con garantía otorgada</div></div>
-  </div>
-  <div style="display:flex;gap:9px;align-items:stretch">
-    <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:0">
-    <div class="pill"><span class="am" id="k-rend">—</span><span class="ds">Rendimiento acumulado de<br>inversiones del Fondo.</span></div>
-    <div class="pill"><span class="am" id="k-com">—</span><span class="ds">Ingresos acumulados<br>por comisiones.</span></div>
-    <div class="pill blue"><span class="am" id="k-cos">—</span><span class="ds">Costos operativos<br>acumulados.</span></div>
-    </div>
-    <div class="card" style="width:290px;flex-shrink:0;justify-content:center;align-items:center;text-align:center;padding:14px 18px">
-      <div class="lbl" style="font-size:13px">Resultado acumulado de gestión</div>
-      <div class="num" id="k-resultado" style="font-size:25px;color:#1F9A2C;margin-top:8px">—</div>
-      <div class="sub" style="margin-top:4px">Rendimiento + comisiones − costos</div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="p2">
-  <div class="head">
-    <span class="tag">Página 2 · Riesgo</span>
-    <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
-  </div>
-  <div class="title">Riesgo <span class="ac">y calificación</span></div>
-  <div class="grid" style="grid-template-columns:1fr 240px;gap:10px;flex:1;min-height:0">
-    <div class="card" style="padding:12px 14px 10px">
-      <div class="lbl" style="margin-bottom:8px">Calificación por localidad (M$)</div>
-      <div class="pie-card">
-        <div class="pie-box"><svg class="pie-svg" id="pie-c" viewBox="0 0 380 220" preserveAspectRatio="xMidYMid meet"></svg></div>
-        <div class="pie-tbl-wrap">
-          <table class="pie-tbl">
-            <thead><tr><th>Localidad</th><th class="r">M$</th><th class="r">%</th></tr></thead>
-            <tbody id="pie-tb"></tbody>
-            <tfoot><tr><td><b>Total</b></td><td class="r" id="pie-tot"></td><td class="r"><b>100%</b></td></tr></tfoot>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="card" style="flex:1;justify-content:center"><div class="lbl">Mora</div><div class="num" id="k-mora" style="color:#1F9A2C;margin-top:6px">—</div><div class="sub">Porcentaje de mora</div></div>
-      <div class="card" style="flex:1;justify-content:center"><div class="lbl">Riesgo vivo</div><div class="num" id="k-rv" style="color:#3D6FB8;font-size:21px;margin-top:6px">—</div><div class="sub">Saldo de garantías vigentes</div></div>
-    </div>
-  </div>
-  <div class="card" style="margin-top:10px;padding:11px 14px 8px">
-    <div class="lbl" style="margin-bottom:7px">Top 5 clientes — calificación instrumentada (M$)</div>
-    <table class="tbl" id="top5"></table>
-    <button class="linkish" onclick="abrirModal('mod-top')" id="top-more">+ X clientes más (ver todos)</button>
-  </div>
-</section>
-
-<section class="page" id="p3">
-  <div class="head">
-    <span class="tag">Página 3 · Abordaje territorial</span>
-    <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
-  </div>
-  <div class="title">Abordaje <span class="ac">territorial</span></div>
-  <div class="map-grid">
-    <div class="map-card-w">
-      <div class="map-wrap" id="map">
-        <span class="prov" style="left:30%;top:0.5%;font-size:9.5px">Mendoza</span>
-        <span class="prov" style="left:50%;top:1%">La Pampa</span>
-        <span class="prov" style="right:3%;top:2%">Buenos Aires</span>
-        <span class="prov v" style="left:1.5%;top:36%">Neuquén</span>
-        <span class="prov" style="left:42%;top:96%">Chubut</span>
-        <span class="prov v" style="right:1.5%;top:46%">Mar Argentino</span>
-      </div>
-      <div class="map-ref" style="width:100%;margin-top:6px;font-size:11.5px;line-height:1.45;color:#1A1A1A;flex-shrink:0"><span style="font-weight:700">Referencias:</span><span style="margin-left:8px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#1A1A1A;vertical-align:middle;margin-right:5px"></span>Calificación (M$) y operaciones por localidad</span><span style="margin-left:14px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#4A4A48;vertical-align:middle;margin-right:5px"></span>En gestión (PyMEs aún sin calificación)</span><div style="color:#4A4A48;margin-top:2px">CABA y Buenos Aires: PyMEs que operan en la provincia con domicilio legal fuera de Río Negro · "Sin localidad": PyMEs sin ciudad cargada</div></div>
-    </div>
-    <div class="map-side">
-      <div class="rk" id="rk-uni" style="flex:1">
-        <h4><span class="d" style="background:#4ECC50"></span>Calificación (M$) y operaciones</h4>
-        <div class="scroll"><table class="uni-tbl" id="uni-tbl"></table></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="p4">
-  <div class="head">
-    <span class="tag">Página 4 · Garantías otorgadas</span>
-    <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
-  </div>
-  <div class="title">Garantías <span class="ac">otorgadas</span></div>
-  <div class="grid g3" style="flex:1">
-    <div class="card" style="align-items:center">
-      <div class="lbl" style="align-self:flex-start">Por Comercial</div>
-      <div class="dn-wrap"><div id="dn-com" style="margin:14px 0 4px"></div></div>
-      <table class="dn-tbl" id="tb-com" style="width:100%"></table>
-    </div>
-    <div class="card" style="align-items:center">
-      <div class="lbl" style="align-self:flex-start">Por Sector Económico</div>
-      <div class="dn-wrap"><div id="dn-sec" style="margin:14px 0 4px"></div></div>
-      <table class="dn-tbl" id="tb-sec" style="width:100%"></table>
-    </div>
-    <div class="card" style="align-items:center">
-      <div class="lbl" style="align-self:flex-start">Por Tamaño de PyME</div>
-      <div class="dn-wrap"><div id="dn-tam" style="margin:14px 0 4px"></div></div>
-      <table class="dn-tbl" id="tb-tam" style="width:100%"></table>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="p5">
-  <div class="head">
-    <span class="tag">Página 5 · Sostenibilidad</span>
-    <div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro</span></div>
-  </div>
-  <div class="title">Comisiones, costos <span class="ac">y rendimiento</span></div>
-  <div class="grid" style="grid-template-columns:2.4fr 1fr;margin-bottom:10px">
-    <div class="card">
-      <div class="lbl" style="margin-bottom:6px">Comisiones por mes</div>
-      <div class="hbars" id="hbars-com"></div>
-      <div class="legend">
-        <span><span class="dot-leg" style="background:#1F9A2C"></span>Facturada</span>
-      </div>
-      <div class="com-total" id="com-total"></div>
-    </div>
-    <div class="card" style="cursor:pointer" onclick="abrirModal('mod-cos')">
-      <div class="lbl">Costos operativos junio</div>
-      <div class="num" id="k-cosabr" style="font-size:24px">—</div>
-      <div class="sub" style="display:flex;justify-content:space-between;align-items:center;margin-top:auto"><span>Cuentas 5.1.1.1.001 a 024</span><span style="background:#4ECC50;color:#1A1A1A;font-weight:700;font-size:11px;padding:5px 12px;border-radius:14px">Ver detalle ▸</span></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="lbl" style="margin-bottom:6px">Rendimiento del fondo</div>
-    <div style="display:flex;gap:32px;align-items:baseline;flex-wrap:wrap">
-      <div>
-        <div class="num" style="font-size:30px;color:#1F9A2C" id="k-rend2">—</div>
-        <div class="sub" style="color:#1A1A1A;font-weight:500">Rendimiento acumulado del período</div>
-      </div>
-      <div style="margin-left:auto;display:flex;gap:32px">
-        <div><div class="lbl" style="font-size:12px">Fondo de Riesgo Total</div><div style="font-weight:700;font-size:19px;white-space:nowrap" id="k-frt">—</div></div>
-        <div><div class="lbl" style="font-size:12px">Fondo de Riesgo Disponible</div><div style="font-weight:700;font-size:19px;white-space:nowrap" id="k-fdr">—</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<div class="modal-wrap" id="mod-top"><div class="modal"><button class="modal-close" onclick="cerrarModal('mod-top')">×</button><h3>Top clientes por calificación instrumentada</h3><table class="tbl" id="modal-top-content"></table></div></div>
-<div class="modal-wrap" id="mod-cos"><div class="modal"><button class="modal-close" onclick="cerrarModal('mod-cos')">×</button><h3>Costos operativos · Junio 2026</h3><table class="tbl" id="modal-cos-content"></table></div></div>
+<div class="pages" id="pages"></div>
 <div class="dn-tip" id="dn-tip"></div>
 
 <script>
-const DATA = {"fecha_corte":"30/06/2026","kpis":{"mipymes":97,"monto_total":3414600000,"otorgadas":91,"en_gestion":7,"banca_trad":67,"cfi":24,"mercado":0,"localidades":24,"rendimiento":769691099.38,"comisiones":144066976.34,"costos_acumulados":322313828.33,"costos_abril":33030030.7},"localidades":[{"nombre":"Bariloche","monto":558000000,"calif":508000000,"ops_lim":17,"ops_gar":17},{"nombre":"Cipolletti","monto":523000000,"calif":578000000,"ops_lim":15,"ops_gar":15},{"nombre":"Viedma","monto":380000000,"calif":450000000,"ops_lim":10,"ops_gar":10},{"nombre":"General Roca","monto":377000000,"calif":405000000,"ops_lim":8,"ops_gar":8},{"nombre":"Cinco Saltos","monto":370000000,"calif":420000000,"ops_lim":8,"ops_gar":8},{"nombre":"Catriel","monto":289000000,"calif":305000000,"ops_lim":11,"ops_gar":11},{"nombre":"Villa Regina","monto":170000000,"calif":170000000,"ops_lim":2,"ops_gar":2},{"nombre":"San Antonio Oeste","monto":150000000,"calif":150000000,"ops_lim":2,"ops_gar":2},{"nombre":"Allen","monto":137600000,"calif":150000000,"ops_lim":4,"ops_gar":4},{"nombre":"General Fernandez Oro","monto":125000000,"calif":125000000,"ops_lim":3,"ops_gar":3},{"nombre":"Sin localidad","monto":105000000,"calif":105000000,"ops_lim":3,"ops_gar":3},{"nombre":"Ingeniero Jacobacci","monto":100000000,"calif":100000000,"ops_lim":1,"ops_gar":1},{"nombre":"Rio Colorado","monto":47000000,"calif":47000000,"ops_lim":2,"ops_gar":2},{"nombre":"General Conesa","monto":30000000,"calif":30000000,"ops_lim":2,"ops_gar":2},{"nombre":"El Bolsón","monto":20000000,"calif":20000000,"ops_lim":1,"ops_gar":1},{"nombre":"Las Grutas","monto":9000000,"calif":19000000,"ops_lim":1,"ops_gar":1},{"nombre":"Sierra Colorada","monto":8000000,"calif":8000000,"ops_lim":1,"ops_gar":1}],"calif_linea":[{"nombre":"Cipolletti","monto":578000000},{"nombre":"Viedma","monto":450000000},{"nombre":"Cinco Saltos","monto":420000000},{"nombre":"General Roca","monto":405000000},{"nombre":"Catriel","monto":305000000},{"nombre":"Bariloche","monto":285000000},{"nombre":"San Carlos de Bariloche","monto":223000000},{"nombre":"Villa Regina","monto":170000000},{"nombre":"San Antonio Oeste","monto":150000000},{"nombre":"Allen","monto":150000000},{"nombre":"General Fernandez Oro","monto":125000000},{"nombre":"Sin localidad","monto":105000000},{"nombre":"Ingeniero Jacobacci","monto":100000000},{"nombre":"CABA","monto":100000000},{"nombre":"Ciudad Autónoma de Buenos Aires","monto":55000000},{"nombre":"Rio Colorado","monto":47000000},{"nombre":"General Conesa","monto":30000000},{"nombre":"El Bolsón","monto":20000000},{"nombre":"Las Grutas","monto":19000000},{"nombre":"San Javier","monto":10000000},{"nombre":"Sierra Colorada","monto":8000000},{"nombre":"Pomona","monto":0},{"nombre":"Dina Huapi","monto":0},{"nombre":"Luis Beltrán","monto":0}],"tabla_uni":[{"nombre":"Cipolletti","calif":578000000,"ops":15},{"nombre":"Viedma","calif":450000000,"ops":10},{"nombre":"Cinco Saltos","calif":420000000,"ops":8},{"nombre":"General Roca","calif":405000000,"ops":8},{"nombre":"Catriel","calif":305000000,"ops":11},{"nombre":"Bariloche","calif":285000000,"ops":11},{"nombre":"San Carlos de Bariloche","calif":223000000,"ops":6},{"nombre":"Villa Regina","calif":170000000,"ops":2},{"nombre":"San Antonio Oeste","calif":150000000,"ops":2},{"nombre":"Allen","calif":150000000,"ops":4},{"nombre":"General Fernandez Oro","calif":125000000,"ops":3},{"nombre":"Sin localidad","calif":105000000,"ops":3},{"nombre":"Ingeniero Jacobacci","calif":100000000,"ops":1},{"nombre":"CABA","calif":100000000,"ops":0},{"nombre":"Ciudad Autónoma de Buenos Aires","calif":55000000,"ops":0},{"nombre":"Rio Colorado","calif":47000000,"ops":2},{"nombre":"General Conesa","calif":30000000,"ops":2},{"nombre":"El Bolsón","calif":20000000,"ops":1},{"nombre":"Las Grutas","calif":19000000,"ops":1},{"nombre":"San Javier","calif":10000000,"ops":0},{"nombre":"Sierra Colorada","calif":8000000,"ops":1},{"nombre":"Pomona","calif":null,"ops":0},{"nombre":"Dina Huapi","calif":null,"ops":0},{"nombre":"Luis Beltrán","calif":null,"ops":0}],"top_clientes":[{"nombre":"AMJ Servicios SAS","monto":150000000},{"nombre":"Patagonia Beverage SRL","monto":100000000},{"nombre":"SOLUCIONES AMBIENTALES PATAGONIA","monto":100000000},{"nombre":"ECOMIN SRL","monto":100000000},{"nombre":"AUSTRADE SRL","monto":100000000},{"nombre":"Servicios Ambientales de La Patagonia SRL.","monto":100000000},{"nombre":"FRUCH PATAGONIA SAS","monto":100000000},{"nombre":"El Cerro SA","monto":100000000},{"nombre":"LAS GRUTAS S A","monto":100000000},{"nombre":"SNACK S.R.L.","monto":100000000},{"nombre":"WFS S.R.L.","monto":100000000},{"nombre":"Madeco S.A.C.I.","monto":90000000},{"nombre":"Gen S.R.L.","monto":76000000},{"nombre":"JUACO S.R.L.","monto":70000000},{"nombre":"ENTRE BARDAS SRL","monto":70000000},{"nombre":"RENT A BULL S.A.","monto":55000000},{"nombre":"KJ LOGISTICA SRL","monto":50000000},{"nombre":"GRUPO GLASS SAS","monto":50000000},{"nombre":"Emysa SRL","monto":50000000},{"nombre":"EMELKA S.A.","monto":50000000},{"nombre":"LABORATORIO PRAXIS S.A.S.","monto":50000000},{"nombre":"JULIO CESAR SANGIULIANO","monto":50000000},{"nombre":"PEREZ DIEGO MARTIN","monto":50000000},{"nombre":"4 ELEMENTOS PATAGONIA SAS","monto":50000000},{"nombre":"Patagonia Emprendimientos SA","monto":50000000},{"nombre":"La Rinconada SAS","monto":50000000},{"nombre":"Quimica del Valle S.R.L.","monto":50000000},{"nombre":"FUKUOKA SRL","monto":50000000},{"nombre":"Agustin Marcelo Schander","monto":50000000},{"nombre":"K Y C S.H. DE NORA MARIA KUGLER Y ROLANDO CARLOS CITARELLA","monto":50000000},{"nombre":"CHAMPI SAS","monto":50000000},{"nombre":"MONTOTO SPORT SH","monto":40000000},{"nombre":"MEDRANO DIEGO SEBASTIAN","monto":40000000},{"nombre":"Da Da S.A.S.","monto":40000000},{"nombre":"Asociación Civil Deportivo y Cultural Viedma","monto":40000000},{"nombre":"Cementos del valle S.R.L.","monto":40000000},{"nombre":"GABRIELA ALEJANDRA MALDONADO","monto":40000000},{"nombre":"CREA LOGISTICA SAS","monto":40000000},{"nombre":"HELGUERO MARTIN LEANDRO","monto":40000000},{"nombre":"CURLO S.R.L.","monto":40000000},{"nombre":"La Morena SRL","monto":40000000},{"nombre":"FRUTAS SAN EDUARDO","monto":35000000},{"nombre":"Gabriel Humberto Guzman","monto":35000000},{"nombre":"Natalia Alejandra Lopez","monto":30000000},{"nombre":"Jose Dardo Rivas","monto":30000000},{"nombre":"GILARDI LAURA ANTONELLA","monto":30000000},{"nombre":"BURCAM SRL","monto":30000000},{"nombre":"Transportes y Servicios JJRR S.R.L.","monto":30000000},{"nombre":"RODRIGUEZ FEDERICO","monto":30000000},{"nombre":"CANE S.A.S.","monto":30000000},{"nombre":"IMPLANT PROVIDE S.R.L.","monto":30000000},{"nombre":"FADEL SRL","monto":30000000},{"nombre":"ELACOM SRL","monto":30000000},{"nombre":"CRIBYCA SAS","monto":28000000},{"nombre":"BOGLIOLI ROSANA LOURDES","monto":25000000},{"nombre":"Alicia Petronila Silva","monto":25000000},{"nombre":"Cooperativa de Trabajo Manos Argentinas Limitada","monto":25000000},{"nombre":"Romero Alejandro Jose","monto":25000000},{"nombre":"Tools Rental S.A.S.","monto":25000000},{"nombre":"R.E.C. SERVICIOS SAS","monto":25000000},{"nombre":"Vidoni Claudia Beatriz","monto":25000000},{"nombre":"Huayra SAS","monto":24000000},{"nombre":"SIERRO MAURO ANDRES","monto":22000000},{"nombre":"Matías Gastón Lafitte","monto":22000000},{"nombre":"MARTINEZ, SILVIO Y MARTINEZ, CLAUDIA S.H","monto":20000000},{"nombre":"Enjoy Moments SRL","monto":20000000},{"nombre":"Sastre Julieta Lilen","monto":20000000},{"nombre":"Natural Express S.A.S.","monto":20000000},{"nombre":"HE DI SAS","monto":20000000},{"nombre":"Las Delicias Heladas S.A.S.","monto":20000000},{"nombre":"MOLINA S.A.S","monto":20000000},{"nombre":"Goenaga Noelia","monto":20000000},{"nombre":"ALMENDRA JUAN CARLOS","monto":18000000},{"nombre":"Fernando Fernandez","monto":16000000},{"nombre":"BECHAMEL SOCIEDAD SIMPLE","monto":16000000},{"nombre":"Mozo Maria Alejandra","monto":15000000},{"nombre":"Carlos Bogado","monto":15000000},{"nombre":"EVIANS SRL","monto":15000000},{"nombre":"DE CILLIA CLAUDIA GRACIELA","monto":15000000},{"nombre":"Naturaleza Patagonica","monto":15000000},{"nombre":"DIAZ GONZALEZ FLORENCIA AGOSTINA","monto":10000000},{"nombre":"Pallis Jonathan","monto":10000000},{"nombre":"PEÑALVA JUAN BERNARDO","monto":10000000},{"nombre":"Fodera Analia Gabriela","monto":10000000},{"nombre":"Zeman Rosemary","monto":10000000},{"nombre":"SEGUINO CRISTIAN SEBASTIAN","monto":10000000},{"nombre":"Julio Agustín Muñecas","monto":10000000},{"nombre":"Castillo Martina Candelaria","monto":10000000},{"nombre":"Ñancu Servicios SAS","monto":10000000},{"nombre":"RAMOS MELINA ANA ELIZABETH","monto":10000000},{"nombre":"Norma Elizabeth Ramirez","monto":10000000},{"nombre":"Barcos Goñi Zahira Denise","monto":10000000},{"nombre":"Delgado Tarifa Amin","monto":10000000},{"nombre":"RODRIGUEZ ROSANA BEATRIZ","monto":10000000},{"nombre":"Aberastain Sandra Mariela","monto":9000000},{"nombre":"BOZZINI NICOLAS SEBASTIAN","monto":8000000},{"nombre":"Urrutia Rosa Eliana","monto":8000000},{"nombre":"Maria Soledad Telesca","monto":3000000}],"mora":0.39,"riesgo_vivo":3275163107.06,"frt":2806116773.72,"fdr":2734264612.41,"donas":{"comercial":[["ESTEBAN ARIEL HIROKI",25],["Cristobal Cervera",24],["Nancy Huinchaqueo",18],["Mayte Galaburri",9],["S/O",15]],"sector":[["COMERCIO",35],["SERVICIOS",20],["INDUSTRIA",17],["AGROPECUARIO",8],["MINERIA",6],["CONSTRUCCIÓN",3],["AGRICULTURA",1],["Sin clasificar",1]],"tamano":[["MICRO",83],["PEQUEÑA EMPRESA",7],["MEDIANA TRAMO 1",1]]},"comisiones_meses":[["2025-11",3044323.12,0.0],["2025-12",40969529.8,0.0],["2026-01",21883242.13,0.0],["2026-02",17572356.23,0.0],["2026-03",7890287.52,0.0],["2026-04",18986907.91,0.0],["2026-05",11139366.75,0.0],["2026-06",22580962.88,0.0]],"comisiones_facturada":144066976.34,"comisiones_pendiente":0.0,"comisiones_total_general":144066976.34,"costos_abril_detalle":[{"codigo":"5.1.1.1.001","cuenta":"Sueldos y jornales","monto":17398350.66},{"codigo":"5.1.1.1.002","cuenta":"Cargas Sociales","monto":5407240.22},{"codigo":"5.1.1.1.024","cuenta":"Alquiler de Oficinas","monto":4316113.56},{"codigo":"5.1.1.1.012","cuenta":"Sistema de Administración - One Click S.A.","monto":2950606.85},{"codigo":"5.1.1.1.011","cuenta":"Viaticos","monto":640000},{"codigo":"5.1.1.1.022","cuenta":"Otros gastos","monto":565489.76},{"codigo":"5.1.1.1.010","cuenta":"Hospedaje","monto":547637},{"codigo":"5.1.1.1.019","cuenta":"Mantenimiento de Sistemas y Correo","monto":542999.43},{"codigo":"5.1.1.1.006","cuenta":"Honorarios Profesionales","monto":330288.72},{"codigo":"5.1.1.1.016","cuenta":"Cuota Social FONRED","monto":170190},{"codigo":"5.1.1.1.014","cuenta":"Examenes Preocupacionales","monto":82883.24},{"codigo":"5.1.1.1.004","cuenta":"Comisiones bancarias","monto":44631.26},{"codigo":"5.1.1.1.008","cuenta":"Pasajes y Movilidad","monto":33600}],"en_gestion_mapa":[{"nombre":"Pomona","pymes":2},{"nombre":"Dina Huapi","pymes":1},{"nombre":"Luis Beltrán","pymes":1},{"nombre":"San Javier","pymes":1}]};
+const DATA = {"fecha_corte":"31/07/2026","periodo":"01/06/2025 – 31/07/2026","p1":{"resoluciones_cant":138,"resoluciones_monto":5129000000,"monto_garantizado":3732600000,"garantias_otorgadas":99,"garantias_gestion":0,"localidades":18,"banca":70,"banca_detalle":{"Banco Patagonia":66,"Banco Galicia":2,"BPN":2},"cfi":29,"mercado":0,"rendimiento":867669374,"comisiones":148136952,"costos":362842382,"resultado_gestion":652963944},"p2":{"resol_localidad":[["Cipolletti",1004000000],["Bariloche",838000000],["Viedma",763000000],["General Roca",530000000],["Cinco Saltos",495000000],["Catriel",365000000],["Villa Regina",360000000],["San Antonio Oeste",150000000],["Allen",138000000],["Fernández Oro",125000000],["Ing. Jacobacci",100000000],["Chimpay",100000000],["Río Colorado",47000000],["Las Grutas",46000000],["General Conesa",30000000],["El Bolsón",20000000],["Choele Choel",10000000],["Sierra Colorada",8000000]],"riesgo_localidad":[["Cipolletti",550250798],["Bariloche",533740036],["Viedma",418427476],["Cinco Saltos",358865122],["General Roca",339525313],["Catriel",228740211],["Villa Regina",210000000],["CABA",155000000],["San Antonio Oeste",148837209],["Allen",131569802],["Fernández Oro",115476190],["(sin localidad)",104588372],["Ing. Jacobacci",98148148],["Río Colorado",46418605],["General Conesa",24151257],["El Bolsón",19500515],["Las Grutas",8205945],["Sierra Colorada",7536624]],"riesgo_total":3498981624,"mora":1.51},"p3":{"objetivo":[["Maquinaria y equipamiento",45,1636000000],["Obra e infraestructura",43,1408000000],["Capital de trabajo",32,1045000000],["Energía y sustentabilidad",11,765000000],["Inversión productiva",3,180000000],["Otros",4,95000000]],"detalle":[["Humberto Canale SA",120000000,"Energía y sustentabilidad"],["Patagonia Beverage SRL",100000000,"Maquinaria y equipamiento"],["Fruch Patagonia SAS",100000000,"Maquinaria y equipamiento"],["El Cerro SA",100000000,"Energía y sustentabilidad"],["Austrade SRL",100000000,"Energía y sustentabilidad"],["Ecomin SRL",100000000,"Energía y sustentabilidad"],["Soluciones Ambientales Patagonia SA",100000000,"Maquinaria y equipamiento"],["Servicios Ambientales de la Patagonia S.R.L",100000000,"Capital de trabajo"],["SL Group Representaciones y Servicios S.A.",100000000,"Maquinaria y equipamiento"],["WFS SRL",100000000,"Obra e infraestructura"],["Unelec SA",100000000,"Inversión productiva"],["Trace Group SA",100000000,"Capital de trabajo"],["Charming Lodge SA",100000000,"Obra e infraestructura"],["Las Grutas SA ",100000000,"Maquinaria y equipamiento"],["Snack SRL",100000000,"Capital de trabajo"],["Cañadon SA",100000000,"Energía y sustentabilidad"],["La Conquista SRL",100000000,"Energía y sustentabilidad"],["Madeco S.A.C.l",90000000,"Maquinaria y equipamiento"],["Gen S.R.L.",76000000,"Maquinaria y equipamiento"],["Juaco SRL",70000000,"Obra e infraestructura"],["Entre Bardas SRL",70000000,"Capital de trabajo"],["Rent a Bull SA",55000000,"Energía y sustentabilidad"],["Chocolatier Belge",50000000,"Maquinaria y equipamiento"],["KJ Logistica SRL",50000000,"Capital de trabajo"],["Grupo Glass SAS",50000000,"Obra e infraestructura"],["Emysa SRL",50000000,"Capital de trabajo"],["AMJ Servicios SAS",50000000,"Maquinaria y equipamiento"],["Julio Cesar Sangiuliano",50000000,"Obra e infraestructura"],["Patagonia Emprendimientos SA",50000000,"Maquinaria y equipamiento"],["Agustin Schander",50000000,"Maquinaria y equipamiento"],["AMJ Servicios SAS",50000000,"Maquinaria y equipamiento"],["Quimica del Valle S.R.L.",50000000,"Maquinaria y equipamiento"],["Dos de Fierro S.A.",50000000,"Obra e infraestructura"],["Perez Diego Martin",50000000,"Obra e infraestructura"],["La Rinconada SAS",50000000,"Obra e infraestructura"],["Fuokuoka SRL",50000000,"Obra e infraestructura"],["K Y C SH",50000000,"Maquinaria y equipamiento"],["Champi SAS",50000000,"Inversión productiva"],["Laboratorio Praxis SAS",50000000,"Energía y sustentabilidad"],["Emelka SA",50000000,"Capital de trabajo"],["4 Elementos Patagonia SAS",50000000,"Obra e infraestructura"],["Arte Dental SRL ",50000000,"Maquinaria y equipamiento"],["Helguero Martin Leandro",40000000,"Obra e infraestructura"],["Gabriela Alejandra Maldonado",40000000,"Maquinaria y equipamiento"],["La Morena SRL",40000000,"Maquinaria y equipamiento"],["Asociación Civil y deportiva Viedma ",40000000,"Obra e infraestructura"],["Crea Logistica S.R.L.",40000000,"Maquinaria y equipamiento"],["Montoto Sport",40000000,"Obra e infraestructura"],["Opiparas SRL ",40000000,"Maquinaria y equipamiento"],["Curlo SRL",40000000,"Obra e infraestructura"],["Da Da S.A.S.",40000000,"Capital de trabajo"],["Cementos del valle SRL",40000000,"Capital de trabajo"],["Bonade Marcelo",40000000,"Otros"],["Surfrio S.R.L.",40000000,"Capital de trabajo"],["Frutas San Eduardo",35000000,"Obra e infraestructura"],["Medrano Diego Sebastian",35000000,"Obra e infraestructura"],["Suarez Hugo Miguel",30000000,"Otros"],["Fadel SRL",30000000,"Obra e infraestructura"],["Distribuidora el mayorista SAS",30000000,"Capital de trabajo"],["Rodriguez Federico",30000000,"Capital de trabajo"],["Burcam SRL ",30000000,"Obra e infraestructura"],["Transportes y Servicios JJRR SRL",30000000,"Maquinaria y equipamiento"],["Natalia Alejandra Lopez",30000000,"Capital de trabajo"],["Jose Dardo Rivas ",30000000,"Capital de trabajo"],["Delgado Dargains Fernando ",30000000,"Obra e infraestructura"],["Elacom SRL ",30000000,"Obra e infraestructura"],["LFM SRL ",30000000,"Capital de trabajo"],["Implant Provide SRL",30000000,"Capital de trabajo"],["Gilardi Laura Antonella",30000000,"Obra e infraestructura"],["El Brujo SRL",30000000,"Maquinaria y equipamiento"],["Ingelsud SA",30000000,"Inversión productiva"],["Cane SAS ",30000000,"Capital de trabajo"],["Cribyca SAS",28000000,"Obra e infraestructura"],["Romero Alejandro José",25000000,"Obra e infraestructura"],["Boglioli Rosana Lourdes",25000000,"Maquinaria y equipamiento"],["Alicia Petronila Silva ",25000000,"Obra e infraestructura"],["Tools Rental S.A.S.",25000000,"Obra e infraestructura"],["Cooperativa de Trabajo Manos Argentinas Ltda",25000000,"Maquinaria y equipamiento"],["R.E.C. Servicios SAS",25000000,"Obra e infraestructura"],["Vidoni Claudia Beatriz ",25000000,"Capital de trabajo"],["LM End & Services SAS",25000000,"Maquinaria y equipamiento"],["Huayra SAS",24000000,"Obra e infraestructura"],["Gabriel Humberto Guzman",23000000,"Maquinaria y equipamiento"],["Sabor Sureño SAS",23000000,"Maquinaria y equipamiento"],["Matías Gastón Lafitte ",22000000,"Maquinaria y equipamiento"],["Sierro Mauro Andres",22000000,"Obra e infraestructura"],["Enjoy Moments SRL",20000000,"Obra e infraestructura"],["HE DI SAS",20000000,"Obra e infraestructura"],["La Fundación S.A.",20000000,"Capital de trabajo"],["Julieta Sastre",20000000,"Maquinaria y equipamiento"],["Natural Express S.A.S.",20000000,"Obra e infraestructura"],["Las Delicias Heladas SAS ",20000000,"Obra e infraestructura"],["Martinez Silvio y Martinez Claudia SH ",20000000,"Capital de trabajo"],["Molina SAS",20000000,"Obra e infraestructura"],["SAM Energy SRL",20000000,"Obra e infraestructura"],["Goenaga Noelia",20000000,"Capital de trabajo"],["Briasco Romina",20000000,"Maquinaria y equipamiento"],["Pecot Natalia Daniela",20000000,"Energía y sustentabilidad"],["Juan Carlos Almendra",18000000,"Capital de trabajo"],["BECHAMEL Sociedad Simple",16000000,"Obra e infraestructura"],["Fernando Fernandez",16000000,"Maquinaria y equipamiento"],["Naturaleza Patagonia ",15000000,"Obra e infraestructura"],["Bogado Carlos",15000000,"Maquinaria y equipamiento"],["Mozo Maria Alejandra",15000000,"Obra e infraestructura"],["Amavet Laura Gisela",15000000,"Otros"],["Evians SRL ",15000000,"Maquinaria y equipamiento"],["ComexisS SAS",15000000,"Obra e infraestructura"],["De Cillia Claudia Graciela",15000000,"Obra e infraestructura"],["Delfino Mariana",15000000,"Maquinaria y equipamiento"],["Huilen SAS",15000000,"Maquinaria y equipamiento"],["Pallis Jonathan",10000000,"Obra e infraestructura"],["Ñancu Servicios SAS",10000000,"Obra e infraestructura"],["Armin Delgado Tarifa ",10000000,"Capital de trabajo"],["Barcos Goñi Zahira Denise",10000000,"Maquinaria y equipamiento"],["Castillo Martina Candelaria",10000000,"Maquinaria y equipamiento"],["Ramos Melina Ana Elizabeth",10000000,"Maquinaria y equipamiento"],["Florencia Agostina Diaz Gonzalez",10000000,"Capital de trabajo"],["Norma Elizabeth Ramirez",10000000,"Energía y sustentabilidad"],["Rosemary Zeman",10000000,"Energía y sustentabilidad"],["Boghosian Sergio Maximiliano Roman",10000000,"Maquinaria y equipamiento"],["Carrillo Daniel Andres",10000000,"Maquinaria y equipamiento"],["Estudio Contable Coseani SH",10000000,"Maquinaria y equipamiento"],["Loyola Mauricio Ernesto",10000000,"Capital de trabajo"],["Peñalva Juan Bernardo ",10000000,"Capital de trabajo"],["Rosana Beatriz Rodriguez ",10000000,"Capital de trabajo"],["Fodera Analia Gabriela ",10000000,"Obra e infraestructura"],["Julio Agustin Muñecas",10000000,"Otros"],["Seguino Cristian Sebastian",10000000,"Capital de trabajo"],["Uran Nelson Ernesto",10000000,"Capital de trabajo"],["El Brujo SRL",10000000,"Maquinaria y equipamiento"],["Rotaris Guardiola Cristian Ariel",10000000,"Capital de trabajo"],["Sandra Mariela Aberastain",9000000,"Capital de trabajo"],["Rosa Eliana Urrutia ",8000000,"Obra e infraestructura"],["Bozzini Nicolas Sebastián",8000000,"Maquinaria y equipamiento"],["Julio Cañumil ",7000000,"Maquinaria y equipamiento"],["Aquino Andrea Alejandra",6000000,"Maquinaria y equipamiento"],["Maria Soledad Telesca",3000000,"Capital de trabajo"],["Ricardo Sosa",0,"Maquinaria y equipamiento"]]},"p4":{"localidades":[["Cipolletti",1004000000,25],["Bariloche",838000000,24],["Viedma",763000000,25],["General Roca",530000000,12],["Cinco Saltos",495000000,10],["Catriel",365000000,13],["Villa Regina",360000000,7],["San Antonio Oeste",150000000,2],["Allen",138000000,4],["Fernández Oro",125000000,3],["Ing. Jacobacci",100000000,1],["Chimpay",100000000,1],["Río Colorado",47000000,2],["Las Grutas",46000000,4],["General Conesa",30000000,2],["El Bolsón",20000000,1],["Choele Choel",10000000,1],["Sierra Colorada",8000000,1]],"zonas":[["Alto Valle",61],["Zona Atlántica",33],["Zona Andina",25],["Norte",13],["Valle Medio/Este",4],["Línea Sur",2]],"fuera_prov":0},"p5":{"comercial":[["Esteban Hiroki",29],["Mayte Galaburri",26],["Cristobal Cervera",26],["Nancy Huinchaqueo",18]],"sector":[["COMERCIO",36],["SERVICIOS",22],["INDUSTRIA",19],["AGROPECUARIO",10],["MINERIA",6],["CONSTRUCCIÓN",4],["Sin clasificar",1],["AGRICULTURA",1]],"tamano":[["MICRO",81],["PEQUEÑA EMPRESA",16],["MEDIANA TRAMO 1",1],["S/O",1]]},"p6":{"comisiones":[["nov 25",3044323],["dic 25",41546237],["ene 26",21219422],["feb 26",17572356],["mar 26",5900406],["abr 26",18986908],["may 26",11139367],["jun 26",22580963],["jul 26",6146970]],"costos":[["jun 25",3854279],["jul 25",645530],["ago 25",6374342],["sep 25",30067770],["oct 25",19633677],["nov 25",30199693],["dic 25",37163850],["ene 26",24152654],["feb 26",31800908],["mar 26",40374681],["abr 26",37611411],["may 26",27612807],["jun 26",36354044],["jul 26",36996736]],"rendimientos":[["jun 25",10247435],["jul 25",28249636],["ago 25",57362959],["sep 25",24174439],["oct 25",149503881],["nov 25",62716561],["dic 25",55370816],["ene 26",62266172],["feb 26",71734383],["mar 26",84078998],["abr 26",55338332],["may 26",107217048],["jun 26",45725326],["jul 26",53683390]],"rend_total":867669374,"com_total":148136952,"cost_total":362842382}};
 const fmtM = n => '$ ' + (n/1e6).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' M';
+const fmtM0 = n => (n/1e6).toLocaleString('es-AR',{maximumFractionDigits:0});
 const fmtFull = n => '$ ' + Math.round(n).toLocaleString('es-AR');
 const fmtNum = n => (n==null?0:n).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc = s => (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function tcase(s){return String(s).toLowerCase().replace(/(^|\s|\.)\p{L}/gu,c=>c.toUpperCase());}
+function head(tag,a,b){return '<div class="head"><span class="tag">'+tag+'</span><div class="brand"><span class="name">FOGARÍO</span><span class="sub">Fondo de Garantías Río Negro · corte '+DATA.fecha_corte+'</span></div></div><div class="title">'+a+' <span class="ac">'+b+'</span></div>';}
 
-function pctsRound(items, total){
-  const raw = items.map(it => it[1]/total*100);
-  const floors = raw.map(r => Math.floor(r));
-  let diff = 100 - floors.reduce((a,b)=>a+b,0);
-  const rem = raw.map((r,i) => ({i, frac: r - floors[i]})).sort((a,b) => b.frac - a.frac);
-  const out = floors.slice();
-  for(let k=0; k<diff; k++) out[rem[k].i]++;
-  return out;
+/* ---------------- PÁGINA 1 ---------------- */
+function P1(){
+  const d=DATA.p1;
+  const bsub=Object.keys(d.banca_detalle||{}).map(x=>x.replace('Banco ','')).join(' · ')||'—';
+  return '<section class="page active" id="p1">'+head('Página 1 · Indicadores','Indicadores clave','de gestión')+
+  '<div><span class="chip-ac">Acumulado al '+DATA.fecha_corte+'</span></div>'+
+  '<div class="content" style="gap:11px;justify-content:space-between">'+
+    '<div class="grid" style="grid-template-columns:1fr 1fr;align-items:stretch">'+
+      '<div class="hero res"><div class="hl">MiPyMEs beneficiadas</div><div class="hn">'+d.resoluciones_cant+'</div><div class="hcap">Monto total</div><div class="hbig">'+fmtM(d.resoluciones_monto)+'</div></div>'+
+      '<div class="hero gest"><div><div class="hl">Resultado acumulado de gestión</div><div class="hn">'+fmtFull(d.resultado_gestion)+'</div><div class="hsub">Rendimiento + comisiones − costos</div></div>'+
+        comp('Rendimiento de inversiones',fmtFull(d.rendimiento),'#1F9A2C')+
+        comp('Ingresos por comisiones',fmtFull(d.comisiones),'#1F9A2C')+
+        comp('Costos operativos',fmtFull(d.costos),'#3D6FB8')+
+      '</div>'+
+    '</div>'+
+    '<div class="grid g4">'+
+      card('Monto total<br>garantizado',fmtM(d.monto_garantizado))+card('Garantías<br>otorgadas',d.garantias_otorgadas)+card('Garantías<br>en gestión',d.garantias_gestion)+card('Localidades<br>alcanzadas',d.localidades)+
+    '</div>'+
+    '<div class="canal-box"><div class="lbl" style="margin-bottom:9px">Operaciones por monetizador</div><div class="grid g3">'+
+      '<div class="canal"><div class="lbl">Banca tradicional</div><div class="n">'+d.banca+'</div><div class="sub">'+bsub+'</div></div>'+
+      '<div class="canal"><div class="lbl">CFI</div><div class="n">'+d.cfi+'</div><div class="sub">Consejo Fed. Inversiones</div></div>'+
+      '<div class="canal ph"><div class="lbl">Mercado de capitales</div><div class="n">'+(d.mercado||'—')+'</div><div class="sub">Sin operaciones aún</div></div>'+
+    '</div></div>'+
+  '</div></section>';
+}
+function card(l,v){return '<div class="card"><div class="lbl">'+l+'</div><div class="num">'+v+'</div></div>';}
+function comp(l,v,c){return '<div class="comp"><span>'+l+'</span><span class="v" style="color:'+c+'">'+v+'</span></div>';}
+
+/* ---------------- PÁGINA 2 ---------------- */
+function locLabel(n){return n==='CABA'?'CABA (fuera de RN)':esc(n);}
+function barChart(items,cls){
+  const max=Math.max.apply(null,items.map(i=>i[1]))||1;
+  const col=cls==='g'?'#4ECC50':'#3D6FB8';
+  return items.map(it=>'<div class="br" data-n="'+esc(it[0])+'" data-v="'+it[1]+'" style="display:grid;grid-template-columns:96px 1fr 46px;align-items:center;gap:7px;font-size:10.5px;margin-bottom:5px;border-radius:4px;padding:1px 3px">'+
+    '<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+locLabel(it[0])+'</span>'+
+    '<span style="display:block"><span style="display:block;height:11px;border-radius:3px;background:'+col+';width:'+Math.max(2,it[1]/max*100)+'%"></span></span>'+
+    '<span style="text-align:right;font-weight:700">'+fmtM0(it[1])+'</span></div>').join('');
+}
+function P2(){
+  const d=DATA.p2;
+  return '<section class="page" id="p2">'+head('Página 2 · Riesgo','Riesgo','y calificación')+
+  '<div class="content" style="gap:11px">'+
+  '<div class="grid" style="grid-template-columns:1fr 1fr 200px;flex:1;align-items:start">'+
+    '<div class="card"><div class="lbl">Monto aprobado por localidad</div><div class="sub" style="margin-bottom:10px">Resoluciones (M$)</div>'+barChart(d.resol_localidad,'g')+'<div class="tot-row"><span>Total</span><span>'+fmtM(DATA.p1.resoluciones_monto)+'</span></div></div>'+
+    '<div class="card"><div class="lbl">Riesgo vivo</div><div class="sub" style="margin-bottom:10px">Saldo de garantías vigentes (M$)</div>'+barChart(d.riesgo_localidad,'b')+'<div class="tot-row"><span>Total</span><span>'+fmtM(d.riesgo_total)+'</span></div></div>'+
+    '<div style="display:flex;flex-direction:column;gap:10px">'+
+      '<div class="card" style="flex:1;justify-content:center;align-items:center;text-align:center"><div class="lbl">Riesgo vivo</div><div class="num" style="color:#3D6FB8;font-size:19px;margin-top:8px">'+fmtFull(d.riesgo_total)+'</div><div class="sub">Saldo de garantías vigentes</div></div>'+
+      '<div class="card" style="flex:1;justify-content:center;align-items:center;text-align:center"><div class="lbl">Mora</div><div class="num" style="color:#1F9A2C;margin-top:8px">'+fmtNum(d.mora)+'%</div><div class="sub">Porcentaje de mora</div></div>'+
+    '</div>'+
+  '</div>'+
+  '<div class="ref"><span class="d"></span><span><b>Referencia:</b> CABA corresponde a PyMEs que operan en la provincia con domicilio legal fuera de Río Negro.</span></div>'+
+  '</section>';
 }
 
-document.getElementById('tag-fecha').textContent = 'Dashboard Ejecutivo · ' + DATA.fecha_corte;
-const k = DATA.kpis;
-document.getElementById('k-mipymes').textContent = k.mipymes;
-document.getElementById('k-monto').textContent = fmtM(k.monto_total);
-document.getElementById('k-otorgadas').textContent = k.otorgadas;
-document.getElementById('k-gestion').textContent = k.en_gestion;
-document.getElementById('k-banca').textContent = k.banca_trad;
-document.getElementById('k-cfi').textContent = k.cfi;
-document.getElementById('k-loc').textContent = k.localidades;
-document.getElementById('k-rend').textContent = fmtFull(k.rendimiento);
-document.getElementById('k-com').textContent = fmtFull(k.comisiones);
-document.getElementById('k-cos').textContent = fmtFull(k.costos_acumulados);
-document.getElementById('k-resultado').textContent = fmtFull(k.rendimiento + k.comisiones - k.costos_acumulados);
-
-document.getElementById('k-mora').textContent = fmtNum(DATA.mora) + '%';
-document.getElementById('k-rv').textContent = fmtFull(DATA.riesgo_vivo);
-
-const top5 = DATA.top_clientes.slice(0,5);
-document.getElementById('top5').innerHTML = top5.map((c,i) =>
-  '<tr><td style="width:30px;color:#4A4A48">'+(i+1)+'</td><td>'+c.nombre+'</td><td style="text-align:right;font-weight:700">'+fmtNum(c.monto/1e6)+'</td></tr>'
-).join('');
-document.getElementById('top-more').textContent = '+ ' + (DATA.top_clientes.length - 5) + ' clientes más (ver todos)';
-
-const PAL_C = ['#1F9A2C','#4ECC50','#0F6E56','#1D9E75','#5DCAA5','#639922','#97C459','#3B6D11','#27500A','#173404','#085041','#9FE1CB','#C0DD97','#B6E3A2','#7AC25E','#56A862','#42964A','#2E8B57','#3CB371','#66BB6A'];
-function dk(h){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return 'rgb('+(r*.68|0)+','+(g*.68|0)+','+(b*.68|0)+')'}
-const localidadesConMonto = DATA.calif_linea.filter(l => l.monto > 0);
-const totalCalif = localidadesConMonto.reduce((s,l)=>s+l.monto,0);
-const itemsC = localidadesConMonto.map((l,i)=>({i:i, n:l.nombre, v:l.monto, p:(l.monto/totalCalif*100), c:PAL_C[i%PAL_C.length]}));
-
-(function(){
-  const cx=160, cy=95, rx=140, ry=55, depth=22;
-  let a=-Math.PI/2, sides='', tops='';
-  itemsC.forEach(function(it){
-    const a1=a, a2=a+(it.v/totalCalif)*Math.PI*2; a=a2;
-    const x1=cx+rx*Math.cos(a1), y1=cy+ry*Math.sin(a1);
-    const x2=cx+rx*Math.cos(a2), y2=cy+ry*Math.sin(a2);
-    const lg=(a2-a1)>Math.PI?1:0;
-    const fa1=Math.max(a1,0), fa2=Math.min(a2,Math.PI);
-    if(fa1<fa2){
-      const fx1=cx+rx*Math.cos(fa1), fy1=cy+ry*Math.sin(fa1);
-      const fx2=cx+rx*Math.cos(fa2), fy2=cy+ry*Math.sin(fa2);
-      const fl=(fa2-fa1)>Math.PI?1:0;
-      sides+='<path d="M'+fx1.toFixed(1)+','+fy1.toFixed(1)+'A'+rx+','+ry+' 0 '+fl+' 1 '+fx2.toFixed(1)+','+fy2.toFixed(1)+'L'+fx2.toFixed(1)+','+(fy2+depth).toFixed(1)+'A'+rx+','+ry+' 0 '+fl+' 0 '+fx1.toFixed(1)+','+(fy1+depth).toFixed(1)+'Z" fill="'+dk(it.c)+'"/>';
-    }
-    tops+='<path class="slice" data-i="'+it.i+'" d="M'+cx+','+cy+'L'+x1.toFixed(1)+','+y1.toFixed(1)+'A'+rx+','+ry+' 0 '+lg+' 1 '+x2.toFixed(1)+','+y2.toFixed(1)+'Z" fill="'+it.c+'"/>';
-  });
-  document.getElementById('pie-c').innerHTML = sides + tops;
-})();
-
-document.getElementById('pie-tb').innerHTML = itemsC.map(function(it){
-  return '<tr data-i="'+it.i+'"><td><span class="sw" style="background:'+it.c+'"></span>'+it.n+'</td><td class="r">'+fmtNum(it.v/1e6)+'</td><td class="r"><span class="pct">'+it.p.toFixed(1)+'%</span></td></tr>';
-}).join('') + DATA.calif_linea.filter(function(l){return !(l.monto>0)}).map(function(l){return '<tr><td><span class="sw" style="background:#D3D1C7"></span>'+l.nombre+'</td><td class="r" colspan="2" style="color:#888780;font-weight:400;text-align:right">PyME aún sin calificación</td></tr>';}).join('');
-document.getElementById('pie-tot').textContent = fmtNum(totalCalif/1e6);
-
-(function(){
-  const tip=document.getElementById('dn-tip');
-  const slices=document.querySelectorAll('#pie-c .slice');
-  const rows=document.querySelectorAll('#pie-tb tr');
-  function hl(i,on){
-    slices.forEach(function(s){s.classList.toggle('hl', on && +s.dataset.i===i)});
-    rows.forEach(function(r){r.classList.toggle('hl', on && +r.dataset.i===i)});
-  }
-  function showTip(e,i){
-    const it=itemsC[i];
-    tip.innerHTML='<strong>'+it.n+'</strong><br>'+fmtNum(it.v/1e6)+' M$ · '+it.p.toFixed(1)+'%';
-    tip.style.display='block';
-    tip.style.left=(e.clientX+14)+'px'; tip.style.top=(e.clientY+14)+'px';
-  }
-  slices.forEach(function(s){
-    s.addEventListener('mousemove',function(e){showTip(e,+s.dataset.i)});
-    s.addEventListener('mouseenter',function(){hl(+s.dataset.i,true)});
-    s.addEventListener('mouseleave',function(){hl(+s.dataset.i,false);tip.style.display='none'});
-  });
-  rows.forEach(function(r){
-    r.addEventListener('mousemove',function(e){showTip(e,+r.dataset.i)});
-    r.addEventListener('mouseenter',function(){hl(+r.dataset.i,true)});
-    r.addEventListener('mouseleave',function(){hl(+r.dataset.i,false);tip.style.display='none'});
-  });
-})();
-
-const COORDS = {
-  "Catriel":{lat:-37.88,lon:-67.80},
-  "Cinco Saltos":{lat:-38.83,lon:-68.06},
-  "Cipolletti":{lat:-38.93,lon:-67.99},
-  "General Fernandez Oro":{lat:-38.97,lon:-67.92},
-  "Gral. Fdez. Oro":{lat:-38.97,lon:-67.92},
-  "Allen":{lat:-38.97,lon:-67.82},
-  "General Roca":{lat:-39.03,lon:-67.58},
-  "Villa Regina":{lat:-39.10,lon:-67.07},
-  "Rio Colorado":{lat:-39.02,lon:-64.10},
-  "Río Colorado":{lat:-39.02,lon:-64.10},
-  "General Conesa":{lat:-40.10,lon:-64.45},
-  "San Antonio Oeste":{lat:-40.73,lon:-64.94},
-  "Sierra Grande":{lat:-41.60,lon:-65.35},
-  "Viedma":{lat:-40.81,lon:-62.99},
-  "San Javier":{lat:-41.02,lon:-63.10},
-  "Bariloche":{lat:-41.13,lon:-71.31},
-  "San Carlos de Bariloche":{lat:-41.13,lon:-71.31},
-  "Ingeniero Jacobacci":{lat:-41.32,lon:-69.55},
-  "Ing. Jacobacci":{lat:-41.32,lon:-69.55},
-  "Sierra Colorada":{lat:-40.59,lon:-67.74},
-  "Las Grutas":{lat:-40.80,lon:-65.09},
-  "El Bolsón":{lat:-41.96,lon:-71.53},
-  "Pomona":{lat:-39.47,lon:-65.65},
-  "Dina Huapi":{lat:-41.07,lon:-71.16},
-  "Luis Beltrán":{lat:-39.28,lon:-65.79}
-};
-const BX0=11.4, BX1=88.5, BY0=4.2, BY1=90.8;
-const LON_W=-71.7, LON_E=-62.4, LAT_N=-37.5, LAT_S=-42.0;
-function projectLatLon(lat,lon){
-  const fx=(lon-LON_W)/(LON_E-LON_W), fy=(LAT_N-lat)/(LAT_N-LAT_S);
-  return {x:BX0+fx*(BX1-BX0), y:BY0+fy*(BY1-BY0)};
-}
-const PIN_SVG = '<svg class="mark" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" fill="#1A1A1A" d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg>';
-
-(function(){
-  const mapEl = document.getElementById('map');
-  if(!mapEl) return;
-  const ALTO_VALLE_KEYS = {"Cipolletti":1,"General Roca":1,"Cinco Saltos":1,"Allen":1,"General Fernandez Oro":1,"Gral. Fdez. Oro":1,"Villa Regina":1};
-  const valleEntries = DATA.localidades.filter(function(l){return ALTO_VALLE_KEYS[l.nombre] && l.monto>0});
-  const viedmaEntries = DATA.localidades.filter(function(l){return (l.nombre==="Viedma" || l.nombre==="San Javier") && (l.monto>0||l.ops_gar>0||l.ops_lim>0)});
-  const restantes = DATA.localidades.filter(function(l){return !ALTO_VALLE_KEYS[l.nombre] && l.nombre!=="Viedma" && l.nombre!=="San Javier" && l.monto>0 && COORDS[l.nombre]});
-  function sumGroup(arr){return {monto:arr.reduce(function(s,l){return s+l.calif},0), ops_lim:arr.reduce(function(s,l){return s+l.ops_lim},0), ops_gar:arr.reduce(function(s,l){return s+l.ops_gar},0)}}
-  const pins = [];
-  restantes.forEach(function(l){
-    const c = COORDS[l.nombre];
-    const p = projectLatLon(c.lat, c.lon);
-    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.calif, og:l.ops_gar, ol:l.ops_lim, inc:null});
-  });
-  if(valleEntries.length){
-    const s = sumGroup(valleEntries);
-    const p = projectLatLon(-38.97, -67.70);
-    pins.push({n:"Alto Valle ("+valleEntries.length+")", x:p.x, y:p.y, m:s.monto, og:s.ops_gar, ol:s.ops_lim, inc:valleEntries.map(function(l){return l.nombre})});
-  }
-  if(viedmaEntries.length>=2){
-    const s = sumGroup(viedmaEntries);
-    const p = projectLatLon(-40.81, -62.99);
-    pins.push({n:"Viedma + S. Javier", x:p.x, y:p.y, m:s.monto, og:s.ops_gar, ol:s.ops_lim, inc:viedmaEntries.map(function(l){return l.nombre})});
-  } else if(viedmaEntries.length===1){
-    const l = viedmaEntries[0];
-    const c = COORDS[l.nombre];
-    const p = projectLatLon(c.lat, c.lon);
-    pins.push({n:l.nombre, x:p.x, y:p.y, m:l.calif, og:l.ops_gar, ol:l.ops_lim, inc:null});
-  }
-  pins.forEach(function(p){
-    const inc = p.inc ? '<p class="inc">Incluye: '+p.inc.join(', ')+'</p>' : '';
-    const div = document.createElement('div');
-    let cls = 'pin';
-    if(p.y < 35) cls += ' up';
-    if(p.x > 70) cls += ' right';
-    div.className = cls;
-    div.style.left = p.x+'%';
-    div.style.top = p.y+'%';
-    div.innerHTML = PIN_SVG +
-      '<div class="lbl"><b>'+fmtNum(p.m/1e6)+' M$</b><span class="o">'+p.og+' ops</span></div>'+
-      '<div class="pop"><h5>'+p.n+'</h5>'+inc+
-      '<table>'+
-      '<tr><td>Calificación</td><td class="r v">'+fmtNum(p.m/1e6)+' M$</td></tr>'+
-      '<tr><td>Ops. garantías</td><td class="r b">'+p.og+'</td></tr>'+
-      '</table></div>';
-    mapEl.appendChild(div);
-  });
-})();
-
-(function(){
-  var mapEl=document.getElementById('map');
-  if(mapEl){ (DATA.en_gestion_mapa||[]).forEach(function(g){
-    var c=COORDS[g.nombre]; if(!c) return;
-    var p=projectLatLon(c.lat,c.lon); var cls='pin gestion';
-    if(p.y<35)cls+=' up'; if(p.x>70)cls+=' right';
-    var div=document.createElement('div'); div.className=cls; div.style.left=p.x+'%'; div.style.top=p.y+'%';
-    var txt=g.pymes+(g.pymes===1?' PyME':' PyMEs');
-    div.innerHTML='<svg class="mark" viewBox="0 0 24 32" style="width:19px" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" fill="#4A4A48" d="M12 0C5.373 0 0 5.373 0 12c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12z M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg>'+
-      '<div class="lbl"><b style="color:#4A4A48">'+txt+'</b></div>'+
-      '<div class="pop"><h5>'+g.nombre+'</h5><table><tr><td>En gesti\u00f3n</td><td class="r">'+txt+'</td></tr></table></div>';
-    mapEl.appendChild(div);
-  }); }
-})();
-(function(){
-  var tb=document.getElementById('uni-tbl'); if(!tb) return;
-  tb.innerHTML='<thead><tr><th>Localidad</th><th class="r">Calif. (M$)</th><th class="r">Ops.</th></tr></thead><tbody>'+
-   DATA.tabla_uni.map(function(r){
-     var cal=(r.calif==null)?'<span class="na">sin calif. a\u00fan</span>':'<b>'+fmtNum(r.calif/1e6)+'</b>';
-     var op=(r.ops>0)?'<b style="color:#3D6FB8">'+r.ops+'</b>':'<span class="na">sin oper. a\u00fan</span>';
-     return '<tr><td>'+r.nombre+'</td><td class="r">'+cal+'</td><td class="r">'+op+'</td></tr>';
-   }).join('')+'</tbody>';
-})();
-function toggleRk(id, btn){
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
-  btn.textContent = el.classList.contains('open') ? 'Ver menos ▴' : 'Ver todas ▾';
+/* ---------------- PÁGINA 3 ---------------- */
+function P3(){
+  const d=DATA.p3;
+  const chips=d.objetivo.map(o=>'<div class="chip-obj cardh" data-n="'+esc(o[0])+'" data-t="'+o[1]+' resoluciones · $ '+fmtM0(o[2])+' M"><div class="n">'+o[1]+'</div><div class="t">'+esc(o[0])+'</div><div class="cm">$ '+fmtM0(o[2])+' M</div></div>').join('');
+  const byCat={}, seen={};
+  d.objetivo.forEach(o=>byCat[o[0]]=[]);
+  d.detalle.forEach(r=>{const key=r[2]+'|'+String(r[0]).trim().toLowerCase();if(seen[key])return;seen[key]=1;(byCat[r[2]]=byCat[r[2]]||[]).push(String(r[0]).trim());});
+  Object.keys(byCat).forEach(k=>byCat[k].sort((a,b)=>a.localeCompare(b,'es')));
+  function block(o){const lis=(byCat[o[0]]||[]).map(n=>'<div class="pn">'+esc(n)+'</div>').join('');
+    return '<div class="grp cardh" data-n="'+esc(o[0])+'" data-t="'+o[1]+' resoluciones · $ '+fmtM0(o[2])+' M"><h4>'+esc(o[0])+' <span class="c">'+o[1]+'</span></h4><div class="pnl">'+lis+'</div></div>';}
+  const big=d.objetivo.slice(0,3).map(block).join('');
+  const small=d.objetivo.slice(3).map(block).join('');
+  return '<section class="page" id="p3">'+head('Página 3 · Detalle de resoluciones','Detalle','de resoluciones')+
+  '<div class="content" style="gap:10px">'+
+  '<div class="grid" style="grid-template-columns:repeat(6,1fr)">'+chips+'</div>'+
+  '<div class="sub">Detalle por PyME agrupado por objetivo del aval · '+DATA.p1.resoluciones_cant+' resoluciones</div>'+
+  '<div class="grid" style="grid-template-columns:1fr 1fr 1fr">'+big+'</div>'+
+  '<div class="grid" style="grid-template-columns:1fr 1fr 1fr">'+small+'</div>'+
+  '<div class="ref"><span class="d"></span><span>El conteo es por resolución; algunas PyMEs tienen más de una.</span></div>'+
+  '</div></section>';
 }
 
-const PALETTE = ['#1F9A2C','#4ECC50','#3D6FB8','#7AA8E0','#888780','#B6E3A2','#9FE1CB','#F0997B','#D85A30'];
-function buildDona(items, container){
-  const total = items.reduce(function(s,i){return s + i[1]}, 0);
-  const pcts = pctsRound(items, total);
-  let off = 0;
-  let segs = '';
-  items.forEach(function(it,i){
-    const realPct = it[1]/total*100;
-    const color = PALETTE[i] || '#888780';
-    segs += '<circle class="slice" cx="21" cy="21" r="15.915" fill="transparent" stroke="'+color+'" stroke-width="7" stroke-dasharray="'+realPct.toFixed(3)+' '+(100-realPct).toFixed(3)+'" stroke-dashoffset="'+(-off).toFixed(3)+'" transform="rotate(-90 21 21)" data-name="'+it[0]+'" data-val="'+it[1]+'" data-pct="'+pcts[i]+'"></circle>';
-    off += realPct;
+/* ---------------- PÁGINA 4 · MAPA ---------------- */
+const COORDS={"Catriel":{lat:-37.88,lon:-67.80},"Cinco Saltos":{lat:-38.83,lon:-68.06},"Cipolletti":{lat:-38.93,lon:-67.99},"Fernández Oro":{lat:-38.97,lon:-67.92},"Allen":{lat:-38.97,lon:-67.82},"General Roca":{lat:-39.03,lon:-67.58},"Villa Regina":{lat:-39.10,lon:-67.07},"Río Colorado":{lat:-39.02,lon:-64.10},"General Conesa":{lat:-40.10,lon:-64.45},"San Antonio Oeste":{lat:-40.73,lon:-64.94},"Las Grutas":{lat:-40.80,lon:-65.08},"Viedma":{lat:-40.81,lon:-62.99},"Bariloche":{lat:-41.13,lon:-71.31},"El Bolsón":{lat:-41.96,lon:-71.53},"Ing. Jacobacci":{lat:-41.32,lon:-69.55},"Sierra Colorada":{lat:-40.59,lon:-67.74},"Chimpay":{lat:-39.16,lon:-66.14},"Choele Choel":{lat:-39.28,lon:-65.66}};
+const BX0=11.4,BX1=88.5,BY0=4.2,BY1=90.8,LON_W=-71.7,LON_E=-62.4,LAT_N=-37.5,LAT_S=-42.0;
+function proj(lat,lon){return{x:BX0+(lon-LON_W)/(LON_E-LON_W)*(BX1-BX0),y:BY0+(LAT_N-lat)/(LAT_N-LAT_S)*(BY1-BY0)};}
+const MARK='<svg class="mark" viewBox="0 0 24 32"><path fill="#1A1A1A" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"/></svg>';
+const ALTO_VALLE={"Cipolletti":1,"General Roca":1,"Cinco Saltos":1,"Allen":1,"Fernández Oro":1,"Villa Regina":1};
+function P4(){
+  const d=DATA.p4;
+  const valle=d.localidades.filter(l=>ALTO_VALLE[l[0]]);
+  const otras=d.localidades.filter(l=>!ALTO_VALLE[l[0]] && COORDS[l[0]]);
+  const pins=[];
+  if(valle.length){const m=valle.reduce((s,l)=>s+l[1],0),c=valle.reduce((s,l)=>s+l[2],0),p=proj(-38.97,-67.70);
+    pins.push({n:'Alto Valle',x:p.x,y:p.y,m:m,c:c,inc:valle.map(l=>l[0])});}
+  otras.forEach(l=>{const co=COORDS[l[0]],p=proj(co.lat,co.lon);pins.push({n:l[0],x:p.x,y:p.y,m:l[1],c:l[2],inc:null});});
+  let html='';
+  pins.forEach(p=>{
+    const right=p.x>66, cls='pin'+(p.y<26?' up':'')+(right?' right':'');
+    const lbl='position:absolute;'+(right?'right:28px':'left:28px')+';top:2px;background:#fff;padding:4px 10px;border-radius:9px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.18);line-height:1.15';
+    const inc=p.inc?'<div style="font-size:10px;color:#B6E3A2;margin:2px 0 6px;font-weight:600">Incluye: '+p.inc.map(esc).join(', ')+'</div>':'';
+    html+='<div class="'+cls+'" style="left:'+p.x+'%;top:'+p.y+'%">'+MARK+
+      '<span style="'+lbl+'"><span style="color:#1F9A2C;font-weight:800;font-size:12.5px">'+fmtM0(p.m)+' M$</span> <span style="color:#3D6FB8;font-weight:700;font-size:11.5px">· '+p.c+' res</span></span>'+
+      '<div class="pop"><h5>'+esc(p.n)+'</h5>'+inc+
+      '<div style="display:flex;justify-content:space-between;gap:18px"><span>Monto resoluciones</span><b style="color:#4ECC50">'+fmtM(p.m)+'</b></div>'+
+      '<div style="display:flex;justify-content:space-between;gap:18px"><span>Resoluciones</span><b style="color:#7AA8E0">'+p.c+'</b></div></div></div>';
   });
-  container.innerHTML = '<svg class="dn-svg" width="200" height="200" viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#E6E5DC" stroke-width="7"></circle>'+segs+'</svg>';
+  const zt=d.zonas.reduce((s,z)=>s+z[1],0);
+  const zrows=d.zonas.map((z,i)=>'<div style="display:flex;justify-content:space-between;align-items:center;'+(i<d.zonas.length-1?'border-bottom:1px solid #efece2;':'')+'padding:9px 0"><span style="font-size:12px;font-weight:600;color:#265490">'+esc(z[0])+'</span><span style="font-size:20px;font-weight:800;color:#3D6FB8">'+z[1]+'</span></div>').join('');
+  return '<section class="page" id="p4">'+head('Página 4 · Abordaje territorial','Abordaje','territorial')+
+  '<div class="content"><div class="map-grid">'+
+    '<div class="map-card-w"><div class="lbl" style="position:absolute;top:10px;left:14px;z-index:3">Localidades alcanzadas con resolución · gestión territorial</div>'+
+      '<div class="map-wrap" id="map"><span class="prov" style="left:6%;top:36%">Neuquén</span><span class="prov" style="left:44%;top:1%">La Pampa · Bs. As.</span><span class="prov" style="left:42%;bottom:2%">Chubut</span><span class="prov v" style="right:1%;top:44%">Mar Argentino</span>'+html+'</div></div>'+
+    '<div class="map-side"><div class="card" style="flex:1;padding:14px 15px"><div class="lbl" style="margin-bottom:4px">Resoluciones por zona</div><div style="display:flex;flex-direction:column;justify-content:space-between;flex:1">'+zrows+'</div><div style="display:flex;justify-content:space-between;align-items:center;background:#3D6FB8;color:#fff;border-radius:10px;padding:10px 13px;margin-top:8px"><span style="font-size:12px;font-weight:700">Total</span><span style="font-size:20px;font-weight:800">'+zt+'</span></div></div></div>'+
+  '</div>'+
+  '<div class="ref" style="margin-top:10px"><span class="d"></span><span><b>Referencia:</b> las localidades corresponden a las resoluciones · PyMEs que operan en Río Negro.</span></div>'+
+  '</div></section>';
+}
+
+/* ---------------- PÁGINA 5 · DONAS ---------------- */
+const PALETTE=['#1F9A2C','#4ECC50','#3D6FB8','#7AA8E0','#888780','#B6E3A2','#9FE1CB','#F0997B','#D85A30'];
+function pctsRound(items,total){const raw=items.map(it=>it[1]/total*100);const fl=raw.map(r=>Math.floor(r));let diff=100-fl.reduce((a,b)=>a+b,0);const rem=raw.map((r,i)=>({i,f:r-fl[i]})).sort((a,b)=>b.f-a.f);const o=fl.slice();for(let k=0;k<diff;k++)o[rem[k].i]++;return o;}
+function P5(){
+  return '<section class="page" id="p5">'+head('Página 5 · Garantías otorgadas','Garantías','otorgadas')+
+  '<div class="content"><div class="grid g3" style="flex:1">'+
+    donaCard('Por Comercial','dn-com','tb-com')+
+    donaCard('Por Sector Económico','dn-sec','tb-sec')+
+    donaCard('Por Tamaño de PyME','dn-tam','tb-tam')+
+  '</div></div></section>';
+}
+function donaCard(t,dn,tb){return '<div class="card" style="align-items:center"><div class="lbl" style="align-self:flex-start">'+t+'</div><div class="dn-wrap"><div id="'+dn+'" style="margin:10px 0 4px"></div></div><table class="dn-tbl" id="'+tb+'"></table></div>';}
+function buildDona(items,el){
+  const total=items.reduce((s,i)=>s+i[1],0)||1;const pcts=pctsRound(items,total);let off=0,segs='';
+  items.forEach((it,i)=>{const rp=it[1]/total*100;const col=PALETTE[i]||'#888780';
+    segs+='<circle class="slice" cx="21" cy="21" r="15.915" fill="transparent" stroke="'+col+'" stroke-width="7" stroke-dasharray="'+rp.toFixed(3)+' '+(100-rp).toFixed(3)+'" stroke-dashoffset="'+(-off).toFixed(3)+'" transform="rotate(-90 21 21)" data-name="'+esc(it[0])+'" data-val="'+it[1]+'" data-pct="'+pcts[i]+'"></circle>';off+=rp;});
+  el.innerHTML='<svg class="dn-svg" width="190" height="190" viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#E6E5DC" stroke-width="7"></circle>'+segs+'</svg>';
   return pcts;
 }
-function buildTabla(items, pcts, tbl){
-  tbl.innerHTML = items.map(function(it,i){
-    const color = PALETTE[i] || '#888780';
-    return '<tr><td><span class="dot-leg" style="background:'+color+'"></span>'+it[0]+'</td><td style="text-align:right;font-weight:700">'+it[1]+'</td><td style="text-align:right;color:#4A4A48;width:46px">'+pcts[i]+'%</td></tr>';
-  }).join('');
+function buildTabla(items,pcts,tbl){tbl.innerHTML=items.map((it,i)=>'<tr><td><span class="dot-leg" style="background:'+(PALETTE[i]||'#888780')+'"></span>'+esc(it[0])+'</td><td style="text-align:right;font-weight:700">'+it[1]+'</td><td style="text-align:right;color:#4A4A48;width:46px">'+pcts[i]+'%</td></tr>').join('');}
+
+/* ---------------- PÁGINA 6 · EVOLUTIVOS ---------------- */
+function hEvol(items,color){
+  const max=Math.max.apply(null,items.map(i=>i[1]))||1;
+  return items.map(it=>'<div class="bar-row"><span class="nm">'+esc(it[0])+'</span><div class="bar-track" style="background:'+color+';width:'+Math.max(2,it[1]/max*100)+'%"></div><span class="v">'+fmtM0(it[1])+'</span></div>').join('');
 }
-const pCom = buildDona(DATA.donas.comercial, document.getElementById('dn-com'));
-buildTabla(DATA.donas.comercial, pCom, document.getElementById('tb-com'));
-const pSec = buildDona(DATA.donas.sector, document.getElementById('dn-sec'));
-buildTabla(DATA.donas.sector, pSec, document.getElementById('tb-sec'));
-const pTam = buildDona(DATA.donas.tamano, document.getElementById('dn-tam'));
-buildTabla(DATA.donas.tamano, pTam, document.getElementById('tb-tam'));
-
-const dnTip = document.getElementById('dn-tip');
-document.querySelectorAll('.dn-svg circle.slice').forEach(function(c){
-  c.addEventListener('mouseenter', function(){
-    dnTip.innerHTML = '<strong>'+c.dataset.name+'</strong><br>'+c.dataset.val+' garantías · '+c.dataset.pct+'%';
-    dnTip.style.display = 'block';
-  });
-  c.addEventListener('mousemove', function(e){
-    dnTip.style.left = (e.clientX + 14) + 'px';
-    dnTip.style.top = (e.clientY + 14) + 'px';
-  });
-  c.addEventListener('mouseleave', function(){dnTip.style.display = 'none'});
-});
-
-const meses = DATA.comisiones_meses;
-const maxMes = meses.length ? Math.max.apply(null, meses.map(function(m){return m[1] + m[2]})) : 0;
-const MES_NM = {'01':'Ene','02':'Feb','03':'Mar','04':'Abr','05':'May','06':'Jun','07':'Jul','08':'Ago','09':'Sep','10':'Oct','11':'Nov','12':'Dic'};
-function fmtComTot(n){
-  if(n >= 1e6) return fmtNum(n/1e6)+' M$';
-  if(n >= 1000) return Math.round(n/1000).toLocaleString('es-AR')+' mil $';
-  return Math.round(n).toLocaleString('es-AR')+' $';
+const CY2=DATA.fecha_corte.slice(-2), CY4=DATA.fecha_corte.slice(-4);
+function splitYear(items){return {act:items.filter(i=>String(i[0]).trim().endsWith(CY2)), full:items};}
+function evolCard(titulo,items,color,totLbl,totVal,key){
+  const s=splitYear(items);
+  return '<div class="card"><div style="display:flex;justify-content:space-between;align-items:baseline"><div class="lbl">'+titulo+'</div><span class="sub" style="margin:0">Año en curso '+CY4+'</span></div>'+
+    '<div id="'+key+'-act" style="margin-top:10px">'+hEvol(s.act,color)+'</div>'+
+    '<div id="'+key+'-full" style="display:none;margin-top:10px">'+hEvol(s.full,color)+'</div>'+
+    '<button class="linkish" onclick="togEv(\''+key+'\',this)">Ver período completo (incl. '+(CY4-1)+') ▾</button>'+
+    '<div class="tot-row"><span>'+totLbl+'</span><span>'+fmtM(totVal)+'</span></div></div>';
 }
-document.getElementById('com-total').innerHTML = '<span class="lab">Total general</span><span class="val">'+fmtComTot(DATA.comisiones_total_general||0)+'</span>';
-document.getElementById('hbars-com').innerHTML = meses.map(function(arr){
-  const m=arr[0], fact=arr[1], pend=arr[2];
-  const tot = fact + pend;
-  const pctTot = maxMes>0 ? (tot/maxMes)*100 : 0;
-  const pctFact = tot>0 ? (fact/tot)*100 : 0;
-  const pctPend = tot>0 ? (pend/tot)*100 : 0;
-  const mesNm = MES_NM[m.split('-')[1]] + ' ' + m.split('-')[0].slice(2);
-  return '<div class="hbar-row">'+
-    '<span class="nm">'+mesNm+'</span>'+
-    '<div class="hbar-track-wrap"><div class="hbar-track" style="width:'+Math.max(pctTot,0.5)+'%">'+
-      (fact>0?'<div class="hbar-fact" style="width:'+pctFact.toFixed(2)+'%"></div>':'')+
-      (pend>0?'<div class="hbar-pend" style="left:'+pctFact.toFixed(2)+'%;width:'+pctPend.toFixed(2)+'%"></div>':'')+
-    '</div></div>'+
-    '<span class="tot">'+fmtComTot(tot)+'</span>'+
-  '</div>';
-}).join('');
-
-document.getElementById('k-cosabr').textContent = fmtFull(k.costos_abril);
-document.getElementById('k-rend2').textContent = fmtFull(k.rendimiento);
-document.getElementById('k-frt').textContent = fmtFull(DATA.frt);
-document.getElementById('k-fdr').textContent = fmtFull(DATA.fdr);
-
-document.getElementById('modal-top-content').innerHTML = DATA.top_clientes.map(function(c,i){
-  return '<tr><td style="width:30px;color:#4A4A48">'+(i+1)+'</td><td>'+c.nombre+'</td><td style="text-align:right;font-weight:700">'+fmtNum(c.monto/1e6)+'</td></tr>';
-}).join('');
-
-document.getElementById('modal-cos-content').innerHTML =
-  '<thead><tr><th style="text-align:left">Código</th><th style="text-align:left">Cuenta</th><th style="text-align:right">Monto</th></tr></thead><tbody>' +
-  DATA.costos_abril_detalle.map(function(d){
-    return '<tr><td style="color:#4A4A48;font-size:11px">'+d.codigo+'</td><td>'+d.cuenta+'</td><td style="text-align:right;font-weight:700">'+fmtFull(d.monto)+'</td></tr>';
-  }).join('') +
-  '<tr style="border-top:2px solid #4ECC50"><td></td><td style="font-weight:700">Total Junio</td><td style="text-align:right;font-weight:700;color:#3D6FB8">'+fmtFull(k.costos_abril)+'</td></tr>' +
-  '</tbody>';
-
-function abrirModal(id){document.getElementById(id).classList.add('open')}
-function cerrarModal(id){document.getElementById(id).classList.remove('open')}
-document.querySelectorAll('.modal-wrap').forEach(function(m){m.addEventListener('click', function(e){if(e.target===m) m.classList.remove('open')})});
-
-function showPage(n, btn){
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
-  document.getElementById('p'+n).classList.add('active');
-  document.querySelectorAll('.nav button').forEach(function(a){a.classList.remove('active')});
-  btn.classList.add('active');
+function P6(){
+  const d=DATA.p6;const max=Math.max.apply(null,d.rendimientos.map(i=>i[1]))||1;
+  const vb=d.rendimientos.map(it=>'<div class="vbar"><div class="vv">'+fmtM0(it[1])+'</div><div class="vb" style="height:'+Math.max(3,Math.round(it[1]/max*118))+'px"></div><div class="vt">'+esc(it[0])+'</div></div>').join('');
+  return '<section class="page" id="p6">'+head('Página 6 · Sostenibilidad','Indicadores','de evolución')+
+  '<div class="content">'+
+   '<div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:11px;align-items:start">'+
+     evolCard('Evolución comisiones · facturadas (M$)',d.comisiones,'#4ECC50','Total período',d.com_total,'com')+
+     evolCard('Evolución costos operativos (M$)',d.costos,'#3D6FB8','Acumulado al corte',d.cost_total,'cos')+
+   '</div>'+
+   '<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><div><div class="lbl">Evolución rendimientos del fondo (M$)</div><div class="sub">'+DATA.periodo+'</div></div><div style="text-align:right"><div class="big-num">'+fmtM(d.rend_total)+'</div><div class="sub">Rendimientos del período</div></div></div>'+
+     '<div class="vbars">'+vb+'</div></div>'+
+  '</div></section>';
 }
 
-window.addEventListener('beforeprint', function(){
-  document.querySelectorAll('.page').forEach(function(p){p.style.display = 'flex'});
+/* ---------------- RENDER ---------------- */
+document.getElementById('pages').innerHTML=P1()+P2()+P3()+P4()+P5()+P6();
+// donas + tooltip
+const pc=buildDona(DATA.p5.comercial.map(x=>[tcase(x[0]),x[1]]),document.getElementById('dn-com'));buildTabla(DATA.p5.comercial.map(x=>[tcase(x[0]),x[1]]),pc,document.getElementById('tb-com'));
+const ps=buildDona(DATA.p5.sector.map(x=>[tcase(x[0]),x[1]]),document.getElementById('dn-sec'));buildTabla(DATA.p5.sector.map(x=>[tcase(x[0]),x[1]]),ps,document.getElementById('tb-sec'));
+const pt=buildDona(DATA.p5.tamano.map(x=>[tcase(x[0]),x[1]]),document.getElementById('dn-tam'));buildTabla(DATA.p5.tamano.map(x=>[tcase(x[0]),x[1]]),pt,document.getElementById('tb-tam'));
+const dnTip=document.getElementById('dn-tip');
+document.querySelectorAll('.dn-svg circle.slice').forEach(c=>{
+  c.addEventListener('mouseenter',()=>{dnTip.innerHTML='<strong>'+c.dataset.name+'</strong><br>'+c.dataset.val+' garantías · '+c.dataset.pct+'%';dnTip.style.display='block';});
+  c.addEventListener('mousemove',e=>{dnTip.style.left=(e.clientX+14)+'px';dnTip.style.top=(e.clientY+14)+'px';});
+  c.addEventListener('mouseleave',()=>{dnTip.style.display='none';});
 });
-window.addEventListener('afterprint', function(){
-  document.querySelectorAll('.page').forEach(function(p){p.style.display = ''});
+document.querySelectorAll('.br').forEach(r=>{
+  r.addEventListener('mouseenter',()=>{r.style.background='#f0f4ea';dnTip.innerHTML='<strong>'+r.dataset.n+'</strong><br>'+(+r.dataset.v).toLocaleString('es-AR')+' M$';dnTip.style.display='block';});
+  r.addEventListener('mousemove',e=>{dnTip.style.left=(e.clientX+14)+'px';dnTip.style.top=(e.clientY+14)+'px';});
+  r.addEventListener('mouseleave',()=>{r.style.background='';dnTip.style.display='none';});
 });
+document.querySelectorAll('.cardh').forEach(r=>{
+  const bg=r.className.indexOf('chip-obj')>=0?'rgba(255,255,255,.9)':'#f0f4ea';
+  r.addEventListener('mouseenter',()=>{r.style.background=bg;dnTip.innerHTML='<strong>'+r.dataset.n+'</strong><br>'+r.dataset.t;dnTip.style.display='block';});
+  r.addEventListener('mousemove',e=>{dnTip.style.left=(e.clientX+14)+'px';dnTip.style.top=(e.clientY+14)+'px';});
+  r.addEventListener('mouseleave',()=>{r.style.background='';dnTip.style.display='none';});
+});
+function togEv(key,btn){
+  const a=document.getElementById(key+'-act'),f=document.getElementById(key+'-full');
+  const open=f.style.display==='none';
+  f.style.display=open?'block':'none';a.style.display=open?'none':'block';
+  btn.textContent=open?'Ver solo año en curso ▴':('Ver período completo (incl. '+(CY4-1)+') ▾');
+}
+function showPage(n,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p'+n).classList.add('active');document.querySelectorAll('.nav button').forEach(a=>a.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo(0,0);}
+window.addEventListener('beforeprint',()=>document.querySelectorAll('.page').forEach(p=>p.style.display='flex'));
+window.addEventListener('afterprint',()=>document.querySelectorAll('.page').forEach(p=>p.style.display=''));
 </script>
-
 </body>
 </html>
