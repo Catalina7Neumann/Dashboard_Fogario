@@ -142,21 +142,34 @@ body{padding:14px 22px 16px;min-height:100vh;display:flex;flex-direction:column}
   .hero.res .hn{font-size:42px}
 }
 @media print{
-  @page{size:A4 landscape;margin:6mm}
-  html,body{height:auto;background:#fff}
-  body{padding:0;display:block}
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;background:#fff;margin:0;padding:0}
+  body{padding:0;margin:0;display:block}
   .topbar,.nav,.btn{display:none !important}
-  .pages{max-width:none}
-  .page{display:flex !important;page-break-after:always;break-after:page;background:#E6E5DC !important;margin:0;border-radius:0;padding:8mm 10mm;min-height:190mm;height:auto;overflow:visible}
+  .pages{max-width:none;width:auto;margin:0;padding:0;flex:none}
+  /* Cada página = exactamente una hoja A4 apaisada, tamaño fijo */
+  .page{
+    display:flex !important;flex-direction:column;
+    width:297mm;height:208mm;
+    margin:0;border-radius:0;padding:9mm 12mm;
+    background:#E6E5DC !important;
+    overflow:hidden;
+    page-break-after:always;break-after:page;
+    page-break-inside:avoid;break-inside:avoid;
+  }
   .page:last-child{page-break-after:auto;break-after:auto}
+  .content{flex:1;min-height:0}
   .pin .pop{display:none !important}
   .grp{break-inside:avoid}
-  #p3 .content{gap:6px}
-  #p3 .chip-obj{padding:8px 11px}
-  #p3 .chip-obj .n{font-size:18px}
-  #p3 .grp{padding:8px 11px}
-  #p3 .grp h4{font-size:11px;margin-bottom:5px}
-  #p3 .grp .pnl{font-size:8px;line-height:1.4;column-gap:10px}
+  .map-grid{grid-template-columns:1fr 220px !important}
+  /* P3 detalle (151 nombres): compactar para que entren en una hoja */
+  #p3 .content{gap:5px}
+  #p3 .chip-obj{padding:7px 10px}
+  #p3 .chip-obj .n{font-size:17px}
+  #p3 .grp{padding:7px 10px}
+  #p3 .grp h4{font-size:10.5px;margin-bottom:4px;padding-bottom:4px}
+  #p3 .grp .pnl{font-size:7.5px;line-height:1.32;column-gap:10px}
+  #p3 .grp li{font-size:8px;padding:1.5px 0}
 }
 </style>
 </head>
